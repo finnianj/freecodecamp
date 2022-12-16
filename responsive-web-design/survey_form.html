@@ -1,0 +1,193 @@
+<html>
+
+  <head>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+
+  <body>
+
+    <style>
+
+      body {
+        background:#ffe;
+      }
+
+      h1 {
+        text-align:center;
+      }
+
+      #description {
+        font-style: italic; text-align: center;
+      }
+
+      .form-control {
+        width: 100%;
+        display: block;
+        height: 2.375rem;
+        padding: 0.375rem 0.75rem;
+        color: #495057;
+        background-color: #cfd;
+        background-clip: padding-box;
+        border: 1px solid #ced4da;
+        border-radius: 0.25rem;
+        transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+      }
+
+      .clue {
+        margin-left: 0.25rem;
+        font-size: 0.9rem;
+        font-style:italic;
+      }
+
+      .submit-button {
+        display: block;
+        width: 100%;
+        padding: 0.75rem;
+        background: green;
+        color: white;
+        border-radius: 2px;
+        cursor: pointer;
+      }
+
+      .form-group {
+        margin: 1 auto 1.25rem auto;
+        padding: 0.25rem;
+      }
+
+      option {
+        font-weight: normal;
+        display: block;
+        white-space: nowrap;
+        min-height: 1.2em;
+        padding: 0px 2px 1px;
+      }
+
+      label {
+        display: flex;
+        align-items: center;
+        font-size: 1.0rem;
+        margin-bottom: 0.5rem;
+        box-sizing: border-box;
+      }
+
+      .input-radio, .input-checkbox {
+        display: inline-block;
+        margin-right: 0.625rem;
+        min-height: 1.rem;
+        min-width: 1.25rem;
+      }
+
+      p {
+        margin-top: 0;
+        margin-bottom: 0.5rem;
+        font-size:1.12rem;
+        padding-top:5%;
+        box-sizing: border-box;
+      }
+
+      .input-textarea {
+        min-height: 120px;
+        width: 100%;
+        padding: 0.625rem;
+        resize: vertical;
+      }
+    </style>
+
+
+    <div class="container">
+
+      <header class="header">
+        <h1 id="title"> King Gizzard and the Lizard Wizard Survey Form </h1>
+        <p id ="description">  Help us decide which album is the best! </p>
+      </header>
+
+
+      <form id="survey-form">
+
+        <div class="form-group">
+          <label id="name-label" for="name"><strong>Name</strong></label>
+          <input type="text" name="name" id="name" class="form-control" placeholder="Enter your name" required="">
+        </div>
+
+        <div class="form-group">
+            <label id="email-label" for="email"><strong>Email</strong></label>
+            <input type="email" name="email" id="email" class="form-control" placeholder="Enter your Email" required="">
+        </div>
+
+        <div class="form-group">
+            <label id="number-label" for="number"><strong>Age (optional)</strong></label>
+            <input type="number" name="age" id="number" min="10" max="120" class="form-control" placeholder="Age" required="">
+        </div>
+
+        <div class="form-group">
+          <strong> <p> How long have you been listening to King Gizzard?</p></strong>
+          <select id="dropdown" class="form-control" name="time" required>
+            <option disabled selected value>Select an option</option>
+            <option value="Less than a year">Less than a year</option>
+            <option value="More than a year">More than a year</option>
+            <option value="More than 2 years">More than 2 years</option>
+            <option value="More than 5 years">More than 5 years</option>
+            <option value="Since the beginning!">Since the beginning!</option>
+            <option value="I am but a mere ignorant peasant">I am but a mere ignorant peasant</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <strong><p> Do you consider yourself a musician?</p></strong>
+          <label>
+            <input name="user-recommend" value="yes" type="radio" class="input-radio" checked> Yes
+          </label>
+          <label>
+            <input name="user-recommend" value="no" type="radio" class="input-radio"> No
+          </label>
+          <label>
+            <input name="user-recommend" value="maybe" type="radio" class="input-radio"> Maybe
+          </label>
+          <label>
+            <input name="user-recommend" value="I-dont-know" type="radio" class="input-radio"> I don't know
+          </label>
+          <label>
+            <input name="user-recommend" value="can-you-repeat" type="radio" class="input-radio"> Can you repeat the question?
+          </label>
+        </div>
+
+        <div class="form-group">
+          <p> <strong>Which are your favourite King Gizzard and the Lizard Wizard albums? </strong></p>
+          <span class="clue">(Check all that apply)</span>
+          <label><input name="prefer" value="Willoughby's Beach" type="checkbox" class="input-checkbox">Willoughby's Beach</label>
+          <label><input name="prefer" value="12 Bar Bruise" type="checkbox" class="input-checkbox">12 Bar Bruise</label>
+          <label><input name="prefer" value="Eyes like the sky" type="checkbox" class="input-checkbox">Eyes Like the Sky</label>
+          <label><input name="prefer" value="Float Along - Fill Your Lungs" type="checkbox" class="input-checkbox">Float Along - Fill Your Lungs</label>
+          <label><input name="prefer" value="Oddments" type="checkbox" class="input-checkbox">Oddments</label>
+          <label><input name="prefer" value="I'm In Your Mind Fuzz" type="checkbox" class="input-checkbox">I'm In Your Mind Fuzz</label>
+          <label><input name="prefer" value="Quarters" type="checkbox" class="input-checkbox">Quarters</label>
+          <label><input name="prefer" value="Paper Mache Dream Balloon" type="checkbox" class="input-checkbox">Paper Mache Dream Balloon</label>
+          <label><input name="prefer" value="Nonagon Infinity" type="checkbox" class="input-checkbox">Nonagon Infinity</label>
+          <label><input name="prefer" value="Flying Microtonal Banana" type="checkbox" class="input-checkbox">Flying Microtonal Banana</label>
+          <label><input name="prefer" value="Murder of the Universe" type="checkbox" class="input-checkbox">Murder of the Universe</label>
+          <label><input name="prefer" value="Sketches of Brunswick East" type="checkbox" class="input-checkbox">Sketches of Brunswick East</label>
+          <label><input name="prefer" value="Polygondwanaland" type="checkbox" class="input-checkbox">Polygondwanaland</label>
+          <label><input name="prefer" value="Gumboot Soup" type="checkbox" class="input-checkbox">Gumboot Soup</label>
+          <label><input name="prefer" value="Fishing for Fishies" type="checkbox" class="input-checkbox">Fishing for Fishies</label>
+          <label><input name="prefer" value="Infest the Rats' Nest" type="checkbox" class="input-checkbox">Infest the Rats' Nest</label>
+          <label><input name="prefer" value="K.G." type="checkbox" class="input-checkbox">K.G.</label>
+          <label><input name="prefer" value="L.W." type="checkbox" class="input-checkbox">L.W.</label>
+          <label><input name="prefer" value="Butterfly 3000" type="checkbox" class="input-checkbox">Butterfly 3000</label>
+          <label><input name="prefer" value="Omnium Gatherum" type="checkbox" class="input-checkbox">Omnium Gatherum</label>
+        </div>
+
+        <div class="form-group">
+          <strong><p> Any further comments? </p></strong>
+          <textarea id="comments" class="input-textarea" name="comment" placeholder="Enter your comment here..."></textarea>
+        </div>
+
+        <div class="form-group">
+          <button type="submit" id="submit" class="submit-button">Submit</button>
+        </div>
+
+
+      </form>
+
+    </div>
+  </body>
+</html>
