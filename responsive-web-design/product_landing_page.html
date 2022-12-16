@@ -1,0 +1,258 @@
+<body>
+
+  <header id="header">
+    <logo>
+      <img id="header-img" src="https://w7.pngwing.com/pngs/355/505/png-transparent-graphy-logo-tree-leaf-branch-logo-thumbnail.png" alt="Tree Logo Design">
+    </logo>
+
+    <nav id="nav-bar">
+      <ul>
+
+        <li><a class="nav-link" href="#lower">Features</a>
+        </li><li><a class="nav-link" href="#video">How Treeplanting Works</a>
+        </li>
+        <li><a class="nav-link" href="#pricing">Pricing</a></li>
+
+      </ul>
+    </nav>
+
+  </header>
+
+  <div id="title">
+    <h1>Trees for the Future</h1>
+    <form id="form" action="https://www.freecodecamp.com/email-submit">
+          <input name="email" id="email" type="email" placeholder="Enter your email address" required="">
+          <input id="submit" type="submit" value="Get Started" class="btn">
+    </form>
+  </div>
+
+  <div class="p_holder"> Our Mission:
+      <p id="first">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
+  </div>
+
+  <div id="lower">
+
+    <div class="description">
+      <h3>Sturdy!</h3>
+      <p> Our trees can withstand even the toughest winds!</p>
+    </div>
+
+    <div class="description">
+      <h3>Fast growing!</h3>
+      <p>With a growth rate of over 5cm per day, our trees are among the fastest in the solar system!</p>
+    </div>
+
+    <div class="description">
+      <h3>Nice to look at!</h3>
+      <p>That bark! Those leaves! Oh how those branches sway!</p>
+    </div>
+
+  </div>
+
+  <div id="how_we_work"> Tutorial: How to plant a tree
+    <p id="video1">
+      <iframe id="video" src="https://www.youtube.com/watch?v=L_GIHv9DfDU" title="ourworkvideo" width="500" height="350" style="border:none"></iframe>
+    </p>
+  </div>
+
+  <div id="pricing">Our pricing:
+      <div class="root"><div class="tree">Arum Lilies </div>Arum Lilies are a Death Flower, and their presence in the home is an unerring harbinger of death in the family! <p class="price">€50</p><button class="btn2">Select</button></div>
+      <div class="root"><div class="tree">White bryony </div>Said to scream when pulled from the ground, in the same way as mandrake!<p class="price">€70</p><button class="btn2">Select</button></div>
+      <div class="root"><div class="tree">Cow parsley </div>Cow parsley has the reputation of “breaking your mother’s heart”!<p class="price">€90</p><button class="btn2">Select</button></div>
+  </div>
+
+</body>
+
+
+
+
+
+
+
+  <style>
+
+    body{
+      background: #483838;
+    }
+
+    header{
+      background:#483838;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-evenly;
+      margin: 0px;
+    }
+
+    #header-img {
+      background: #483838;
+      display:flex;
+      min-width:80px;
+      flex-grow: 1;
+      max-height: 80px;
+      border-style:solid;
+    }
+
+    #email{
+      display:flex;
+      min-width:80px;
+      flex-grow: 1;
+      padding-left: 10px;
+    }
+
+    #nav-bar{
+      background: #42855B;
+      display:flex;
+      justify-content:center;
+      border-radius:5px;
+      flex-grow: 1;
+      position:fixed;
+      right:0px;
+    }
+
+    @media only screen and (min-width: 600px) {
+      h1{
+        font-size: 10;
+      }
+    }
+
+    ul {
+      display: flex;
+      flex-direction: row;
+      align-self: center;
+      justify-content:center;
+      background: #90B77D;
+      padding: 10px;
+      border-radius:5px;
+      flex-grow: .5;
+    }
+
+    li {
+      display: flex;
+      justify-content: center;
+      flex-grow:1;
+      padding:5px;
+      font-family: trebuchet, sans-serif;
+      color: #E3E8AF;
+    }
+
+    h1 {
+      text-align:center;
+      color:#90B77D;
+      font-weight: 100;
+      font-family: trebuchet, serif;
+      font-size: 100px;
+      margin:30px;
+      text-shadow: 2px 2px 2px #000000;
+    }
+
+    h3{
+      text-align:center;
+      font-size: 40px;
+      color:#D2D79F;
+    }
+
+    .description p{
+      text-align:center;
+      font-size: 25px;
+      font-style: italic;
+      color: #90B77D;
+    }
+
+    #form {
+      text-align:center;
+      margin:40px;
+      margin-top:3px;
+
+    }
+    #email{
+      min-width:350px;
+      min-height:30px;
+    }
+    .btn1{
+      min-height:30px;
+      font-size:15px;
+      background:#f1c40f;
+      margin:5px;
+    }
+    .btn2{
+      min-height:50px;
+      font-size:30px;
+      background:#f1c40f;
+      margin:5px;
+      padding:10px;
+    }
+    #first {
+      background: #D2D79F;
+      padding:30px;
+      line-height: 30px;
+      font-family: Trebuchet, sans-serif;
+      color: #483838;
+      border-radius:20px;
+      font-size: 20px;
+    }
+    .p_holder{
+      background:#42855B;
+      padding: 30px;
+      margin:90px;
+      margin-top:3px;
+      border-radius: 20px;
+      text-align:center;
+      color: #D2D79F;
+      font-family: trebuchet, sans-serif;
+      font-size: 25px;
+    }
+    #lower {
+      margin:90px;
+    }
+    #how_we_work{
+      text-align:center;
+      margin-top:30px;
+      display: flex;
+      flex-direction:column;
+      font-size: 25px;
+      color: #D2D79F
+    }
+    #video1 {
+      text-align:center;
+    }
+    #pricing {
+      background:#483838;
+      display:flex;
+      flex-direction:column;
+      align-items: center;
+      font-size:25px;
+      color: #D2D79F;
+
+    }
+    .tree{
+      background:#42855B;
+      padding:20px;
+      text-align:center;
+      margin-bottom:10px;
+      color:white;
+      font-size: 30px;
+        font-family: trebuchet, sans-serif;
+
+
+    }
+    .root{
+      background:grey;
+      padding-bottom:70px;
+      padding-left:20px;
+      padding-right:20px;
+      width:300px;
+      text-align:center;
+      margin:10px;
+      font-size: 18px;
+      font-family: trebuchet, sans-serif;
+
+    }
+    .price{
+      font-size:50px;
+      color:gold;
+    }
+    a:link{
+      text-decoration:none;
+    }
+
+  </style>
