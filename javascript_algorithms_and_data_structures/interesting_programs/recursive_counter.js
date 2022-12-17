@@ -5,7 +5,7 @@ function sleep(ms) {
 async function countdown(i) {
   await sleep(1);
   console.log(i)
-  if (i >= 10000) {  // base case
+  if (i >= 1000000) {  // base case
       return;
   } else {     // recursive case
       countdown(i + 1);
