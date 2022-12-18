@@ -18,3 +18,8 @@ fiveOrMore.catch(error => {
 })
 
 fiveOrMore;
+
+// the .then and .catch methods define what happens in the result of
+// a successful (fulfilled) promise, or a failed (rejected) promise.
+// result and error refer to the arguments given to resolve and reject
+// respectively.
