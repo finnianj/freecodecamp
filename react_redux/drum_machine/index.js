@@ -95,7 +95,3 @@ $(document).keyup(function() {
 function play (letter) {
   document.getElementById(`${letter.toUpperCase()}`).play()
 }
-
-
-
-

@@ -23,7 +23,7 @@ class Editor extends React.Component {
 return (
      <div>
       <div id="holder1">
-        <h2>Editor:</h2>
+        <h2>Marked Javascript Editor:</h2>
         <textarea id="editor" value={this.state.text} onChange={this.handleChange}>
             {this.state.text}
         </textarea>
