@@ -1,15 +1,32 @@
 #calculator{
   border: 1px solid black;
   height: 400px;
-  width: 300px;
+  width: 400px;
   margin: 0 auto;
 }
 
-#display{
+#display {
   height: 20%;
+  width: 95%;
   background-color: black;
-  color: orange;
+  color: gold;
+  text-align: right;
+  font-size: 40px;
+  padding: 10px;
+}
 
+
+input::placeholder{
+  color:white;
+}
+
+#answer{
+  color: gold;
+  background-color: black;
+  text-align: right;
+  height: 40px;
+  font-size: 30px;
+  padding: 10px 5px;
 }
 
 #keypad{
@@ -32,7 +49,6 @@
 }
 
 .key:hover {
-  opacity: 70%;
   border: 1px solid orange;
 }
 
@@ -49,4 +65,8 @@
 
 #zero{
   grid-column: 1/3;
+}
+
+.operator{
+  background-color: rgb(87, 87, 87);
 }
