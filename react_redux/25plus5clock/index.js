@@ -107,8 +107,8 @@ function App(){
       <div id="break-label">Break Length:
         <div id="break-length">{pause}</div>
         <div class="buttons">
-          <button class="btn btn-light" onClick={() => displayPause(1)} id="break-increment">+</button>
-          <button class="btn btn-light" onClick={() => displayPause(-1)} id="break-decrement">-</button>
+          <button class="btn btn-light" onClick={() => displayPause(1)} id="break-increment"><i class="fa-solid fa-arrow-up"></i></button>
+          <button class="btn btn-light" onClick={() => displayPause(-1)} id="break-decrement"><i class="fa-solid fa-arrow-down"></i></button>
         </div>
       </div>
 
@@ -116,8 +116,8 @@ function App(){
         Session Length:
         <div id="session-length">{session}</div>
         <div class="buttons">
-          <button class="btn btn-light" onClick={() => displaySession(1)} id="session-increment">+</button>
-          <button class="btn btn-light" onClick={() => displaySession(-1)} id="session-decrement">-</button>
+          <button class="btn btn-light" onClick={() => displaySession(1)} id="session-increment"><i class="fa-solid fa-arrow-up"></i></button>
+          <button class="btn btn-light" onClick={() => displaySession(-1)} id="session-decrement"><i class="fa-solid fa-arrow-down"></i></button>
         </div>
       </div>
     </div>
