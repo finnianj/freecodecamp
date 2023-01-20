@@ -3,8 +3,16 @@ function App(){
 
   const [pause, setPause] = React.useState(5);
   const [session, setSession] = React.useState(25);
-  const [time, setTime] = React.useState([25*60]);
+  const [time, setTime] = React.useState(25*60);
+  const [timerOn, setTimerOn] = React.useState(false);
+  const [breakTime, setBreakTime] = React.useState(false);
+  const [alarm, setAlarm] = React.useState(new Audio ("./alarm.mp3"))
 
+
+  const playAlarm = () => {
+    alarm.currentTime = 0;
+    alarm.play();
+  }
 
 
   const displayPause = (num) => {
@@ -14,6 +22,9 @@ function App(){
       return;
     } else {
       setPause((prev) => prev + num)
+      if (breakTime == true) {
+        setTime((pause + num )*60)
+      }
     }
   }
 
@@ -24,6 +35,9 @@ function App(){
        return;
     } else {
       setSession((prev) => prev + num )
+      if (timerOn == false) {
+        setTime((session + num )*60)
+      }
     }
   }
 
@@ -34,12 +48,47 @@ function App(){
       (minutes < 10 ? "0" + minutes : minutes) + ":" + (seconds < 10 ? "0" + seconds : seconds)
       )
     }
-  
 
+  const controlTime = () => {
+    let second = 1000;
+    let end = new Date().getTime() + second;
+    if (!timerOn) {
+      let interval = setInterval(() => {
+        let current = new Date().getTime();
+        if (current > end) {
+          setTime((prev) => {
+            if (prev <= 0 && !breakTime) {
+              setBreakTime(true);
+              playAlarm();
+              return pause*60
+            } else if (prev <= 0 && breakTime) {
+              setBreakTime(false);
+              playAlarm();
+              return session*60
+            } else {
+              return prev - 1
+            }
+          })
+          end += second;
+        }
+      }, 30);
+      localStorage.clear();
+      localStorage.setItem("interval-id", interval)
+    }
 
+    if (timerOn) {
+      clearInterval(localStorage.getItem("interval-id"))
+    }
+    setTimerOn(!timerOn)
+  }
 
-
-
+  const resetTime = () => {
+    setPause(5);
+    setSession(25);
+    setTime(25*60);
+    clearInterval(localStorage.getItem("interval-id"))
+    setTimerOn(false);
+  }
 
   return (
   <div id="container">
@@ -67,13 +116,17 @@ function App(){
 
     <div id="lower">
       <div id="current">
-        <div id="timer-label">Current: Session</div>
+        <div id="timer-label">
+        {(breakTime ? ("Break") : ("Session"))}
+        </div>
         <div id="time-left">{formatTime(time)}</div>
       </div>
 
       <div id="controls">
-        <button id="start_stop">Start/Stop</button>
-        <button id="reset">Reset</button>
+        <button id="start_stop" onClick={controlTime}>
+          {(timerOn ? ("Pause") : ("Play"))}
+        </button>
+        <button id="reset" onClick={resetTime}>Reset</button>
       </div>
 
     </div>
