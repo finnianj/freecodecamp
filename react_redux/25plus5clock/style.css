@@ -7,6 +7,8 @@
   text-align: center;
   color: white;
   font-family: helvetica;
+  border: 10px solid gold;
+
 }
 
 #dashboard{
@@ -20,9 +22,11 @@
   padding: 20px;
   font-size: 20px;
   margin: 20px;
+  width: 200px;
 }
 
 #session-label{
+  width: 200px;
   background-color: #8DCBE6;
   border-radius: 10px;
   padding: 20px;
@@ -61,6 +65,8 @@
   padding: 20px;
   font-size: 30px;
   margin: 20px;
+  border: 2px solid gold;
+  box-shadow: 2px 2px 6px black;
 }
 
 #controls{
