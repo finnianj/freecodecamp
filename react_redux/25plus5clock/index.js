@@ -3,14 +3,15 @@ function App(){
 
   const [pause, setPause] = React.useState(5);
   const [session, setSession] = React.useState(25);
-  const [time, setTime] = React.useState(25*60);
+  const [time, setTime] = React.useState(5);
   const [timerOn, setTimerOn] = React.useState(false);
   const [breakTime, setBreakTime] = React.useState(false);
 
   const playAlarm = () => {
-    document.getElementById("beep").currentTime = 1;
     document.getElementById("beep").play();
+    document.getElementById("beep").currentTime = 1;
   }
+
 
 
   const displayPause = (num) => {
@@ -60,14 +61,15 @@ function App(){
               setBreakTime(true);
               breaking = true;
               console.log("changing to break time. Break time is now:" + breaking)
-              playAlarm();
               return (pause*60);
             } else if (prev <= 0 && breaking == true) {
               setBreakTime(false);
               breaking = false;
               console.log("changing to session time. Break time is now:" + breaking)
-              playAlarm();
               return (session*60);
+            } else if (prev <= 1) {
+              playAlarm();
+              return prev - 1
             } else {
               return prev - 1
             }
@@ -86,7 +88,8 @@ function App(){
   }
 
   const resetTime = () => {
-    document.getElementById("beep").currentTime = 1;
+    document.getElementById("beep").pause();
+    document.getElementById("beep").currentTime = 0;
     setBreakTime(false);
     setPause(5);
     setSession(25);
@@ -104,8 +107,8 @@ function App(){
       <div id="break-label">Break Length:
         <div id="break-length">{pause}</div>
         <div class="buttons">
-          <button onClick={() => displayPause(1)} id="break-increment">+</button>
-          <button onClick={() => displayPause(-1)} id="break-decrement">-</button>
+          <button class="btn btn-light" onClick={() => displayPause(1)} id="break-increment">+</button>
+          <button class="btn btn-light" onClick={() => displayPause(-1)} id="break-decrement">-</button>
         </div>
       </div>
 
@@ -113,8 +116,8 @@ function App(){
         Session Length:
         <div id="session-length">{session}</div>
         <div class="buttons">
-          <button onClick={() => displaySession(1)} id="session-increment">+</button>
-          <button onClick={() => displaySession(-1)} id="session-decrement">-</button>
+          <button class="btn btn-light" onClick={() => displaySession(1)} id="session-increment">+</button>
+          <button class="btn btn-light" onClick={() => displaySession(-1)} id="session-decrement">-</button>
         </div>
       </div>
     </div>
@@ -128,10 +131,10 @@ function App(){
       </div>
 
       <div id="controls">
-        <button id="start_stop" onClick={controlTime}>
+        <button id="start_stop" class="btn btn-light" onClick={controlTime}>
           {(timerOn ? ("Pause") : ("Play"))}
         </button>
-        <button id="reset" onClick={resetTime}>Reset</button>
+        <button id="reset" class="btn btn-warning" onClick={resetTime}>Reset</button>
       </div>
 
       <audio id="beep" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/123941/Yodel_Sound_Effect.mp3"></audio>
@@ -144,3 +147,6 @@ function App(){
 }
 
 ReactDOM.render(<App />, document.getElementById("root"))
+
+
+///make reset PAUSE audio and then rewind
