@@ -6,12 +6,10 @@ function App(){
   const [time, setTime] = React.useState(25*60);
   const [timerOn, setTimerOn] = React.useState(false);
   const [breakTime, setBreakTime] = React.useState(false);
-  const [alarm, setAlarm] = React.useState(new Audio ("./alarm.mp3"))
-
 
   const playAlarm = () => {
-    alarm.currentTime = 0;
-    alarm.play();
+    document.getElementById("beep").currentTime = 1;
+    document.getElementById("beep").play();
   }
 
 
@@ -52,26 +50,31 @@ function App(){
   const controlTime = () => {
     let second = 1000;
     let end = new Date().getTime() + second;
+    let breaking = breakTime
     if (!timerOn) {
       let interval = setInterval(() => {
         let current = new Date().getTime();
         if (current > end) {
           setTime((prev) => {
-            if (prev <= 0 && !breakTime) {
+            if (prev <= 0 && breaking == false) {
               setBreakTime(true);
+              breaking = true;
+              console.log("changing to break time. Break time is now:" + breaking)
               playAlarm();
-              return pause*60
-            } else if (prev <= 0 && breakTime) {
+              return (pause*60);
+            } else if (prev <= 0 && breaking == true) {
               setBreakTime(false);
+              breaking = false;
+              console.log("changing to session time. Break time is now:" + breaking)
               playAlarm();
-              return session*60
+              return (session*60);
             } else {
               return prev - 1
             }
           })
           end += second;
         }
-      }, 30);
+      }, 10);
       localStorage.clear();
       localStorage.setItem("interval-id", interval)
     }
@@ -83,6 +86,8 @@ function App(){
   }
 
   const resetTime = () => {
+    document.getElementById("beep").currentTime = 1;
+    setBreakTime(false);
     setPause(5);
     setSession(25);
     setTime(25*60);
@@ -117,7 +122,7 @@ function App(){
     <div id="lower">
       <div id="current">
         <div id="timer-label">
-        {(breakTime ? ("Break") : ("Session"))}
+        {breakTime ? ("Break") : ("Session")}
         </div>
         <div id="time-left">{formatTime(time)}</div>
       </div>
@@ -128,6 +133,8 @@ function App(){
         </button>
         <button id="reset" onClick={resetTime}>Reset</button>
       </div>
+
+      <audio id="beep" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/123941/Yodel_Sound_Effect.mp3"></audio>
 
     </div>
   </div>
