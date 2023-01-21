@@ -112,6 +112,8 @@ function App(){
         </div>
       </div>
 
+      <img id="image" src="./tomato.png"/>
+
       <div id="session-label">
         Session Length:
         <div id="session-length">{session} Min</div>
