@@ -100,12 +100,12 @@ function App(){
 
   return (
   <div id="container">
-    <h1>25 + 5 Clock</h1>
+    <h1 id="title">25 + 5 Clock</h1>
 
     <div id="dashboard">
 
       <div id="break-label">Break Length:
-        <div id="break-length">{pause}</div>
+        <div id="break-length">{pause} Min</div>
         <div class="buttons">
           <button class="btn btn-light" onClick={() => displayPause(1)} id="break-increment"><i class="fa-solid fa-arrow-up"></i></button>
           <button class="btn btn-light" onClick={() => displayPause(-1)} id="break-decrement"><i class="fa-solid fa-arrow-down"></i></button>
@@ -114,7 +114,7 @@ function App(){
 
       <div id="session-label">
         Session Length:
-        <div id="session-length">{session}</div>
+        <div id="session-length">{session} Min</div>
         <div class="buttons">
           <button class="btn btn-light" onClick={() => displaySession(1)} id="session-increment"><i class="fa-solid fa-arrow-up"></i></button>
           <button class="btn btn-light" onClick={() => displaySession(-1)} id="session-decrement"><i class="fa-solid fa-arrow-down"></i></button>
@@ -132,7 +132,7 @@ function App(){
 
       <div id="controls">
         <button id="start_stop" class="btn btn-light" onClick={controlTime}>
-          {(timerOn ? ("Pause") : ("Play"))}
+          {(timerOn ? ("Pause") : ("Start"))}
         </button>
         <button id="reset" class="btn btn-warning" onClick={resetTime}>Reset</button>
       </div>
