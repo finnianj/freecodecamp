@@ -3,8 +3,8 @@ function apiCall() {
   .then((response) => response.json());
 }
 
-const w = 500;
-const h = 500;
+const w = 800;
+const h = 800;
 const svg = d3.select("#container")
   .append("svg")
   .attr("width", w)
