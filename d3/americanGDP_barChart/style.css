@@ -1,0 +1,18 @@
+#container{
+  width: 500px;
+  margin: 0 auto;
+}
+svg{
+  border: 2px solid black;
+  background-color: #F5E9CF;
+}
+
+#title{
+  width: 100%;
+  text-align: center;
+  font-size: 50px;
+  padding-bottom: 20px;
+}
+#tooltip{
+  text-align: center;
+}
