@@ -17,3 +17,7 @@ svg{
   text-align: center;
   font-size: 30px;
 }
+
+.bar{
+  fill:green;
+}
