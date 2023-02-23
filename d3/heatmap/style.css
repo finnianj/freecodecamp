@@ -1,0 +1,23 @@
+#container{
+  width: 90%;
+  height: 90%;
+  margin: 0 auto;
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.cell{
+}
+
+#title{
+  text-align: center;
+  font-size: 70px;
+}
+#description{
+  text-align: center;
+    font-size: 30px;
+
+}
