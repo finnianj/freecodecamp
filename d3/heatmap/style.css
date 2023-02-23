@@ -1,0 +1,40 @@
+#container{
+  width: 80%;
+  height: 90%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.cell:hover{
+    opacity: 70%;
+    stroke: black;
+}
+
+#title{
+  text-align: center;
+  font-size: 70px;
+}
+#description{
+  text-align: center;
+    font-size: 30px;
+
+}
+
+#info{
+  margin-top: 20px;
+  width: 420px;
+  height: 80px;
+}
+
+.highlighted{
+  border: 1px solid red;
+}
+
+#tooltip{
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+}
