@@ -30,9 +30,7 @@ const tooltip = d3.select("#info")
       .attr("id", "tooltip")
       .attr('style', 'position: absolute; opacity: 0;');
 
-const makeMap = (counties, education) => {
-  console.log(counties)
-  console.log(education)
+const makeMap = (counties, education, states) => {
 
   svg.selectAll("path")
       .data(counties)
@@ -75,6 +73,7 @@ const makeMap = (counties, education) => {
           return item.fips == fips
         })
       let percent = event.target.attributes['data-education'].value
+      console.log(countyName)
         tooltip
           .style('left', event.pageX + 15 + 'px')
           .style('top', event.pageY + 'px')
@@ -94,13 +93,24 @@ const makeMap = (counties, education) => {
           .duration(400)
           .style("opacity", 0);
       })
+
+      svg.selectAll("states")
+      .data(states)
+      .enter()
+      .append("path")
+      .attr("d", d3.geoPath())
+      .attr("class", "state")
+      .attr("stroke", "black")
+      .attr("fill", "none")
   };
 
 async function runProgram () {
   let countyResponse = await countyApiCall();
   education = await educationApiCall();
   counties = topojson.feature(countyResponse, countyResponse.objects.counties).features
-  makeMap(counties, education);
+  let states = topojson.feature(countyResponse, countyResponse.objects.states).features
+  console.log(states)
+  makeMap(counties, education, states);
 }
 
 
