@@ -50,17 +50,24 @@ const makeMap = (counties, education) => {
           return "yellow"
         } else {
           return "lime"
-        }
-  })
-
-}
+        }})
+      .attr("data-fips", (countyItem) => {
+        return countyItem.id
+      })
+      .attr("data-education", (countyItem) => {
+        let id = countyItem.id
+        let county = education.find((item) => {
+          return item.fips == id
+        })
+        return county.bachelorsOrHigher
+      })
+  };
 
 async function runProgram () {
   let countyResponse = await countyApiCall();
   education = await educationApiCall();
   counties = topojson.feature(countyResponse, countyResponse.objects.counties).features
   makeMap(counties, education);
-
 }
 
 
