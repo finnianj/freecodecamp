@@ -1,5 +1,9 @@
+body{
+  background-color: whitesmoke;
+}
+
 #container{
-  width: 80%;
+  width: 95%;
   margin: 30px auto;
   display: flex;
   justify-content: center;
@@ -33,7 +37,7 @@ svg{
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 15%;
+  width: 23%;
 
 }
 #headers{
