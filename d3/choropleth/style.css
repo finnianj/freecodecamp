@@ -1,0 +1,14 @@
+#container{
+  width: 80%;
+  margin: 0 auto;
+}
+
+svg{
+  background-color: whitesmoke;
+  padding: 50px;
+}
+
+.county{
+  stroke: red;
+
+}
