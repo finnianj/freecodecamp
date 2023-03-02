@@ -1,6 +1,50 @@
-<div id="container">
-  <h1 id="title">US Education by County
-  </h1>
-  <div id="description">Percentage of Over-25's with Bachelors Degree
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js" integrity="sha512-4UKI/XKm3xrvJ6pZS5oTRvIQGIzZFoXR71rRBb1y2N+PbwAsKa5tPl2J6WvbEvwN3TxQCm8hMzsl/pO+82iRlg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <link rel="stylesheet" href="./style.css">
+  <title>US Education Data - Choropleth Map</title>
+</head>
+<body>
+  <div id="container">
+
+    <div id="left">
+
+      <div id="headers">
+        <h1 id="title">US Education by County
+        </h1>
+        <div id="description">Percentage of Over-25's with Bachelors Degree
+        </div>
+      </div>
+
+      <div id="lower-left">
+       <svg id="legend">
+          <rect x="10" y="0" width="40" height="40" fill="#D61355"></rect>
+          <text x="60" y="20" fill="black">Less than 10%</text>
+          <rect x="10" y="40" width="40" height="40" fill="tomato"></rect>
+          <text x="60" y="60" fill="black">Less than 15%</text>
+          <rect x="10" y="80" width="40" height="40" fill="orange"></rect>
+          <text x="60" y="100" fill="black">Less than 20%</text>
+          <rect x="10" y="120" width="40" height="40" fill="#FDD36A"></rect>
+          <text x="60" y="140" fill="black">Less than 25%</text>
+          <rect x="10" y="160" width="40" height="40" fill="#C9F4AA"></rect>
+          <text x="60" y="180" fill="black">Less than 30%</text>
+          <rect x="10" y="200" width="40" height="40" fill="#38E54D"></rect>
+          <text x="60" y="220" fill="black">30% and above</text>
+        <svg>
+        </div>
+    </div>
+
+
+  </div>
+
+  <div id="info">
   <div>
-<div>
+  <script type="text/babel" src="./index.js"></script>
+</body>
+</html>

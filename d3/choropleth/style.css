@@ -1,6 +1,22 @@
+body{
+  background-color: whitesmoke;
+}
+
 #container{
-  width: 80%;
-  margin: 0 auto;
+  width: 95%;
+  margin: 30px auto;
+  display: flex;
+  justify-content: center;
+}
+
+#title{
+  font-size: 50px;
+  font-family: verdana;
+}
+
+#description{
+  font-size: 15px;
+  font-family: verdana;
 }
 
 svg{
@@ -10,5 +26,36 @@ svg{
 
 .county{
   stroke: red;
+}
 
+.county:hover{
+    opacity: 70%;
+    stroke: black;
+}
+
+#left{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 23%;
+
+}
+#headers{
+  height: 50%;
+  padding: 20px;
+  background-color: whitesmoke;
+}
+
+#lower-left{
+  height: 50%;
+}
+
+#legend{
+  height: 75%;
+}
+
+#tooltip{
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
 }
