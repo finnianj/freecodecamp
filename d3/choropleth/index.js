@@ -16,7 +16,7 @@ return fetch(educationData)
 .then((response) => response.json())
 }
 
-const w = 1500;
+const w = 1000;
 const h = 700;
 
 const svg = d3.select("#container")
@@ -87,7 +87,13 @@ const makeMap = (counties, education) => {
           .style("opacity", 0.9);
         tooltip
           .html(countyName.area_name + " " + percent + "%");
-  } )
+  })
+        .on("mouseout", function(d) {
+        tooltip
+          .transition()
+          .duration(400)
+          .style("opacity", 0);
+      })
   };
 
 async function runProgram () {
