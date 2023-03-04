@@ -21,22 +21,32 @@ return fetch(videoGameSales)
 }
 
 const movieColours = {
-  'Action' : 'red',
-'Adventure' : 'orange',
-'Comedy' : 'yellow',
-'Drama' : 'green',
-'Animation' : 'brown',
-'Family' : 'teal',
-'Biography' : 'gold'
+  'Action' : '#5E747F',
+'Adventure' : '#7B9E87',
+'Comedy' : '#B6BE9C',
+'Drama' : '#F3B562',
+'Animation' : '#F06060',
+'Family' : '#F2EBBF',
+'Biography' : '#8CBEB2'
 }
 
-const w = 1000;
-const h = 700;
+const w = 900;
+const h = 500;
 
 const svg = d3.select("#container")
   .append("svg")
   .attr("width", w)
   .attr("height", h)
+
+const legend = d3.select("#info")
+  .append("svg")
+
+
+const tooltip = d3.select("#info")
+      .append("div")
+      .attr("class", "tooltip")
+      .attr("id", "tooltip")
+      .attr('style', 'position: absolute; opacity: 0;');
 
 const drawTree = (pledges, movies, games) => {
   let sortedElements = d3.hierarchy(movies, (attr) => {
@@ -81,7 +91,45 @@ const drawTree = (pledges, movies, games) => {
                 })
                 .attr("fill", (item) => {
         return movieColours[item.data.category]
+  })            .on('mouseover', (e, d) => {
+      let name = d.data.name
+      let value = d.data.value
+        tooltip
+          .style('left', event.pageX + 15 + 'px')
+          .style('top', event.pageY + 'px')
+        tooltip
+          .attr("data-value", value)
+          .attr("data-name", name)
+        tooltip
+          .transition()
+          .duration(200)
+          .style("opacity", 0.9);
+        tooltip
+          .html(name + " - $" + value );
   })
+        .on("mouseout", function(d) {
+        tooltip
+          .transition()
+          .duration(400)
+          .style("opacity", 0);
+      })
+
+  tile.append('text')
+      .text((item) => {
+    return item.data.name
+  })
+      .attr("font-size", "10px")
+      .attr("x", '5')
+      .attr("y", '15')
+      .attr("overflow", "hidden")
+
+  // let legendItem = legend.selectAll('g')
+  //       .data(movieColours)
+  //       .enter()
+  //       .append("g")
+
+
+
 }
 
 
