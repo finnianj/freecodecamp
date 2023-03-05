@@ -1,33 +1,19 @@
-const kickstarterPledge = 'https://cdn.freecodecamp.org/testable-projects-fcc/data/tree_map/kickstarter-funding-data.json'
-
 const movieSales = 'https://cdn.freecodecamp.org/testable-projects-fcc/data/tree_map/movie-data.json'
-
-const videoGameSales = 'https://cdn.freecodecamp.org/testable-projects-fcc/data/tree_map/video-game-sales-data.json'
-
-
-const pledgeApiCall = () => {
-return fetch(kickstarterPledge)
-.then((response) => response.json())
-}
 
 const movieApiCall = () => {
 return fetch(movieSales)
 .then((response) => response.json())
 }
 
-const gameApiCall = () => {
-return fetch(videoGameSales)
-.then((response) => response.json())
-}
 
 const movieColours = {
   'Action' : '#A282D7',
-'Adventure' : '#D65DB1',
-'Comedy' : '#FF6F91',
-'Drama' : '#FF9671',
-'Animation' : '#FFC75F',
-'Family' : '#FFFE9F',
-'Biography' : '#71CEBE'
+  'Adventure' : '#D65DB1',
+  'Comedy' : '#FF6F91',
+  'Drama' : '#FF9671',
+  'Animation' : '#FFC75F',
+  'Family' : '#FFFE9F',
+  'Biography' : '#71CEBE'
 }
 
 const w = 900;
@@ -47,7 +33,7 @@ const tooltip = d3.select("#info")
       .attr("id", "tooltip")
       .attr('style', 'position: absolute; opacity: 0;');
 
-const drawTree = (pledges, movies, games) => {
+const drawTree = (movies) => {
   let sortedElements = d3.hierarchy(movies, (attr) => {
     return attr.children
   }).sum((node) => {
@@ -122,22 +108,12 @@ const drawTree = (pledges, movies, games) => {
     .attr("y", function(d, i) { return 13 + i * 10; })
     .text(function(d) { return d; });
 
-
-
-
-
-
-
-
 }
 
 
 async function runProgram () {
-  let pledgeResponse = await pledgeApiCall();
   let movieResponse = await movieApiCall();
-  let gameResponse = await gameApiCall();
-  drawTree(pledgeResponse, movieResponse, gameResponse);
-  // console.log(movieResponse)
+  drawTree(movieResponse);
 }
 
 
