@@ -1,33 +1,19 @@
-const kickstarterPledge = 'https://cdn.freecodecamp.org/testable-projects-fcc/data/tree_map/kickstarter-funding-data.json'
-
 const movieSales = 'https://cdn.freecodecamp.org/testable-projects-fcc/data/tree_map/movie-data.json'
-
-const videoGameSales = 'https://cdn.freecodecamp.org/testable-projects-fcc/data/tree_map/video-game-sales-data.json'
-
-
-const pledgeApiCall = () => {
-return fetch(kickstarterPledge)
-.then((response) => response.json())
-}
 
 const movieApiCall = () => {
 return fetch(movieSales)
 .then((response) => response.json())
 }
 
-const gameApiCall = () => {
-return fetch(videoGameSales)
-.then((response) => response.json())
-}
 
 const movieColours = {
-  'Action' : '#5E747F',
-'Adventure' : '#7B9E87',
-'Comedy' : '#B6BE9C',
-'Drama' : '#F3B562',
-'Animation' : '#F06060',
-'Family' : '#F2EBBF',
-'Biography' : '#8CBEB2'
+  'Action' : '#A282D7',
+  'Adventure' : '#D076B5',
+  'Comedy' : '#FC839F',
+  'Drama' : '#F69F80',
+  'Animation' : '#FFC75F',
+  'Family' : '#FFFE9F',
+  'Biography' : '#71CEBE'
 }
 
 const w = 900;
@@ -35,11 +21,10 @@ const h = 500;
 
 const svg = d3.select("#container")
   .append("svg")
+  .attr("id", "canvas")
   .attr("width", w)
   .attr("height", h)
 
-const legend = d3.select("#info")
-  .append("svg")
 
 
 const tooltip = d3.select("#info")
@@ -48,7 +33,7 @@ const tooltip = d3.select("#info")
       .attr("id", "tooltip")
       .attr('style', 'position: absolute; opacity: 0;');
 
-const drawTree = (pledges, movies, games) => {
+const drawTree = (movies) => {
   let sortedElements = d3.hierarchy(movies, (attr) => {
     return attr.children
   }).sum((node) => {
@@ -114,31 +99,21 @@ const drawTree = (pledges, movies, games) => {
           .style("opacity", 0);
       })
 
-  tile.append('text')
-      .text((item) => {
-    return item.data.name
-  })
-      .attr("font-size", "10px")
-      .attr("x", '5')
-      .attr("y", '15')
-      .attr("overflow", "hidden")
-
-  // let legendItem = legend.selectAll('g')
-  //       .data(movieColours)
-  //       .enter()
-  //       .append("g")
-
-
+  tile.append("text")
+    .attr('class', 'tile-text')
+    .selectAll("tspan")
+    .data(function(d) { return d.data.name.split(/(?=[A-Z][^A-Z])/g); })
+    .enter().append("tspan")
+    .attr("x", 4)
+    .attr("y", function(d, i) { return 13 + i * 10; })
+    .text(function(d) { return d; });
 
 }
 
 
 async function runProgram () {
-  let pledgeResponse = await pledgeApiCall();
   let movieResponse = await movieApiCall();
-  let gameResponse = await gameApiCall();
-  drawTree(pledgeResponse, movieResponse, gameResponse);
-  // console.log(movieResponse)
+  drawTree(movieResponse);
 }
 
 

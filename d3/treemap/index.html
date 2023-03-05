@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <link rel="stylesheet" href="./style.css">
 
@@ -11,10 +13,56 @@
 </head>
 <body>
   <div id="container">
-    <h2 id="title">Tree Map
-    <h2>
-    <h5 id="description">Top 100 highest grossing
-    <h5>
+    <div id="left-panel">
+      <h2 id="title">Tree Map
+      </h2>
+      <h5 id="description">Top 100 highest grossing films of all time
+      </h5>
+      <svg id='legend'>
+        <g>
+          <rect class="legend-item" x="0" y="10" width="40" height="40" fill="#A282D7">
+          </rect>
+          <text x="60" y="35">Action
+          </text>
+        </g>
+        <g>
+          <rect class="legend-item" x="0" y="50" width="40" height="40" fill="#D076B5">
+          </rect>
+          <text x="60" y="75">Adventure
+          </text>
+        </g>
+        <g>
+          <rect class="legend-item" x="0" y="90" width="40" height="40" fill="#FC839F">
+          </rect>
+          <text x="60" y="115">Comedy
+          </text>
+        </g>
+        <g>
+          <rect class="legend-item" x="0" y="130" width="40" height="40" fill="#F69F80">
+          </rect>
+          <text x="60" y="155">Drama
+          </text>
+        </g>
+        <g>
+          <rect class="legend-item" x="0" y="170" width="40" height="40" fill="#FFC75F">
+          </rect>
+          <text x="60" y="195">Animation
+          </text>
+        </g>
+        <g>
+          <rect class="legend-item" x="0" y="210" width="40" height="40" fill="#FFFE9F">
+          </rect>
+          <text x="60" y="235">Family
+          </text>
+        </g>
+        <g>
+          <rect class="legend-item" x="0" y="250" width="40" height="40" fill="#71CEBE">
+          </rect>
+          <text x="60" y="275">Biography
+          </text>
+        </g>
+      </svg>
+      </div>
     <div id="info">
     </div>
 

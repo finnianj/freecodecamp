@@ -1,8 +1,31 @@
 #container{
-  border: 1px solid black;
   width: 80%;
-  margin: 0 auto;
+  margin: 20px auto;
   height: 500px;
+  display: flex;
+  border: 15px solid gray;
+}
+
+#left-panel{
+  display: flex;
+  flex-direction: column;
+  font-family: verdana;
+  justify-content: space-between;
+  background-color: #EFE6DC;
+  overflow: hidden;
+}
+
+#title{
+  text-align: center;
+  font-size: 35px;
+  font-family: verdana;
+}
+
+#description{
+  text-align: center;
+  font-family: verdana;
+  font-size: 10px;
+  padding: 10px;
 }
 
 svg{
@@ -10,7 +33,7 @@ svg{
 }
 
 #tooltip{
-  background-color: white;
+  background-color: #EFE6DC;
   padding: 20px;
   border-radius: 5px;
 }
@@ -20,5 +43,22 @@ svg{
 }
 
 .tile:hover{
-  opacity: 70%;
+  fill: white;
 }
+
+.tile-text{
+  font-size: 8px;
+  display: block;
+  text-align: center;
+}
+
+#legend{
+  height: 290px;
+  width: 200px;
+  background-color: #EFE6DC;
+  font-family: verdana;
+
+}
+
+
+
