@@ -21,13 +21,13 @@ return fetch(videoGameSales)
 }
 
 const movieColours = {
-  'Action' : '#5E747F',
-'Adventure' : '#7B9E87',
-'Comedy' : '#B6BE9C',
-'Drama' : '#F3B562',
-'Animation' : '#F06060',
-'Family' : '#F2EBBF',
-'Biography' : '#8CBEB2'
+  'Action' : '#A282D7',
+'Adventure' : '#D65DB1',
+'Comedy' : '#FF6F91',
+'Drama' : '#FF9671',
+'Animation' : '#FFC75F',
+'Family' : '#FFFE9F',
+'Biography' : '#71CEBE'
 }
 
 const w = 900;
@@ -35,11 +35,10 @@ const h = 500;
 
 const svg = d3.select("#container")
   .append("svg")
+  .attr("id", "canvas")
   .attr("width", w)
   .attr("height", h)
 
-const legend = d3.select("#info")
-  .append("svg")
 
 
 const tooltip = d3.select("#info")
@@ -118,15 +117,14 @@ const drawTree = (pledges, movies, games) => {
       .text((item) => {
     return item.data.name
   })
-      .attr("font-size", "10px")
+      .attr("class", "tile-text")
       .attr("x", '5')
       .attr("y", '15')
-      .attr("overflow", "hidden")
 
-  // let legendItem = legend.selectAll('g')
-  //       .data(movieColours)
-  //       .enter()
-  //       .append("g")
+
+
+
+
 
 
 
