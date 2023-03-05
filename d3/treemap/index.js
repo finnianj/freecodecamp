@@ -113,13 +113,14 @@ const drawTree = (pledges, movies, games) => {
           .style("opacity", 0);
       })
 
-  tile.append('text')
-      .text((item) => {
-    return item.data.name
-  })
-      .attr("class", "tile-text")
-      .attr("x", '5')
-      .attr("y", '15')
+  tile.append("text")
+    .attr('class', 'tile-text')
+    .selectAll("tspan")
+    .data(function(d) { return d.data.name.split(/(?=[A-Z][^A-Z])/g); })
+    .enter().append("tspan")
+    .attr("x", 4)
+    .attr("y", function(d, i) { return 13 + i * 10; })
+    .text(function(d) { return d; });
 
 
 
