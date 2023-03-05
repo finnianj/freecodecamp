@@ -8,9 +8,9 @@ return fetch(movieSales)
 
 const movieColours = {
   'Action' : '#A282D7',
-  'Adventure' : '#D65DB1',
-  'Comedy' : '#FF6F91',
-  'Drama' : '#FF9671',
+  'Adventure' : '#D076B5',
+  'Comedy' : '#FC839F',
+  'Drama' : '#F69F80',
   'Animation' : '#FFC75F',
   'Family' : '#FFFE9F',
   'Biography' : '#71CEBE'
