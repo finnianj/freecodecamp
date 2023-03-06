@@ -1,6 +1,6 @@
 #container{
   width: 80%;
-  margin: 20px auto;
+  margin: 100px auto;
   height: 500px;
   display: flex;
   border: 15px solid gray;
@@ -59,6 +59,3 @@ svg{
   font-family: verdana;
 
 }
-
-
-
