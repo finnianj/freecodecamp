@@ -25,3 +25,6 @@ fi
 #run help test to see all the different parameters you can use to evaluate expression
 [[ -a countdown.sh ]]; echo $?
 #this will have an exit status of 0, because the -a flag checks if a file exists
+
+[[ -x countdown.sh || 5 -le 4 ]]; echo $?
+#checks is file is executable by me OR if 5 is less than or equal to 4
