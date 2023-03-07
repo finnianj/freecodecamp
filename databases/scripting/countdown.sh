@@ -16,6 +16,7 @@ then
   while [[ I -ge 0 ]]
   do
     echo $I
+    #when using echo with a variable, you have to use $
     (( I-- ))
     sleep 1
   done
