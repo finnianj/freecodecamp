@@ -28,3 +28,8 @@ fi
 
 [[ -x countdown.sh || 5 -le 4 ]]; echo $?
 #checks is file is executable by me OR if 5 is less than or equal to 4
+
+
+# ls / will list what's in the root of your computers file system.
+# 🤭
+# there is a bin folder which stands for binary
