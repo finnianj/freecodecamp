@@ -13,3 +13,9 @@ else
   echo false
 fi
 #using conditional statement
+#You can compare integers inside the brackets ([[ ... ]]) of your if with -eq (equal), -ne (not equal), -lt (less than), -le (less than or equal), -gt (greater than), -ge (greater than or equal).
+#Each command has an exit status that can be accessed with $?. View the exit status of the last command with echo $?
+#0 is true, 1 is false
+
+[[ 4 -ge 5 ]]; echo $?
+#you can run separate commands on a single line with ;. $? prints the exit status of the last command.
