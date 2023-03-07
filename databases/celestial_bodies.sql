@@ -1,3 +1,6 @@
+-- The following database was built learning SQL and so most of the values/names are complete trash....
+
+
 --
 -- PostgreSQL database dump
 --
@@ -485,5 +488,3 @@ ALTER TABLE ONLY public.star
 --
 -- PostgreSQL database dump complete
 --
-
-
