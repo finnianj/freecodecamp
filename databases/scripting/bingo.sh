@@ -17,13 +17,13 @@
 # declare -p NUMBER
 #you can view variables that you have stored with declare -p variable_name.
 
---------------------------------------------------------------------------------
+#--------------------------------------------------------------------------------
 
 echo -e "\n~~ Bingo Number Generator ~~\n"
 
 NUMBER=$(( RANDOM % 75 + 1 ))
 
-TEXT="The next number is, "
+TEXT="The next number is: "
 
 if (( $NUMBER <= 15 ))
 then
