@@ -13,3 +13,4 @@ NUMBER=$RANDOM%75
 echo $NUMBER
 
 #because BASH sees everything as a string, here NUMBER will be NUMBER%75.
+# doubles parentheses with a $ will provide the result of a calculation as output. If you don't put $ before (()), then the calculation will be performed but not have output. It is good for changing variable values.
