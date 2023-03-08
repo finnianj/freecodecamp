@@ -33,3 +33,5 @@ fi
 # ls / will list what's in the root of your computers file system.
 # 🤭
 # there is a bin folder which stands for binary
+
+printenv will print all environment variables to the terminal. Every shell comes with preloaded environment variables.
