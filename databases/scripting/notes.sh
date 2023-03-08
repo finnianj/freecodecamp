@@ -14,6 +14,7 @@ else
 fi
 #using conditional statement
 #You can compare integers inside the brackets ([[ ... ]]) of your if with -eq (equal), -ne (not equal), -lt (less than), -le (less than or equal), -gt (greater than), -ge (greater than or equal).
+# See all options for  [[]] with help [[ expression ]] and help test
 
 #Each command has an exit status that can be accessed with $?. View the exit status of the last command with echo $?
 #0 is true, 1 is false. It counts the number of errors
@@ -33,5 +34,3 @@ fi
 # ls / will list what's in the root of your computers file system.
 # 🤭
 # there is a bin folder which stands for binary
-
-
