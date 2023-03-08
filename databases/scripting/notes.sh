@@ -34,4 +34,4 @@ fi
 # 🤭
 # there is a bin folder which stands for binary
 
-printenv will print all environment variables to the terminal. Every shell comes with preloaded environment variables.
+
