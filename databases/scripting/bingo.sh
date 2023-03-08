@@ -19,3 +19,5 @@ echo $NUMBER
 declare -p NUMBER
 
 #you can view variables that you have stored with declare -p variable_name.
+
+echo $(( RANDOM % 75 ))
