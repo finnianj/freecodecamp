@@ -31,3 +31,7 @@ do
 # get new course_id
 # insert into majors_courses
 done
+
+PSQL="psql -X --username=freecodecamp --dbname=students --no-align --tuples-only -c"
+
+# This variables will allow us to make queries
