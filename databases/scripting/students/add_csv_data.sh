@@ -1,9 +1,9 @@
 #!/bin/bash
 
-cat courses.csv | while read MAJOR COURSE
-do
-  echo $MAJOR
-done
+# cat courses.csv | while read MAJOR COURSE
+# do
+#   echo $MAJOR
+# done
 
 # reads each line of the csv and saves it into two variables, major and course
 
@@ -11,16 +11,16 @@ done
 # This variable is used to determine word boundaries. It defaults to spaces, tabs, and new lines. This is why the MAJOR variable was set to only the first word on each line from the data. Between the while and read commands, set the IFS to a comma like this: IFS=","
 # Now, it should use the comma in the data to separate words instead of spaces. Run the script again to see if it's working.
 
-cat courses.csv | while IFS="," read MAJOR COURSE
-do
-  echo $MAJOR
-done
+# cat courses.csv | while IFS="," read MAJOR COURSE
+# do
+#   echo $MAJOR
+# done
 
 
 # Here's what we wanna do:
 
-cat courses.csv | while IFS="," read MAJOR COURSE
-do
+# cat courses.csv | while IFS="," read MAJOR COURSE
+# do
 # get major_id
 # if not found
 # insert major
@@ -30,14 +30,11 @@ do
 # insert course
 # get new course_id
 # insert into majors_courses
-done
+# done
 
-PSQL="psql -X --username=freecodecamp --dbname=students --no-align --tuples-only -c"
+# PSQL="psql -X --username=freecodecamp --dbname=students --no-align --tuples-only -c"
 
 # This variable will allow us to make queries:
-
-MAJOR_ID=$($PSQL "SELECT major_id FROM majors WHERE major='$MAJOR'")
-
 
 cat courses.csv | while IFS="," read MAJOR COURSE
 do
@@ -50,13 +47,10 @@ do
     then
       # insert major
       INSERT_MAJOR_RESULT=$($PSQL "INSERT INTO majors(major) VALUES('$MAJOR')")
-      echo $INSERT_MAJOR_RESULT
+      if [[ $INSERT_MAJOR_RESULT == 'INSERT 0 1' ]]
+      then
+        echo Inserted into majors, $MAJOR
+      fi
       # get new major_id
     fi
   fi
-# get course_id
-# if not found
-# insert course
-# get new course_id
-# insert into majors_courses
-done
