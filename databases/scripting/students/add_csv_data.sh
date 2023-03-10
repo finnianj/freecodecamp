@@ -98,5 +98,8 @@ done
 
 cat students.csv | while IFS="," read FIRST LAST MAJOR GPA
 do
-  echo $FIRST
+  if [[ $FIRST != 'first_name' ]]
+  then
+
+  fi
 done
