@@ -35,3 +35,6 @@ WHERE student_id IS NULL OR first_name ILIKE '%ma%' ORDER BY major ASC")"
 
 echo -e "\nList of unique courses, in reverse alphabetical order, that no student or 'Obie Hilpert' is taking:"
 echo "$($PSQL "SELECT DISTINCT(course) FROM students RIGHT JOIN majors USING(major_id)INNER JOIN majors_courses USING(major_id) INNER JOIN courses USING(course_id) WHERE (first_name = 'Obie' AND last_name = 'Hilpert') OR student_id IS NULL ORDER BY course DESC")"
+
+echo -e "\nList of courses, in alphabetical order, with only one student enrolled:"
+echo "$($PSQL "SELECT course FROM students INNER JOIN majors_courses USING(major_id) INNER JOIN courses USING(course_id) GROUP BY course HAVING COUNT(student_id) = 1 ORDER BY course")"
