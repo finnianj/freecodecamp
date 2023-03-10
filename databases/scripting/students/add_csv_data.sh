@@ -32,7 +32,7 @@
 # insert into majors_courses
 # done
 
-# PSQL="psql -X --username=freecodecamp --dbname=students --no-align --tuples-only -c"
+PSQL="psql -X --username=finncj --dbname=students --no-align --tuples-only -c"
 
 # This variable will allow us to make queries:
 
