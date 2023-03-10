@@ -32,13 +32,14 @@
 # insert into majors_courses
 # done
 
-# PSQL="psql -X --username=freecodecamp --dbname=students --no-align --tuples-only -c"
+PSQL="psql -X --username=finncj --dbname=students --no-align --tuples-only -c"
 
 # This variable will allow us to make queries:
 
 echo $($PSQL "TRUNCATE students, majors, courses, majors_courses")
 
 # deletes all rows in the above tables.
+
 
 cat courses.csv | while IFS="," read MAJOR COURSE
 do
@@ -98,5 +99,25 @@ done
 
 cat students.csv | while IFS="," read FIRST LAST MAJOR GPA
 do
-  echo $FIRST
+  if [[ $FIRST != 'first_name' ]]
+  then
+    #get major_id
+    MAJOR_ID=$($PSQL "SELECT major_id FROM majors WHERE major='$MAJOR'")
+
+    #if id is empty
+    if [[ -z $MAJOR_ID ]]
+    then
+      #set to null
+      MAJOR_ID=null
+    fi
+
+    #insert student
+    INSERT_STUDENT_RESULT=$($PSQL "INSERT INTO students(first_name, last_name, major_id, gpa) VALUES('$FIRST', '$LAST', $MAJOR_ID, $GPA)")
+
+    if [[ $INSERT_STUDENT_RESULT == 'INSERT 0 1' ]]
+    then
+      echo Inserted into students, $FIRST $LAST
+    fi
+
+  fi
 done
