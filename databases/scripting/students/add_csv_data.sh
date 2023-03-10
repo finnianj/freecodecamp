@@ -109,8 +109,10 @@ do
       #set to null
       MAJOR_ID=null
     fi
-    echo $MAJOR_ID 
+    
     #insert student
+    INSERT_STUDENT_RESULT=$($PSQL "INSERT INTO students(first_name, last_name, major_id, gpa) VALUES('$FIRST', '$LAST', $MAJOR_ID, $GPA)")
+
 
   fi
 done
