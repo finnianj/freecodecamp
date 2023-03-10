@@ -32,3 +32,6 @@ echo "$($PSQL "SELECT major_id, COUNT(*) AS number_of_students, ROUND(AVG(gpa), 
 echo -e "\nList of majors, in alphabetical order, that either no student is taking or has a student whose first name contains a case insensitive 'ma':"
 echo "$($PSQL "SELECT major FROM students FULL JOIN majors ON majors.major_id = students.major_id
 WHERE student_id IS NULL OR first_name ILIKE '%ma%' ORDER BY major ASC")"
+
+echo -e "\nList of unique courses, in reverse alphabetical order, that no student or 'Obie Hilpert' is taking:"
+echo "$($PSQL "SELECT DISTINCT(course) FROM students RIGHT JOIN majors USING(major_id)INNER JOIN majors_courses USING(major_id) INNER JOIN courses USING(course_id) WHERE (first_name = 'Obie' AND last_name = 'Hilpert') OR student_id IS NULL ORDER BY course DESC")"
