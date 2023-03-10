@@ -18,13 +18,13 @@ SET row_security = off;
 
 DROP DATABASE students;
 --
--- Name: students; Type: DATABASE; Schema: -; Owner: freecodecamp
+-- Name: students; Type: DATABASE; Schema: -; Owner: finncj
 --
 
 CREATE DATABASE students WITH TEMPLATE = template0 ENCODING = 'UTF8' LC_COLLATE = 'C.UTF-8' LC_CTYPE = 'C.UTF-8';
 
 
-ALTER DATABASE students OWNER TO freecodecamp;
+ALTER DATABASE students OWNER TO finncj;
 
 \connect students
 
@@ -44,7 +44,7 @@ SET default_tablespace = '';
 SET default_table_access_method = heap;
 
 --
--- Name: courses; Type: TABLE; Schema: public; Owner: freecodecamp
+-- Name: courses; Type: TABLE; Schema: public; Owner: finncj
 --
 
 CREATE TABLE public.courses (
@@ -53,10 +53,10 @@ CREATE TABLE public.courses (
 );
 
 
-ALTER TABLE public.courses OWNER TO freecodecamp;
+ALTER TABLE public.courses OWNER TO finncj;
 
 --
--- Name: courses_course_id_seq; Type: SEQUENCE; Schema: public; Owner: freecodecamp
+-- Name: courses_course_id_seq; Type: SEQUENCE; Schema: public; Owner: finncj
 --
 
 CREATE SEQUENCE public.courses_course_id_seq
@@ -68,17 +68,17 @@ CREATE SEQUENCE public.courses_course_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.courses_course_id_seq OWNER TO freecodecamp;
+ALTER TABLE public.courses_course_id_seq OWNER TO finncj;
 
 --
--- Name: courses_course_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: freecodecamp
+-- Name: courses_course_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: finncj
 --
 
 ALTER SEQUENCE public.courses_course_id_seq OWNED BY public.courses.course_id;
 
 
 --
--- Name: majors; Type: TABLE; Schema: public; Owner: freecodecamp
+-- Name: majors; Type: TABLE; Schema: public; Owner: finncj
 --
 
 CREATE TABLE public.majors (
@@ -87,10 +87,10 @@ CREATE TABLE public.majors (
 );
 
 
-ALTER TABLE public.majors OWNER TO freecodecamp;
+ALTER TABLE public.majors OWNER TO finncj;
 
 --
--- Name: majors_courses; Type: TABLE; Schema: public; Owner: freecodecamp
+-- Name: majors_courses; Type: TABLE; Schema: public; Owner: finncj
 --
 
 CREATE TABLE public.majors_courses (
@@ -99,10 +99,10 @@ CREATE TABLE public.majors_courses (
 );
 
 
-ALTER TABLE public.majors_courses OWNER TO freecodecamp;
+ALTER TABLE public.majors_courses OWNER TO finncj;
 
 --
--- Name: majors_major_id_seq; Type: SEQUENCE; Schema: public; Owner: freecodecamp
+-- Name: majors_major_id_seq; Type: SEQUENCE; Schema: public; Owner: finncj
 --
 
 CREATE SEQUENCE public.majors_major_id_seq
@@ -114,17 +114,17 @@ CREATE SEQUENCE public.majors_major_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.majors_major_id_seq OWNER TO freecodecamp;
+ALTER TABLE public.majors_major_id_seq OWNER TO finncj;
 
 --
--- Name: majors_major_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: freecodecamp
+-- Name: majors_major_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: finncj
 --
 
 ALTER SEQUENCE public.majors_major_id_seq OWNED BY public.majors.major_id;
 
 
 --
--- Name: students; Type: TABLE; Schema: public; Owner: freecodecamp
+-- Name: students; Type: TABLE; Schema: public; Owner: finncj
 --
 
 CREATE TABLE public.students (
@@ -136,10 +136,10 @@ CREATE TABLE public.students (
 );
 
 
-ALTER TABLE public.students OWNER TO freecodecamp;
+ALTER TABLE public.students OWNER TO finncj;
 
 --
--- Name: students_student_id_seq; Type: SEQUENCE; Schema: public; Owner: freecodecamp
+-- Name: students_student_id_seq; Type: SEQUENCE; Schema: public; Owner: finncj
 --
 
 CREATE SEQUENCE public.students_student_id_seq
@@ -151,87 +151,87 @@ CREATE SEQUENCE public.students_student_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.students_student_id_seq OWNER TO freecodecamp;
+ALTER TABLE public.students_student_id_seq OWNER TO finncj;
 
 --
--- Name: students_student_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: freecodecamp
+-- Name: students_student_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: finncj
 --
 
 ALTER SEQUENCE public.students_student_id_seq OWNED BY public.students.student_id;
 
 
 --
--- Name: courses course_id; Type: DEFAULT; Schema: public; Owner: freecodecamp
+-- Name: courses course_id; Type: DEFAULT; Schema: public; Owner: finncj
 --
 
 ALTER TABLE ONLY public.courses ALTER COLUMN course_id SET DEFAULT nextval('public.courses_course_id_seq'::regclass);
 
 
 --
--- Name: majors major_id; Type: DEFAULT; Schema: public; Owner: freecodecamp
+-- Name: majors major_id; Type: DEFAULT; Schema: public; Owner: finncj
 --
 
 ALTER TABLE ONLY public.majors ALTER COLUMN major_id SET DEFAULT nextval('public.majors_major_id_seq'::regclass);
 
 
 --
--- Name: students student_id; Type: DEFAULT; Schema: public; Owner: freecodecamp
+-- Name: students student_id; Type: DEFAULT; Schema: public; Owner: finncj
 --
 
 ALTER TABLE ONLY public.students ALTER COLUMN student_id SET DEFAULT nextval('public.students_student_id_seq'::regclass);
 
 
 --
--- Data for Name: courses; Type: TABLE DATA; Schema: public; Owner: freecodecamp
+-- Data for Name: courses; Type: TABLE DATA; Schema: public; Owner: finncj
 --
 
 INSERT INTO public.courses VALUES (2, 'Data Structures and Algorithms');
 
 
 --
--- Data for Name: majors; Type: TABLE DATA; Schema: public; Owner: freecodecamp
+-- Data for Name: majors; Type: TABLE DATA; Schema: public; Owner: finncj
 --
 
 INSERT INTO public.majors VALUES (2, 'Database Administration');
 
 
 --
--- Data for Name: majors_courses; Type: TABLE DATA; Schema: public; Owner: freecodecamp
+-- Data for Name: majors_courses; Type: TABLE DATA; Schema: public; Owner: finncj
 --
 
 INSERT INTO public.majors_courses VALUES (2, 2);
 
 
 --
--- Data for Name: students; Type: TABLE DATA; Schema: public; Owner: freecodecamp
+-- Data for Name: students; Type: TABLE DATA; Schema: public; Owner: finncj
 --
 
 INSERT INTO public.students VALUES (1, 'Rhea', 'Kellems', 2, 2.5);
 
 
 --
--- Name: courses_course_id_seq; Type: SEQUENCE SET; Schema: public; Owner: freecodecamp
+-- Name: courses_course_id_seq; Type: SEQUENCE SET; Schema: public; Owner: finncj
 --
 
 SELECT pg_catalog.setval('public.courses_course_id_seq', 2, true);
 
 
 --
--- Name: majors_major_id_seq; Type: SEQUENCE SET; Schema: public; Owner: freecodecamp
+-- Name: majors_major_id_seq; Type: SEQUENCE SET; Schema: public; Owner: finncj
 --
 
 SELECT pg_catalog.setval('public.majors_major_id_seq', 2, true);
 
 
 --
--- Name: students_student_id_seq; Type: SEQUENCE SET; Schema: public; Owner: freecodecamp
+-- Name: students_student_id_seq; Type: SEQUENCE SET; Schema: public; Owner: finncj
 --
 
 SELECT pg_catalog.setval('public.students_student_id_seq', 1, true);
 
 
 --
--- Name: courses courses_pkey; Type: CONSTRAINT; Schema: public; Owner: freecodecamp
+-- Name: courses courses_pkey; Type: CONSTRAINT; Schema: public; Owner: finncj
 --
 
 ALTER TABLE ONLY public.courses
@@ -239,7 +239,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- Name: majors_courses majors_courses_pkey; Type: CONSTRAINT; Schema: public; Owner: freecodecamp
+-- Name: majors_courses majors_courses_pkey; Type: CONSTRAINT; Schema: public; Owner: finncj
 --
 
 ALTER TABLE ONLY public.majors_courses
@@ -247,7 +247,7 @@ ALTER TABLE ONLY public.majors_courses
 
 
 --
--- Name: majors majors_pkey; Type: CONSTRAINT; Schema: public; Owner: freecodecamp
+-- Name: majors majors_pkey; Type: CONSTRAINT; Schema: public; Owner: finncj
 --
 
 ALTER TABLE ONLY public.majors
@@ -255,7 +255,7 @@ ALTER TABLE ONLY public.majors
 
 
 --
--- Name: students students_pkey; Type: CONSTRAINT; Schema: public; Owner: freecodecamp
+-- Name: students students_pkey; Type: CONSTRAINT; Schema: public; Owner: finncj
 --
 
 ALTER TABLE ONLY public.students
@@ -263,7 +263,7 @@ ALTER TABLE ONLY public.students
 
 
 --
--- Name: majors_courses majors_courses_course_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: freecodecamp
+-- Name: majors_courses majors_courses_course_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: finncj
 --
 
 ALTER TABLE ONLY public.majors_courses
@@ -271,7 +271,7 @@ ALTER TABLE ONLY public.majors_courses
 
 
 --
--- Name: majors_courses majors_courses_major_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: freecodecamp
+-- Name: majors_courses majors_courses_major_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: finncj
 --
 
 ALTER TABLE ONLY public.majors_courses
@@ -279,7 +279,7 @@ ALTER TABLE ONLY public.majors_courses
 
 
 --
--- Name: students students_major_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: freecodecamp
+-- Name: students students_major_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: finncj
 --
 
 ALTER TABLE ONLY public.students

@@ -40,6 +40,7 @@ echo $($PSQL "TRUNCATE students, majors, courses, majors_courses")
 
 # deletes all rows in the above tables.
 
+
 cat courses.csv | while IFS="," read MAJOR COURSE
 do
   if [[ $MAJOR != major ]]
