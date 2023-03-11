@@ -18,7 +18,6 @@ do
   then
 
     WINNER_ID=$($PSQL "SELECT team_id FROM teams WHERE name='$WINNER'")
-    echo $WINNER_ID $WINNER
 
     if [[ -z $WINNER_ID ]]
     then
@@ -31,6 +30,24 @@ do
 
     fi
 
+  fi
+
+
+  if [[ $OPPONENT != opponent ]]
+  then
+
+    OPPONENT_ID=$($PSQL "SELECT team_id FROM teams WHERE name='$OPPONENT'")
+
+    if [[ -z $OPPONENT_ID ]]
+    then
+      ADD_TEAM=$($PSQL "INSERT INTO teams(name) VALUES('$OPPONENT')")
+
+      if [[ $ADD_TEAM == 'INSERT 0 1' ]]
+      then
+        echo Inserted into teams, $OPPONENT
+      fi
+
+    fi
 
   fi
 
