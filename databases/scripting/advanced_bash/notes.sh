@@ -45,3 +45,7 @@ echo $NAME
 # cat also takes input
 
 echo Finn | cat
+
+# And you can also pipe input into a file.
+
+echo Steve | ./whats_your_name.sh

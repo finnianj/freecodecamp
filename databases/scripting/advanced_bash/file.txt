@@ -1,1 +1,1 @@
-./notes.sh: line 21: bad_command: command not found
+Finn
