@@ -20,4 +20,15 @@ echo I am a drummer >> file.txt
 echo Hello there 1> file.txt
 bad_command 2> file.txt
 
-# This creates a new file and send the output there. Nothing is printed in the terminal.
+cat file.txt
+
+
+# stdin is short for standard input, and by default points to the keyboard.
+# Just like you can redirect output, you can redirect stdin as well.
+
+echo Finn 1> file.txt
+read NAME < file.txt
+
+# You can use the read command to assign the NAME variable to the contents of name.txt by redirecting the stdin
+
+echo $NAME

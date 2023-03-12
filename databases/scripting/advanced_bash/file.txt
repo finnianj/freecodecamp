@@ -1,1 +1,1 @@
-zsh: command not found: bad_command
+./notes.sh: line 21: bad_command: command not found
