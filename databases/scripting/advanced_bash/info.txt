@@ -1,4 +1,5 @@
 #!/bin/bash
 
-Number of words:
+Number of times Finn appears in info.sh:
      298
+       3
