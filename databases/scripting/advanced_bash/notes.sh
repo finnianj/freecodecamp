@@ -47,10 +47,14 @@ echo $NAME
 echo Finn | cat
 
 # And you can also pipe input into a file.
-
+echo '\n'
 echo Steve | ./whats_your_name.sh
-echo "\n"
+echo '\n'
 
 # And send the output and errors somewhere else
 
 echo Margaret | ./whats_your_name.sh 2> error.txt 1> output.txt
+echo Printing error file content:
+cat error.txt
+echo Printing output file content:
+cat output.txt
