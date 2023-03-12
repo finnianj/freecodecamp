@@ -1,0 +1,1 @@
+./whats_your_name.sh: line 3: bad_command: command not found
