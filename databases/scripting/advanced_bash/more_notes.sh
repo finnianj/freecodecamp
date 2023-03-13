@@ -31,3 +31,10 @@ sed 's/n/m/' file.txt
 # A g, for global, would replace all instances of a matched pattern, or an i to ignore the case of the pattern.
 
 sed 's/n/m/gi' file.txt
+
+# --------------------------
+
+# Extracting info from a text document.
+
+echo '\n'~~ Halo 2 Document Info ~~ >> halo_2_info.txt
+
