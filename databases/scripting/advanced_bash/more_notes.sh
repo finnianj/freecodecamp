@@ -54,3 +54,7 @@ grep -n 'Covenant' halo_2.txt | sed -E 's/([0-9]+).*/\1/' >> halo_2_info.txt
 # Checking for missed words
 
 ./translate.sh halo_2.txt | grep --color 'Covenant|Elites'
+
+# Checking difference between two files:
+
+diff halo_2.txt new_halo.txt
