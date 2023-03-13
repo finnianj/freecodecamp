@@ -20,3 +20,9 @@ grep --color -n 'Finn' notes.sh
 echo '\n'Number of times Finn appears in info.sh: >> info.txt
 
 grep -o 'Finn' notes.sh | wc -l >> info.txt
+
+
+# sed can replace text like this: sed 's/<pattern_to_replace>/<text_to_replace_it_with>/' <filename>.
+# By default, it won't replace the text in the file. It will output it to stdout.
+
+sed 's/n/m/' file.txt

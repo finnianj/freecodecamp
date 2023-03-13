@@ -1,5 +1,7 @@
 #!/bin/bash
 
-Number of times Finn appears in info.sh:
+Number of words in notes.sh:
      298
+
+Number of times Finn appears in info.sh:
        3
