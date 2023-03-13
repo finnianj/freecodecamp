@@ -20,3 +20,41 @@ grep --color -n 'Finn' notes.sh
 echo '\n'Number of times Finn appears in info.sh: >> info.txt
 
 grep -o 'Finn' notes.sh | wc -l >> info.txt
+
+
+# sed can replace text like this: sed 's/<pattern_to_replace>/<text_to_replace_it_with>/' <filename>.
+# By default, it won't replace the text in the file. It will output it to stdout.
+
+sed 's/n/m/' file.txt
+
+# You can add regex flags after the last / in the sed argument.
+# A g, for global, would replace all instances of a matched pattern, or an i to ignore the case of the pattern.
+
+sed 's/m/n/gi' file.txt
+
+# --------------------------
+
+# Extracting info from a text document.
+
+echo '\n'~~ Halo 2 Document Info ~~ > halo_2_info.txt
+echo '\n'~~ Number of lines:~~ >> halo_2_info.txt
+wc -l halo_2.txt >> halo_2_info.txt
+
+echo '\n'Number of times the word Covenant appears: >> halo_2_info.txt
+grep -c 'Covenant' halo_2.txt >> halo_2_info.txt
+
+echo '\n'~~ Lines that the word Covenant appears on:~~ >> halo_2_info.txt
+grep -n 'Covenant' halo_2.txt | sed -E 's/([0-9]+).*/\1/' >> halo_2_info.txt
+
+
+# Using a translate script to replace all instances of Covenant and Elites
+
+./translate.sh halo_2.txt > new_halo.txt
+
+# Checking for missed words
+
+./translate.sh halo_2.txt | grep --color 'Covenant|Elites'
+
+# Checking difference between two files:
+
+diff halo_2.txt new_halo.txt
