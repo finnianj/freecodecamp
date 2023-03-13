@@ -1,0 +1,5 @@
+
+~~ Halo 2 Document Info ~~
+
+~~ Number of lines:~~
+      21 halo_2.txt

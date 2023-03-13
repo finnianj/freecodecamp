@@ -36,5 +36,12 @@ sed 's/n/m/gi' file.txt
 
 # Extracting info from a text document.
 
-echo '\n'~~ Halo 2 Document Info ~~ >> halo_2_info.txt
+echo '\n'~~ Halo 2 Document Info ~~ > halo_2_info.txt
+echo '\n'~~ Number of lines:~~ >> halo_2_info.txt
+wc -l halo_2.txt >> halo_2_info.txt
+
+echo '\n'~~ Number of times the word Covenant appears:~~ >> halo_2_info.txt
+grep -c 'Covenant'halo_2.txt >> halo_2_info.txt
+
+echo '\n'~~ Number of times the word Covenant appears:~~ >> halo_2_info.txt
 
