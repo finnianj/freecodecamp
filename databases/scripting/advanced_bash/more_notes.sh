@@ -26,3 +26,8 @@ grep -o 'Finn' notes.sh | wc -l >> info.txt
 # By default, it won't replace the text in the file. It will output it to stdout.
 
 sed 's/n/m/' file.txt
+
+# You can add regex flags after the last / in the sed argument.
+# A g, for global, would replace all instances of a matched pattern, or an i to ignore the case of the pattern.
+
+sed 's/n/m/gi' file.txt
