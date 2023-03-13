@@ -30,7 +30,7 @@ sed 's/n/m/' file.txt
 # You can add regex flags after the last / in the sed argument.
 # A g, for global, would replace all instances of a matched pattern, or an i to ignore the case of the pattern.
 
-sed 's/n/m/gi' file.txt
+sed 's/m/n/gi' file.txt
 
 # --------------------------
 
@@ -40,8 +40,8 @@ echo '\n'~~ Halo 2 Document Info ~~ > halo_2_info.txt
 echo '\n'~~ Number of lines:~~ >> halo_2_info.txt
 wc -l halo_2.txt >> halo_2_info.txt
 
-echo '\n'~~ Number of times the word Covenant appears:~~ >> halo_2_info.txt
-grep -c 'Covenant'halo_2.txt >> halo_2_info.txt
+echo '\n'Number of times the word Covenant appears: >> halo_2_info.txt
+grep -c 'Covenant' halo_2.txt >> halo_2_info.txt
 
-echo '\n'~~ Lines that the word Covenant appears:~~ >> halo_2_info.txt
+echo '\n'~~ Lines that the word Covenant appears on:~~ >> halo_2_info.txt
 grep -n 'Covenant' halo_2.txt | sed -E 's/([0-9]+).*/\1/' >> halo_2_info.txt

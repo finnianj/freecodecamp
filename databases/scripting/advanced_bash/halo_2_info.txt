@@ -3,3 +3,12 @@
 
 ~~ Number of lines:~~
       21 halo_2.txt
+
+Number of times the word Covenant appears:
+4
+
+~~ Lines that the word Covenant appears on:~~
+8
+11
+13
+16
