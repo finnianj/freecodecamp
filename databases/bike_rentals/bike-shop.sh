@@ -6,4 +6,16 @@ MAIN_MENU() {
   echo -e "\n1. Rent a bike\n2. Return a bike\n3. Exit"
 }
 
+RENT_MENU() {
+  echo Rent Menu
+}
+
+RETURN_MENU() {
+  echo Return Menu
+}
+
+EXIT() {
+  echo -e '\nThank you for stopping in.\n'
+}
+
 MAIN_MENU
