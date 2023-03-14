@@ -89,7 +89,7 @@ RENT_MENU() {
         BIKE_INFO_FORMATTED=$(echo $BIKE_INFO | sed 's/ |/"/')
 
         # send to main menu
-        MAIN_MENU "I have put you down for the $BIKE_INFO_FORMATTED Bike, $( echo $CUSTOMER_NAME | sed -E 's/^ *| *$//g')."
+        MAIN_MENU "I have put you down for the $BIKE_INFO_FORMATTED Bike, $(echo $CUSTOMER_NAME | sed -r 's/^ *| *$//g')."
       fi
     fi
   fi
@@ -115,10 +115,13 @@ RETURN_MENU() {
       MAIN_MENU "You do not have any bikes rented."
     else
       # display rented bikes
-      echo -e "\nHere are your rentals:"
-      echo "$CUSTOMER_RENTALS" |  while read BIKE_ID BAR TYPE BAR SIZE
+      echo -e "\nHere are your rentals:\n"
+      echo -e "$CUSTOMER_RENTALS" |  while read BIKE_ID BAR TYPE BAR SIZE
       do
-        echo "$BIKE_ID) $SIZE\" $TYPE Bike"
+        if [[ ! -z $TYPE ]]
+        then
+          echo "$BIKE_ID) $SIZE\" $TYPE Bike"
+        fi
       done
       # ask for bike to return
       echo -e "\nWhich one would you like to return?"
@@ -132,12 +135,22 @@ RETURN_MENU() {
         # check if input is rented
         RENTAL_ID=$($PSQL "SELECT rental_id FROM rentals INNER JOIN customers USING(customer_id) WHERE phone='$PHONE_NUMBER' AND bike_id=$BIKE_ID_TO_RETURN AND date_returned IS NULL")
         # if input not rented
-        # send to main menu
+        if [[ -z $RENTAL_ID ]]
+        then
+          # send to main menu
+          MAIN_MENU "You do not have that bike rented."
+        else
+          # update date_returned
+          RETURN_BIKE_RESULT=$($PSQL "UPDATE rentals SET date_returned = NOW() WHERE rental_id = $RENTAL_ID")
+          # set bike availability to true
+          SET_TO_TRUE_RESULT=$($PSQL "UPDATE bikes SET available = true WHERE bike_id = $BIKE_ID_TO_RETURN")
+          # send to main menu
+          MAIN_MENU "Thank you for returning your bike."
+        fi
       fi
     fi
   fi
 }
-
 
 EXIT() {
   echo -e "\nThank you for stopping in.\n"
