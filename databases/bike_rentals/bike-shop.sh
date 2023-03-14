@@ -103,6 +103,10 @@ RETURN_MENU() {
   # if not found
   if [[ -z $CUSTOMER_ID ]]
   then
+  else
+    # get customer's rentals
+    CUSTOMER_RENTALS=$($PSQL "SELECT bike_id, type, size FROM bikes INNER JOIN rentals USING(bike_id) INNER JOIN customers USING(customer_id) WHERE phone='$PHONE_NUMBER' AND date_returned IS NULL ORDER BY bike_id")
+    # if no rentals
     # send to main menu
   fi
 }
