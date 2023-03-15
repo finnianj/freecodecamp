@@ -18,7 +18,7 @@ MAIN_MENU() {
       echo -e "\n$SERVICE_ID) $SERVICE_NAME"
     fi
   done
-  echo -e "\n4) Exit"
+  echo -e "\n4) Exit\n"
 
   read SERVICE_ID_SELECTED
 
@@ -65,7 +65,7 @@ CUT_MENU() {
 }
 
 EXIT() {
-  echo Goodbye!
+  echo -e "\nGoodbye!"
 }
 
 MAIN_MENU
