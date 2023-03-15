@@ -58,6 +58,7 @@ CUT_MENU() {
     if [[ $CREATE_APPOINTMENT_RESULT == 'INSERT 0 1' ]]
     then
       echo -e "\nI have put you down for a$SERVICE at $SERVICE_TIME, $(echo $CUSTOMER_NAME | sed -r 's/^ *| *$//g')."
+      echo -e "\nSee you later!"
     else
     echo Please try again.
     fi
