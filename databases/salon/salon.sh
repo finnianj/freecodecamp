@@ -18,7 +18,7 @@ MAIN_MENU() {
       echo -e "\n$SERVICE_ID) $SERVICE_NAME"
     fi
   done
-  echo -e "\n4) Exit"
+  echo -e "\n4) Exit\n"
 
   read SERVICE_ID_SELECTED
 
@@ -58,13 +58,14 @@ CUT_MENU() {
     if [[ $CREATE_APPOINTMENT_RESULT == 'INSERT 0 1' ]]
     then
       echo -e "\nI have put you down for a$SERVICE at $SERVICE_TIME, $(echo $CUSTOMER_NAME | sed -r 's/^ *| *$//g')."
+      echo -e "\nSee you later!"
     else
     echo Please try again.
     fi
 }
 
 EXIT() {
-  echo Goodbye!
+  echo -e "\nGoodbye!"
 }
 
 MAIN_MENU
