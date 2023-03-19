@@ -7,7 +7,10 @@
 	"name": "fcc-learn-npm-package-json",
 	"dependencies": {
 		"express": "^4.14.0",
-    "dotenv": "^16.0.1"
+    "dotenv": "^16.0.1",
+    "fcc-express-bground": "https://github.com/freeCodeCamp/fcc-express-bground-pkg.git",
+    "body-parser": "^1.15.2",
+    "cookie-parser": "^1.4.3"
 	},
 	"main": "server.js",
 	"scripts": {
