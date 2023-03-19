@@ -14,3 +14,7 @@ let html_index_path = __dirname + '/views/index.html'
 app.get("/", (req, res) => {
   res.sendFile(html_index_path)
 });
+
+app.get("/json", (req, res) => {
+  res.json( {"message": "Hello json"})
+});
