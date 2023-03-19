@@ -15,3 +15,12 @@ app.get("/", (req, res) => {
   res.sendFile(html_index_path)
 });
 
+app.get("/json", (req, res) => {
+
+  if (process.env.MESSAGE_STYLE == 'uppercase') {
+    return res.json( {"message": "HELLO JSON"})
+  } else {
+    return res.json( {"message": "Hello json"})
+  }
+
+});
