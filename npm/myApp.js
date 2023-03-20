@@ -40,3 +40,11 @@ app.get("/json", (req, res) => {
 });
 
 // This serves json and uses environment variables to determine the output.
+
+
+app.get("/now", function(req, res, next) {
+  req.time = new Date().toString()
+  next();
+}, function(req, res){
+  return res.json({"time": req.time})
+})
