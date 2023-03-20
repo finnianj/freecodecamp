@@ -6,6 +6,9 @@ let express = require('express');
 let app = express();
 
 
+app.use(bodyParser.urlencoded({ extended: false }));
+// This allows you to access encoded data in the body of post requests
+
 app.use("/public", express.static(__dirname + '/public'));
 // This serves assets from 2nd arg directory to requests made to 1st arg directory
 // The request is made in the link tag of index.html
@@ -69,3 +72,9 @@ app.get("/name", function(req, res, next) {
 
 // This handler accesses the req.query object, which parses data from the query string in the URL:
 // eg. /name?first=Mick&last=Jagger
+
+
+app.post("/name", function(req, res) {
+  res.json({ "name": req.body.first + " " + req.body.last })
+})
+
