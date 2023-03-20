@@ -57,5 +57,13 @@ app.get("/:word/echo", function(req, res, next) {
   next();
 })
 
-// This route uses the params to return json. Params access the words used in the URL pathway
+// This route uses the params to return json. Params access the route parameters used in the URL pathway
 // Basically if I make a request to the URL /chocolate/echo, it will respond with {echo: chocolate}
+
+
+app.get("/name", function(req, res, next) {
+  return res.json({ "name": req.query.first + " " + req.query.last })
+})
+
+// This handler accesses the req.query object, which parses data from the query string in the URL:
+// eg. /name?first=Mick&last=Jagger
