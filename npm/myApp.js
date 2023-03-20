@@ -9,7 +9,8 @@ app.use("/public", express.static(__dirname + '/public'));
 // The request is made in the link tag of index.html
 
 app.use(function(req, res, next) {
-  console.log(req.method, req.path, req.ip)
+  var string = req.method + " " + req.path + " - " + req.ip;
+  console.log(string)
   next();
 });
 
