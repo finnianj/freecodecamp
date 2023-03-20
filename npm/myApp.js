@@ -52,3 +52,7 @@ app.get("/now", function(req, res, next) {
 // Here there is a middleware function chained with the final handler. Notice how you have to use next to progress through the chain.
 
 
+app.get("/:word/echo", function(req, res, next) {
+  return res.json({"echo": req.params.word})
+  next();
+})
