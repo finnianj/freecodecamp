@@ -56,3 +56,6 @@ app.get("/:word/echo", function(req, res, next) {
   return res.json({"echo": req.params.word})
   next();
 })
+
+// This route uses the params to return json. Params access the words used in the URL pathway
+// Basically if I make a request to the URL /chocolate/echo, it will respond with {echo: chocolate}
