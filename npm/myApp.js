@@ -48,3 +48,7 @@ app.get("/now", function(req, res, next) {
 }, function(req, res){
   return res.json({"time": req.time})
 })
+
+// Here there is a middleware function chained with the final handler. Notice how you have to use next to progress through the chain.
+
+
