@@ -78,3 +78,6 @@ app.post("/name", function(req, res) {
   res.json({ "name": req.body.first + " " + req.body.last })
 })
 
+// Because we have added body parser middleware above, when the form in index.html is submitted
+// The encoded query (?first=Johnlast=Doe) is taken from the post body and uses the same syntax
+// as url queries.
