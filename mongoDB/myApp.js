@@ -5,6 +5,15 @@ const mongo = process.env.MONGO_URI
 mongoose.connect(mongo, { useNewUrlParser: true, useUnifiedTopology: true}).then(() => console.log("Mongodb connected"))
 .catch(err => console.log(err));
 
+const personSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: true
+  },
+  age: Number,
+  favoriteFoods: [String]
+});
+
 let Person;
 
 const createAndSavePerson = (done) => {
