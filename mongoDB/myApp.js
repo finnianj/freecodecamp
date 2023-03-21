@@ -22,7 +22,12 @@ const createAndSavePerson = (done) => {
     age: 26,
     favoriteFoods: ["Pizza", "Pasta"]
   });
-  done(null /*, data*/);
+
+  finn.save(function(err, data) {
+    if (err) return console.error(err);
+    console.log(data);
+    done(null, data)
+  });
 };
 
 const createManyPeople = (arrayOfPeople, done) => {
