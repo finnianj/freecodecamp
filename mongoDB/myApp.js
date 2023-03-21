@@ -59,43 +59,77 @@ const findPeopleByName = (personName, done) => {
     if (err) return console.error(err);
     console.log(data);
     done(null, data)
-})
+  })
 };
 
 const findOneByFood = (food, done) => {
-  done(null /*, data*/);
+  Person.findOne({ favoriteFoods: food }, function(err, data) {
+      if (err) return console.error(err);
+      console.log(data)
+      done(null, data);
+  })
 };
 
 const findPersonById = (personId, done) => {
-  done(null /*, data*/);
+  Person.findById({ _id: personId }, function(err, data) {
+      if (err) return console.error(err);
+      console.log(data)
+      done(null, data);
+  })
 };
 
 const findEditThenSave = (personId, done) => {
   const foodToAdd = "hamburger";
 
-  done(null /*, data*/);
+   Person.findById(personId, (err, person) => {
+     console.log(person)
+    if(err) return console.log(err);
+    person.favoriteFoods.push(foodToAdd);
+    person.save((err, updatedPerson) => {
+      if(err) return console.log(err);
+      console.log(updatedPerson)
+      done(null, updatedPerson)
+    })
+  })
 };
 
 const findAndUpdate = (personName, done) => {
   const ageToSet = 20;
-
-  done(null /*, data*/);
+  Person.findOneAndUpdate({ name: personName }, { age: 20 }, { new: true, runValidators: true}, function(err, data) {
+      if (err) return console.error(err);
+      console.log(data)
+      done(null, data)
+    })
 };
 
 const removeById = (personId, done) => {
-  done(null /*, data*/);
+  Person.findByIdAndRemove({ _id: personId }, function(err, data) {
+        if (err) return console.error(err);
+        console.log(data)
+        done(null, data);
+    })
 };
 
 const removeManyPeople = (done) => {
   const nameToRemove = "Mary";
-
-  done(null /*, data*/);
+  Person.remove({ name: nameToRemove }, function(err, data) {
+      if (err) return console.error(err);
+      console.log(data)
+      done(null, data);
+  })
 };
 
 const queryChain = (done) => {
   const foodToSearch = "burrito";
-
-  done(null /*, data*/);
+  var findQuery = Person.find({ favoriteFoods: foodToSearch })
+  findQuery.sort({ name: 1 })
+          .limit(2)
+          .select({ age: 0 })
+          .exec(function(err, data) {
+              if (err) return console.error(err);
+              console.log(data)
+              done(null, data);
+          })
 };
 
 /** **Well Done !!**
