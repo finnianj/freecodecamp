@@ -30,6 +30,22 @@ const createAndSavePerson = (done) => {
   });
 };
 
+arrayOfPeople = [{
+  name: 'Smokey',
+  age: 13,
+  favoriteFoods: ["Meat", "Biscuits"]
+},
+  {
+  name: 'Nick',
+  age: 25,
+  favoriteFoods: ["Slurp", "Gulp"]
+},
+  {
+  name: 'Cristopher',
+  age: 95,
+  favoriteFoods: ["Crackers", "Burgers"]
+}];
+
 const createManyPeople = (arrayOfPeople, done) => {
   done(null /*, data*/);
 };
