@@ -5,14 +5,53 @@ const mongo = process.env.MONGO_URI
 mongoose.connect(mongo, { useNewUrlParser: true, useUnifiedTopology: true}).then(() => console.log("Mongodb connected"))
 .catch(err => console.log(err));
 
-let Person;
+const personSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: true
+  },
+  age: Number,
+  favoriteFoods: [String]
+});
+
+let Person = mongoose.model('Person', personSchema);
 
 const createAndSavePerson = (done) => {
-  done(null /*, data*/);
+  let finn = new Person({
+    name: 'Finn',
+    age: 26,
+    favoriteFoods: ["Pizza", "Pasta"]
+  });
+
+  finn.save(function(err, data) {
+    if (err) return console.error(err);
+    console.log(data);
+    done(null, data)
+  });
 };
 
+arrayOfPeople = [{
+  name: 'Smokey',
+  age: 13,
+  favoriteFoods: ["Meat", "Biscuits"]
+},
+  {
+  name: 'Nick',
+  age: 25,
+  favoriteFoods: ["Slurp", "Gulp"]
+},
+  {
+  name: 'Cristopher',
+  age: 95,
+  favoriteFoods: ["Crackers", "Burgers"]
+}];
+
 const createManyPeople = (arrayOfPeople, done) => {
-  done(null /*, data*/);
+  Person.create(arrayOfPeople, function(err, data) {
+      if (err) return console.error(err);
+      console.log(data);
+      done(null, data)
+  });
 };
 
 const findPeopleByName = (personName, done) => {
