@@ -39,3 +39,12 @@ app.get("/", function (req, res) {
 app.get("/api/hello", function (req, res) {
   res.json({greeting: 'hello API'});
 });
+
+app.get("/api/:date", function(req, res, next) {
+  let conversion = convertDate(req.params.date)
+  if (conversion[0] == "Invalid Date") {
+    return res.json({ "error": "Invalid date"} )
+  }
+  return res.json({ "unix": conversion[1], "utc": conversion[0] })
+  next();
+})
