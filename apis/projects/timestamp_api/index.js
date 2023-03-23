@@ -13,6 +13,7 @@ app.use(cors({optionsSuccessStatus: 200}));  // some legacy browsers choke on 20
 app.use(express.static('public'));
 
 const convertDate = (date) => {
+
   const regexone = /^\d{4}-\d{2}-\d{2}$/
   const regextwo = /^\d+$/
   let utc = "";
@@ -28,6 +29,10 @@ const convertDate = (date) => {
     console.log(typeof date)
     utc = new Date(parseInt(date, 10)).toGMTString();
     console.log("utc " + utc)
+  } else if (typeof new Date(date) == "object" ) {
+    utc = new Date(date).toGMTString()
+    unix = Date.parse(date)
+    console.log("object")
   } else {
     return "Invalid"
   }
