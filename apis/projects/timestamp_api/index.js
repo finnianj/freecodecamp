@@ -17,6 +17,7 @@ const convertDate = (date) => {
   const regextwo = /^\d+$/
   let utc = "";
   let unix= "";
+  // clearing variables from previous search
 
   if (regexone.test(date)) {
     unix = Date.parse(date);
