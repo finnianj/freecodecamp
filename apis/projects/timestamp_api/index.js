@@ -51,6 +51,7 @@ app.get("/api/:date", function(req, res, next) {
 })
 
 app.get("/api", function(req, res, next) {
+  // calling api path returns current date and time
   return res.json({ "unix": Date.now(), "utc": new Date(Date.now()).toGMTString() })
   next();
 })
