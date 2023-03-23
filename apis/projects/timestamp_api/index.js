@@ -24,7 +24,7 @@ const convertDate = (date) => {
     utc = new Date(date).toGMTString();
   } else if (regextwo.test(date)) {
     console.log("test 2 passed")
-    unix = date
+    unix = parseInt(date, 10);
     console.log(typeof date)
     utc = new Date(parseInt(date, 10)).toGMTString();
     console.log("utc " + utc)
