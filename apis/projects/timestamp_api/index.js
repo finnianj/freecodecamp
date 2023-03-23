@@ -19,3 +19,15 @@ const convertDate = (date) => {
   let unix= "";
   console.log(date)
   console.log(typeof date)
+
+  if (regexone.test(date)) {
+    unix = Date.parse(date);
+    utc = new Date(date).toGMTString();
+  } else if (regextwo.test(date)) {
+    unix = Date.parse(date)
+    utc = new Date(date).toGMTString();
+  } else {
+    return "Invalid"
+  }
+  return [utc, unix];
+}
