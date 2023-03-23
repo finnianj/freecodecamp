@@ -12,3 +12,10 @@ app.use(cors({optionsSuccessStatus: 200}));  // some legacy browsers choke on 20
 // http://expressjs.com/en/starter/static-files.html
 app.use(express.static('public'));
 
+const convertDate = (date) => {
+  const regexone = /^\d{4}-\d{2}-\d{2}$/
+  const regextwo = /^\d+$/
+  let utc = "";
+  let unix= "";
+  console.log(date)
+  console.log(typeof date)
