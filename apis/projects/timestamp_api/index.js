@@ -48,3 +48,9 @@ app.get("/api/:date", function(req, res, next) {
   return res.json({ "unix": conversion[1], "utc": conversion[0] })
   next();
 })
+
+app.get("/api", function(req, res, next) {
+  return res.json({ "unix": Date.now(), "utc": new Date(Date.now()).toGMTString() })
+  next();
+})
+
