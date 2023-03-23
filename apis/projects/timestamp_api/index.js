@@ -23,12 +23,17 @@ const convertDate = (date) => {
     unix = Date.parse(date);
     utc = new Date(date).toGMTString();
   } else if (regextwo.test(date)) {
-    unix = Date.parse(date)
-    utc = new Date(date).toGMTString();
+    console.log("test 2 passed")
+    unix = date
+    console.log(typeof date)
+    utc = new Date(parseInt(date, 10)).toGMTString();
+    console.log("utc " + utc)
   } else {
     return "Invalid"
   }
+  console.log("final returning " + utc + " and " + unix)
   return [utc, unix];
+
 }
 
 // http://expressjs.com/en/starter/basic-routing.html
@@ -41,6 +46,12 @@ app.get("/api/hello", function (req, res) {
   res.json({greeting: 'hello API'});
 });
 
+app.get("/api", function(req, res, next) {
+  // calling api path returns current date and time
+  return res.json({ "unix": Date.now(), "utc": new Date(Date.now()).toGMTString() })
+  next();
+})
+
 app.get("/api/:date", function(req, res, next) {
   let conversion = convertDate(req.params.date)
   if (conversion[0] == "Invalid Date") {
@@ -50,11 +61,6 @@ app.get("/api/:date", function(req, res, next) {
   next();
 })
 
-app.get("/api", function(req, res, next) {
-  // calling api path returns current date and time
-  return res.json({ "unix": Date.now(), "utc": new Date(Date.now()).toGMTString() })
-  next();
-})
 
 // listen for requests :)
 var listener = app.listen(process.env.PORT, function () {
