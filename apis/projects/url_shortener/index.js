@@ -25,7 +25,7 @@ app.get('/api/hello', function(req, res) {
 });
 
 app.post("/api/shorturl", function(req, res) {
-  res.json({ "body": req.body })
+  res.json({ "original_url": req.body.url })
 })
 
 app.listen(port, function() {
