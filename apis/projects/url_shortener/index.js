@@ -6,6 +6,9 @@ const app = express();
 // Basic Configuration
 const port = process.env.PORT || 3000;
 
+app.use(bodyParser.urlencoded({ extended: false }));
+//parsing middleware
+
 app.use(cors());
 
 app.use('/public', express.static(`${process.cwd()}/public`));
