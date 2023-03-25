@@ -26,25 +26,6 @@ let Link = mongoose.model('Link', linkSchema);
 
 let i = 10;
 
-// async function check(url) {
-//   let hostname = url.split('.')
-//   hostname.shift()
-//   // lookup the hostname passed as argument
-//   let response = dns.lookup(hostname.join('.'), (error, address, family) => {
-//     // if an error occurs, eg. the hostname is incorrect!
-//     if (error) {
-//       return false
-//       console.error(error);
-//     } else {
-//       // if no error exists
-//       console.log(
-//         `The ip address is ${address} and the ip version is       ${family}`)
-//       return true
-//     };
-//   });
-//   return response;
-// }
-
 app.use(cors());
 
 app.use('/public', express.static(`${process.cwd()}/public`));
