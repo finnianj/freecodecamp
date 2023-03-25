@@ -18,7 +18,7 @@ app.get('/', (req, res) => {
 mongoose.connect(mongo_key, { useNewUrlParser: true, useUnifiedTopology: true}).then(() => console.log("Mongodb connected"))
 .catch(err => console.log(err));
 
-const excerciseSchema = new mongoose.Schema({
+const exerciseSchema = new mongoose.Schema({
   username: String,
   description: String,
   date: String,
@@ -39,7 +39,7 @@ const userSchema = new mongoose.Schema({
   username: String,
 });
 
-let Link = mongoose.model('Link', excerciseSchema);
+let Exercise = mongoose.model('Link', exerciseSchema);
 let User = mongoose.model('User', userSchema);
 let Log = mongoose.model('Log', logSchema);
 
@@ -52,7 +52,7 @@ const listener = app.listen(process.env.PORT || 3000, () => {
 // --------- Routing -------------
 
 app.post('/api/users', function(req, res) {
-  console.log(req.body)
+
   let new_user = new User({
       username: req.body.username,
     });
@@ -60,7 +60,7 @@ app.post('/api/users', function(req, res) {
   new_user.save()
     .then((data) => {
         console.log("Created: " + data)
-        res.json({ username: data.username, id: data.id });
+        res.json({ username: data.username, _id: data.id });
     })
     .catch((err) => {
       console.log("Error: " + err)
@@ -68,4 +68,50 @@ app.post('/api/users', function(req, res) {
 
 
 });
+
+
+app.get('/api/users', function(req, res) {
+  User.find({})
+    .then(data => {
+      console.log(data)
+      res.json(data)
+    })
+    .catch(err => {
+      console.log(err)
+      res.json(err)
+    })
+})
+
+app.post('/api/users/:_id/exercises', function(req, res) {
+
+  User.findById({ _id: req.body[':_id']})
+    .then(data => {
+
+      let new_exercise = new Exercise({
+        username: data.username,
+        description: req.body.description,
+        duration: req.body.duration,
+        date: req.body.date
+      });
+
+      new_exercise.save()
+        .then((data) => {
+            console.log("Created: " + data)
+            res.json(data);
+        })
+        .catch((err) => {
+          console.log("Error: " + err)
+        });
+    })
+
+    .catch(err => {
+      console.log(err)
+    })
+
+
+
+
+});
+
+
 // --------- Routing -------------
