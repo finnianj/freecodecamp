@@ -48,6 +48,15 @@ app.get('/api/hello', function(req, res) {
   res.json({ greeting: 'hello API' });
 });
 
+app.get('/api/:id', function(req, res) {
+  Link.find({ short_url: parseInt(req.params.id, 10) }).then((ok) => {
+    console.log(ok)
+    res.redirect(ok[0].url);
+  }).catch((err) => {
+    console.log("Error: " + err)
+  });
+});
+
 app.post("/api/shorturl", function(req, res) {
   // console.log(checkURL(req.body.url))
 let a = new Link({
