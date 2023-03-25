@@ -31,20 +31,7 @@ let Link = mongoose.model('Link', linkSchema);
 let i = 1;
 // ----------------------------
 
-const createAndSaveLink = (done, url) => {
-  let a = new Link({
-    url: url,
-    short_url: i
-  });
 
-  a.save(function(err, data) {
-    if (err) return console.error(err);
-    console.log(data);
-    i += 1;
-    done(null, data)
-  });
-
-};
 
 app.get('/', function(req, res) {
   res.sendFile(process.cwd() + '/views/index.html');
@@ -56,7 +43,22 @@ app.get('/api/hello', function(req, res) {
 });
 
 app.post("/api/shorturl", function(req, res) {
-  res.json({ "original_url": req.body.url })
+  // console.log(checkURL(req.body.url))
+let a = new Link({
+  url: req.body.url,
+  short_url: i
+});
+
+a.save().then((res) => {
+    //if succeded do this block of code
+    i += 1;
+    console.log("i is now equal to " + i)
+    // done(null, data)
+  }).catch((err) => {
+    console.log("Error: " + err)
+  });
+
+res.json({ "original_url": req.body.url })
 })
 
 app.listen(port, function() {
