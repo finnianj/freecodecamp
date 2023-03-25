@@ -11,8 +11,37 @@ app.get('/', (req, res) => {
   res.sendFile(__dirname + '/views/index.html')
 });
 
+// --------- Mongo DB config -------------
+
 mongoose.connect(mongo_key, { useNewUrlParser: true, useUnifiedTopology: true}).then(() => console.log("Mongodb connected"))
 .catch(err => console.log(err));
+
+const excerciseSchema = new mongoose.Schema({
+  username: String,
+  description: String,
+  date: String,
+  duration: Number
+});
+
+const logSchema = new mongoose.Schema({
+  username: String,
+  count: Number,
+  log: [{
+    description: String,
+    duration: Number,
+    date: String,
+  }]
+});
+
+const userSchema = new mongoose.Schema({
+  username: String,
+});
+
+let Link = mongoose.model('Link', excerciseSchema);
+let User = mongoose.model('User', userSchema);
+let Log = mongoose.model('Log', logSchema);
+
+// --------- Mongo DB config -------------
 
 
 const listener = app.listen(process.env.PORT || 3000, () => {
