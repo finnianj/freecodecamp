@@ -3,7 +3,7 @@ let mongoose = require("mongoose")
 let bodyParser = require('body-parser')
 const app = express()
 const cors = require('cors')
-const mongo_key = process.env.MONGO
+const mongo_key = process.env['MONGO']
 require('dotenv').config()
 
 app.use(cors())
@@ -45,7 +45,27 @@ let Log = mongoose.model('Log', logSchema);
 
 // --------- Mongo DB config -------------
 
-
 const listener = app.listen(process.env.PORT || 3000, () => {
   console.log('Your app is listening on port ' + listener.address().port)
 })
+
+// --------- Routing -------------
+
+app.post('/api/users', function(req, res) {
+  console.log(req.body)
+  let new_user = new User({
+      username: req.body.username,
+    });
+
+  new_user.save()
+    .then((data) => {
+        console.log("Created: " + data)
+        res.json({ username: data.username, id: data.id });
+    })
+    .catch((err) => {
+      console.log("Error: " + err)
+    });
+
+
+});
+// --------- Routing -------------
