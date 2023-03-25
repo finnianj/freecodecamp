@@ -83,6 +83,10 @@ app.get('/api/users', function(req, res) {
 })
 
 app.post('/api/users/:_id/exercises', function(req, res) {
+  // check if date field is emoty
+  // if empty
+  // assign todays date
+  //use toDateString method of Date api
 
   User.findById({ _id: req.body[':_id']})
     .then(data => {
