@@ -1,13 +1,12 @@
 require('dotenv').config();
-require('dotenv').config();
 let mongoose = require("mongoose")
-const mongo = process.env.MONGO_URI
+const mongo_key = process.env.MONGO_URI
 const express = require('express');
 const cors = require('cors');
 const app = express();
 let bodyParser = require('body-parser')
 
-mongoose.connect(mongo, { useNewUrlParser: true, useUnifiedTopology: true}).then(() => console.log("Mongodb connected"))
+mongoose.connect(mongo_key, { useNewUrlParser: true, useUnifiedTopology: true}).then(() => console.log("Mongodb connected"))
 .catch(err => console.log(err));
 
 
