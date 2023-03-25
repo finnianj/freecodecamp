@@ -1,5 +1,6 @@
 const express = require('express')
 let mongoose = require("mongoose")
+let bodyParser = require('body-parser')
 const app = express()
 const cors = require('cors')
 const mongo_key = process.env.MONGO
