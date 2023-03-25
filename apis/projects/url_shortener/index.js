@@ -9,6 +9,13 @@ let bodyParser = require('body-parser')
 mongoose.connect(mongo_key, { useNewUrlParser: true, useUnifiedTopology: true}).then(() => console.log("Mongodb connected"))
 .catch(err => console.log(err));
 
+const linkSchema = new mongoose.Schema({
+  url: String,
+  short_url: Number
+});
+
+let Link = mongoose.model('Link', linkSchema);
+
 
 // Basic Configuration
 const port = process.env.PORT || 3000;
