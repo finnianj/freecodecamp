@@ -144,10 +144,11 @@ app.get('/api/users/:_id/logs', function(req, res) {
   if (req.query.limit) {
     limitParam = req.query.limit
   }
+
   User.findById({ _id: req.params._id })
     .then(user => {
       console.log("User found " + user)
-
+      // defining a query object which you can add optional date and limit parameters to.
       let queryObj = { userId: user._id }
       queryObj.date = {}
       if (req.query.from) {
