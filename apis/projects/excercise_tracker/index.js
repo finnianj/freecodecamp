@@ -74,7 +74,7 @@ app.post('/api/users', function(req, res) {
 
   new_user.save()
     .then((data) => {
-        console.log("Created: " + data)
+        console.log("Created user: " + data)
         res.json({ username: data.username, _id: data._id });
     })
     .catch((err) => {
@@ -105,8 +105,10 @@ app.post('/api/users/:_id/exercises', function(req, res) {
     duration: req.body.duration,
   });
 
-  if ( req.body.date != '') {
+  if ( req.body.date ) {
     new_exercise.date = new Date(req.body.date)
+  } else {
+    new_exercise.date = new Date()
   }
 
   User.findById({ _id: req.params._id})
@@ -123,6 +125,7 @@ app.post('/api/users/:_id/exercises', function(req, res) {
             });
         })
         .catch((err) => {
+          console.log(new_exercise.date)
           console.log("Error: " + err)
         });
     })
@@ -152,9 +155,9 @@ app.get('/api/users/:_id/logs', function(req, res) {
                     }
           })
           res.json({
-            _id: user._id,
             username: user.username,
             count: exercises.length,
+            _id: user._id,
             log: exercises
           })
         })
