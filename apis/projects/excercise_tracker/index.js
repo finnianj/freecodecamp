@@ -146,19 +146,19 @@ app.get('/api/users/:_id/logs', function(req, res) {
   }
   console.log(req.query)
   console.log("Limit param: " + limitParam)
-
   User.findById({ _id: req.params._id })
     .then(user => {
       console.log("User found " + user)
+
       let queryObj = { userId: user._id }
+      queryObj.date = {}
       if (req.query.from) {
-        console.log("from given")
-        // queryObj.date['$gte'] = req.query.from
+        queryObj.date['$gte'] = req.query.from
       }
       if (req.query.to) {
-        console.log("to given")
-        // queryObj.date['$lte'] = req.query.to
+        queryObj.date['$lte'] = req.query.to
       }
+
       console.log(queryObj)
       Exercise.find(queryObj).limit(limitParam).exec()
         .then(exercises => {
