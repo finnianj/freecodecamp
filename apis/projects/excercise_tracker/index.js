@@ -140,12 +140,28 @@ app.post('/api/users/:_id/exercises', function(req, res) {
 
 
 app.get('/api/users/:_id/logs', function(req, res) {
+  let limitParam;
+  if (req.query.limit) {
+    limitParam = req.query.limit
+  }
+  console.log(req.query)
+  console.log("Limit param: " + limitParam)
+
   User.findById({ _id: req.params._id })
     .then(user => {
       console.log("User found " + user)
-      Exercise.find({ userId: user._id })
+      let queryObj = { userId: user._id }
+      if (req.query.from) {
+        console.log("from given")
+        // queryObj.date['$gte'] = req.query.from
+      }
+      if (req.query.to) {
+        console.log("to given")
+        // queryObj.date['$lte'] = req.query.to
+      }
+      console.log(queryObj)
+      Exercise.find(queryObj).limit(limitParam).exec()
         .then(exercises => {
-
             console.log(exercises)
           exercises = exercises.map((i) => {
             return {
