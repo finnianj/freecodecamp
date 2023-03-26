@@ -160,6 +160,8 @@ app.get('/api/users/:_id/logs', function(req, res) {
         queryObj.date['$lte'] = req.query.to
       }
 
+      // Chaining limit onto the query. It just means that then you have to use exec() once you have
+      // added all the queries you want to chain
       Exercise.find(queryObj).limit(limitParam).exec()
         .then(exercises => {
           // using map to tailor the properties that are displayed
