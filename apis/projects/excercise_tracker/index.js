@@ -162,7 +162,7 @@ app.get('/api/users/:_id/logs', function(req, res) {
 
       Exercise.find(queryObj).limit(limitParam).exec()
         .then(exercises => {
-            console.log(exercises)
+          // using map to tailor the properties that are displayed
           exercises = exercises.map((i) => {
             return {
                     description: i.description,
