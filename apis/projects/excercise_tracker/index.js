@@ -20,8 +20,9 @@ mongoose.connect(mongo_key, { useNewUrlParser: true, useUnifiedTopology: true}).
 
 const exerciseSchema = new mongoose.Schema({
   username: String,
+  userId: String,
   description: String,
-  date: String,
+  date: {type: Date, default: new Date()},
   duration: Number
 });
 
@@ -83,34 +84,34 @@ app.get('/api/users', function(req, res) {
 })
 
 app.post('/api/users/:_id/exercises', function(req, res) {
-  let date_of_ex;
 
-  if (req.body.date) {
-    date_of_ex = req.body.date
-  } else {
-    date_of_ex = new Date().toDateString()
+  let new_exercise = new Exercise({
+    userId: req.params._id,
+    description: req.body.description,
+    duration: req.body.duration,
+  });
+
+  if ( req.body.date != '') {
+    new_exercise.date = new Date(req.body.date)
   }
 
-  User.findById({ _id: req.body[':_id']})
-    .then(data => {
-
-      let new_exercise = new Exercise({
-        username: data.username,
-        description: req.body.description,
-        duration: req.body.duration,
-        date: date_of_ex
-      });
-
+  User.findById({ _id: req.params._id})
+    .then(user => {
       new_exercise.save()
         .then((data) => {
-            console.log("Created: " + data)
-            res.json(data);
+            console.log("Created exercise: " + data)
+            res.json({
+              _id: user._id,
+              username: user.username,
+              date: new_exercise.date.toDateString(),
+              duration: new_exercise.duration,
+              description: new_exercise.description
+            });
         })
         .catch((err) => {
           console.log("Error: " + err)
         });
     })
-
     .catch(err => {
       console.log(err)
     })
