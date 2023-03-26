@@ -150,6 +150,8 @@ app.get('/api/users/:_id/logs', function(req, res) {
       console.log("User found " + user)
       // defining a query object which you can add optional date and limit parameters to.
       let queryObj = { userId: user._id }
+      // queryObj.date must be defined as a hash BEFORE values are assigned within that hash
+      // otherwise it will throw an error for property undefined
       queryObj.date = {}
       if (req.query.from) {
         queryObj.date['$gte'] = req.query.from
