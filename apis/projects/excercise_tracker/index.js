@@ -144,8 +144,6 @@ app.get('/api/users/:_id/logs', function(req, res) {
   if (req.query.limit) {
     limitParam = req.query.limit
   }
-  console.log(req.query)
-  console.log("Limit param: " + limitParam)
   User.findById({ _id: req.params._id })
     .then(user => {
       console.log("User found " + user)
