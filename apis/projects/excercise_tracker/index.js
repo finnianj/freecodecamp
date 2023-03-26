@@ -160,7 +160,6 @@ app.get('/api/users/:_id/logs', function(req, res) {
         queryObj.date['$lte'] = req.query.to
       }
 
-      console.log(queryObj)
       Exercise.find(queryObj).limit(limitParam).exec()
         .then(exercises => {
             console.log(exercises)
