@@ -20,8 +20,9 @@ mongoose.connect(mongo_key, { useNewUrlParser: true, useUnifiedTopology: true}).
 
 const exerciseSchema = new mongoose.Schema({
   username: String,
+  userId: String,
   description: String,
-  date: String,
+  date: {type: Date, default: new Date()},
   duration: Number
 });
 
@@ -43,6 +44,20 @@ let Exercise = mongoose.model('Link', exerciseSchema);
 let User = mongoose.model('User', userSchema);
 let Log = mongoose.model('Log', logSchema);
 
+// User.deleteMany({}).then((res) => {
+//     //if succeded do this block of code
+//     console.log(res)
+//   }).catch((err) => {
+//     console.log("Error: " + err)
+// });
+
+// Exercise.deleteMany({}).then((res) => {
+//     //if succeded do this block of code
+//     console.log(res)
+//   }).catch((err) => {
+//     console.log("Error: " + err)
+// });
+
 // --------- Mongo DB config -------------
 
 const listener = app.listen(process.env.PORT || 3000, () => {
@@ -59,8 +74,8 @@ app.post('/api/users', function(req, res) {
 
   new_user.save()
     .then((data) => {
-        console.log("Created: " + data)
-        res.json({ username: data.username, _id: data.id });
+        console.log("Created user: " + data)
+        res.json({ username: data.username, _id: data._id });
     })
     .catch((err) => {
       console.log("Error: " + err)
@@ -83,31 +98,37 @@ app.get('/api/users', function(req, res) {
 })
 
 app.post('/api/users/:_id/exercises', function(req, res) {
-  // check if date field is emoty
-  // if empty
-  // assign todays date
-  //use toDateString method of Date api
 
-  User.findById({ _id: req.body[':_id']})
-    .then(data => {
+  let new_exercise = new Exercise({
+    userId: req.params._id,
+    description: req.body.description,
+    duration: req.body.duration,
+  });
 
-      let new_exercise = new Exercise({
-        username: data.username,
-        description: req.body.description,
-        duration: req.body.duration,
-        date: req.body.date
-      });
+  if ( req.body.date ) {
+    new_exercise.date = new Date(req.body.date)
+  } else {
+    new_exercise.date = new Date()
+  }
 
+  User.findById({ _id: req.params._id})
+    .then(user => {
       new_exercise.save()
         .then((data) => {
-            console.log("Created: " + data)
-            res.json(data);
+            console.log("Created exercise: " + data)
+            res.json({
+              _id: user._id,
+              username: user.username,
+              date: new_exercise.date.toDateString(),
+              duration: new_exercise.duration,
+              description: new_exercise.description
+            });
         })
         .catch((err) => {
+          console.log(new_exercise.date)
           console.log("Error: " + err)
         });
     })
-
     .catch(err => {
       console.log(err)
     })
@@ -116,6 +137,58 @@ app.post('/api/users/:_id/exercises', function(req, res) {
 
 
 });
+
+
+app.get('/api/users/:_id/logs', function(req, res) {
+  let limitParam;
+  if (req.query.limit) {
+    limitParam = req.query.limit
+  }
+
+  User.findById({ _id: req.params._id })
+    .then(user => {
+      console.log("User found " + user)
+      // defining a query object which you can add optional date and limit parameters to.
+      let queryObj = { userId: user._id }
+      // queryObj.date must be defined as a hash BEFORE values are assigned within that hash
+      // otherwise it will throw an error for property undefined
+      if (req.query.from || req.query.to) {
+        queryObj.date = {}
+        if (req.query.from) {
+          queryObj.date['$gte'] = req.query.from
+        }
+        if (req.query.to) {
+          queryObj.date['$lte'] = req.query.to
+        }
+      }
+
+      // Chaining limit onto the query. It just means that then you have to use exec() once you have
+      // added all the queries you want to chain
+      Exercise.find(queryObj).limit(limitParam).exec()
+        .then(exercises => {
+          // using map to tailor the properties that are displayed
+          exercises = exercises.map((i) => {
+            return {
+                    description: i.description,
+                    duration: i.duration,
+                    date: i.date.toDateString()
+                    }
+          })
+          res.json({
+            username: user.username,
+            count: exercises.length,
+            _id: user._id,
+            log: exercises
+          })
+        })
+        .catch(err => {
+          console.log("Could not find exercises: " + err)
+        })
+    })
+    .catch(err => {
+      console.log("No user found: " + err)
+    })
+})
 
 
 // --------- Routing -------------
