@@ -60,7 +60,7 @@ app.post('/api/users', function(req, res) {
   new_user.save()
     .then((data) => {
         console.log("Created: " + data)
-        res.json({ username: data.username, _id: data.id });
+        res.json({ username: data.username, _id: data._id });
     })
     .catch((err) => {
       console.log("Error: " + err)
@@ -83,10 +83,13 @@ app.get('/api/users', function(req, res) {
 })
 
 app.post('/api/users/:_id/exercises', function(req, res) {
-  // check if date field is emoty
-  // if empty
-  // assign todays date
-  //use toDateString method of Date api
+  let date_of_ex;
+
+  if (req.body.date) {
+    date_of_ex = req.body.date
+  } else {
+    date_of_ex = new Date().toDateString()
+  }
 
   User.findById({ _id: req.body[':_id']})
     .then(data => {
@@ -95,7 +98,7 @@ app.post('/api/users/:_id/exercises', function(req, res) {
         username: data.username,
         description: req.body.description,
         duration: req.body.duration,
-        date: req.body.date
+        date: date_of_ex
       });
 
       new_exercise.save()
