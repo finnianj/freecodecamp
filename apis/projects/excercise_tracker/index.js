@@ -44,6 +44,20 @@ let Exercise = mongoose.model('Link', exerciseSchema);
 let User = mongoose.model('User', userSchema);
 let Log = mongoose.model('Log', logSchema);
 
+// User.deleteMany({}).then((res) => {
+//     //if succeded do this block of code
+//     console.log(res)
+//   }).catch((err) => {
+//     console.log("Error: " + err)
+// });
+
+// Exercise.deleteMany({}).then((res) => {
+//     //if succeded do this block of code
+//     console.log(res)
+//   }).catch((err) => {
+//     console.log("Error: " + err)
+// });
+
 // --------- Mongo DB config -------------
 
 const listener = app.listen(process.env.PORT || 3000, () => {
@@ -120,6 +134,38 @@ app.post('/api/users/:_id/exercises', function(req, res) {
 
 
 });
+
+
+app.get('/api/users/:_id/logs', function(req, res) {
+  User.findById({ _id: req.params._id })
+    .then(user => {
+      console.log("User found " + user)
+      Exercise.find({ userId: user._id })
+        .then(exercises => {
+
+            console.log(exercises)
+          exercises = exercises.map((i) => {
+            return {
+                    description: i.description,
+                    duration: i.duration,
+                    date: i.date.toDateString()
+                    }
+          })
+          res.json({
+            _id: user._id,
+            username: user.username,
+            count: exercises.length,
+            log: exercises
+          })
+        })
+        .catch(err => {
+          console.log("Could not find exercises: " + err)
+        })
+    })
+    .catch(err => {
+      console.log("No user found: " + err)
+    })
+})
 
 
 // --------- Routing -------------
