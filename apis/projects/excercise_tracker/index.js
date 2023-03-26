@@ -152,12 +152,14 @@ app.get('/api/users/:_id/logs', function(req, res) {
       let queryObj = { userId: user._id }
       // queryObj.date must be defined as a hash BEFORE values are assigned within that hash
       // otherwise it will throw an error for property undefined
-      queryObj.date = {}
-      if (req.query.from) {
-        queryObj.date['$gte'] = req.query.from
-      }
-      if (req.query.to) {
-        queryObj.date['$lte'] = req.query.to
+      if (req.query.from || req.query.to) {
+        queryObj.date = {}
+        if (req.query.from) {
+          queryObj.date['$gte'] = req.query.from
+        }
+        if (req.query.to) {
+          queryObj.date['$lte'] = req.query.to
+        }
       }
 
       // Chaining limit onto the query. It just means that then you have to use exec() once you have
