@@ -67,9 +67,16 @@ suite('Functional Tests', function () {
 });
 
 const Browser = require('zombie');
+Browser.site = 'https://boilerplate-mochachai.finnianj.repl.co'
+const browser = new Browser();
 
 suite('Functional Tests with Zombie.js', function () {
+  suiteSetup(function(done) {
+  return browser.visit('/', done());
+  // now I understand why done() is necessary. Before, I didn't use done(), so the test timed out, because Mocha didnt know when to exit the function
+  });
   this.timeout(5000);
+
 
 
 
