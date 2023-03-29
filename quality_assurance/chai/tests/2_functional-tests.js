@@ -6,8 +6,14 @@ const server = require('../server');
 const chaiHttp = require('chai-http');
 chai.use(chaiHttp);
 
+const Browser = require("zombie");
+Browser.site = "0.0.0.0:3000";
+
+
+
+
 suite('Functional Tests', function () {
-  this.timeout(5000);
+  this.timeout(10000);
   suite('Integration tests with chai-http', function () {
     // #1
     test('Test GET /hello with no name', function (done) {
@@ -60,22 +66,19 @@ suite('Functional Tests', function () {
           assert.equal(res.type, 'application/json')
           assert.equal(res.body.name, 'Giovanni')
           assert.equal(res.body.surname, 'da Verrazzano');
+          done();
         })
-      done();
     });
   });
 });
 
-const Browser = require('zombie');
-Browser.site = 'https://boilerplate-mochachai.finnianj.repl.co'
-const browser = new Browser();
 
 suite('Functional Tests with Zombie.js', function () {
-
+  this.timeout(10000);
+  const browser = new Browser()
   suiteSetup(function(done) {
-  return browser.visit('/', done());
+  return browser.visit('/', done);
   });
-  this.timeout(5000);
 
 
 
@@ -86,12 +89,13 @@ suite('Functional Tests with Zombie.js', function () {
   });
 
   suite('"Famous Italian Explorers" form', function () {
-    console.log("browser site: " + browser.site)
+    // console.log("browser site: " + browser.site)
     // #5
     test('Submit the surname "Colombo" in the HTML form', function (done) {
       browser.fill('surname', 'Colombo').then(() => {
-        browser.pressButton('submit', () => {
+        browser.pressButton('submit').then(() => {
           browser.assert.success();
+          console.log("hello")
           browser.assert.text('span#name', 'Cristoforo');
           browser.assert.text('span#surname', 'Colombo');
           browser.assert.elements('span#dates', 1);
@@ -99,6 +103,7 @@ suite('Functional Tests with Zombie.js', function () {
         });
       });
     });
+
     // #6
     test('Submit the surname "Vespucci" in the HTML form', function (done) {
       browser.fill('surname', 'Vespucci').then(() => {
@@ -111,5 +116,6 @@ suite('Functional Tests with Zombie.js', function () {
         });
       });
     });
+
   });
 });
