@@ -92,9 +92,10 @@ suite('Functional Tests with Zombie.js', function () {
     // console.log("browser site: " + browser.site)
     // #5
     test('Submit the surname "Colombo" in the HTML form', function (done) {
-      browser.assert.success();
       browser.fill('surname', 'Colombo').then(() => {
-        browser.pressButton('submit', () => {
+        browser.pressButton('submit').then(() => {
+          browser.assert.success();
+          console.log("hello")
           browser.assert.text('span#name', 'Cristoforo');
           browser.assert.text('span#surname', 'Colombo');
           browser.assert.elements('span#dates', 1);
