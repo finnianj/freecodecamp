@@ -26,11 +26,13 @@ app.use(session({
 app.use(passport.initialize())
 app.use(passport.session())
 
-//comment
+console.log(process.env['SESSION_SECRET'])
+
+
+
 myDB(async client => {
   const myDataBase = await client.db('database').collection('users');
 
-  // Be sure to change the title
   app.route('/').get((req, res) => {
     // Change the response to render the Pug template
     res.render('index', {
@@ -38,18 +40,31 @@ myDB(async client => {
       message: 'Please login',
       showLogin: 'true'
     });
+
+    if (req.body) console.log(req.body)
   });
 
+  app.post('/login',
+  passport.authenticate('local', { failureRedirect: '/' }),
+  function(req, res) {
+    res.redirect('/profile');
+  }
+  );
+
   app.get('/profile', function(req, res) {
-    res.render('views/profile.pug')
-    }
+    res.render('profile')
+  }
   );
 
-  app.post('/login', passport.authenticate('local', { failureRedirect: '/' }), function(req, res) {
-    res.redirect('/profile')
-    }
-  );
-
+  passport.use(new LocalStrategy((username, password, done) => {
+    myDataBase.findOne({ username: username }, (err, user) => {
+      console.log(`User ${username} attempted to log in.`);
+      if (err) return done(err);
+      if (!user) return done(null, false);
+      if (password !== user.password) return done(null, false);
+      return done(null, user);
+    });
+  }));
 
   // Serialization and deserialization here...
   passport.serializeUser((user, done) => {
@@ -61,16 +76,6 @@ myDB(async client => {
       done(null, doc);
     });
   });
-
-  passport.use(new LocalStrategy((username, password, done) => {
-    myDataBase.findOne({ username: username }, (err, user) => {
-      console.log(`User ${username} attempted to log in.`);
-      if (err) return done(err);
-      if (!user) return done(null, false);
-      if (password !== user.password) return done(null, false);
-      return done(null, user);
-    });
-  }));
 
   // Be sure to add this...
 }).catch(e => {
