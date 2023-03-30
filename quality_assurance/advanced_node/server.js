@@ -40,6 +40,10 @@ myDB(async client => {
     });
   });
 
+  app.post('/login', passport.authenticate('local', { failureRedirect: '/' }), (req, res) => {
+
+  })
+
   // Serialization and deserialization here...
   passport.serializeUser((user, done) => {
     done(null, user._id);
