@@ -40,9 +40,16 @@ myDB(async client => {
     });
   });
 
-  app.post('/login', passport.authenticate('local', { failureRedirect: '/' }), (req, res) => {
+  app.get('/profile', function(req, res) {
+    res.render('views/profile.pug')
+    }
+  );
+
+  app.post('/login', passport.authenticate('local', { failureRedirect: '/' }), function(req, res) {
     res.redirect('/profile')
-  })
+    }
+  );
+
 
   // Serialization and deserialization here...
   passport.serializeUser((user, done) => {
