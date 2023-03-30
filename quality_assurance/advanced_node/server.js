@@ -50,6 +50,16 @@ myDB(async client => {
     });
   });
 
+  passport.use(new LocalStrategy((username, password, done) => {
+    myDataBase.findOne({ username: username }, (err, user) => {
+      console.log(`User ${username} attempted to log in.`);
+      if (err) return done(err);
+      if (!user) return done(null, false);
+      if (password !== user.password) return done(null, false);
+      return done(null, user);
+    });
+  }));
+
   // Be sure to add this...
 }).catch(e => {
     app.route('/').get((req, res) => {
