@@ -3,17 +3,13 @@ require('dotenv').config();
 const express = require('express');
 const myDB = require('./connection');
 const fccTesting = require('./freeCodeCamp/fcctesting.js');
-const session = require('express-session')
-const passport = require('passport')
-const app = express();
+const session = require('express-session');
+const passport = require('passport');
 const { ObjectID } = require('mongodb');
 const LocalStrategy = require('passport-local');
 
+const app = express();
 
-fccTesting(app); //For FCC testing purposes
-app.use('/public', express.static(process.cwd() + '/public'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
 app.set('view engine', 'pug');
 app.set('views', './views/pug');
 
@@ -23,11 +19,14 @@ app.use(session({
   saveUninitialized: true,
   cookie: { secure: false }
 }));
+
 app.use(passport.initialize())
 app.use(passport.session())
 
-console.log(process.env['SESSION_SECRET'])
-
+fccTesting(app); //For FCC testing purposes
+app.use('/public', express.static(process.cwd() + '/public'));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 
 myDB(async client => {
@@ -38,10 +37,8 @@ myDB(async client => {
     res.render('index', {
       title: 'Connected to Database',
       message: 'Please login',
-      showLogin: 'true'
+      showLogin: true
     });
-
-    if (req.body) console.log(req.body)
   });
 
   app.post('/login',
