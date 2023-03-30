@@ -49,7 +49,9 @@ myDB(async client => {
   );
 
   app.get('/profile', ensureAuthenticated, function(req, res) {
-    res.render('profile')
+    res.render('profile', {
+      username: 
+    })
   }
   );
 
