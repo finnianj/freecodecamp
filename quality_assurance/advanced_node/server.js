@@ -7,6 +7,7 @@ const session = require('express-session')
 const passport = require('passport')
 const app = express();
 const { ObjectID } = require('mongodb');
+const LocalStrategy = require('passport-local');
 
 
 fccTesting(app); //For FCC testing purposes
