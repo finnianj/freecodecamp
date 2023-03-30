@@ -48,8 +48,10 @@ myDB(async client => {
   }
   );
 
-  app.get('/profile', function(req, res) {
-    res.render('profile')
+  app.get('/profile', ensureAuthenticated, function(req, res) {
+    res.render('profile', {
+      username: req.user.username
+    })
   }
   );
 
@@ -81,6 +83,13 @@ myDB(async client => {
     });
   });
 // app.listen out here...
+
+function ensureAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) {
+    return next();
+  }
+  res.redirect('/');
+};
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
