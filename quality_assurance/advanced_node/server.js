@@ -83,7 +83,10 @@ myDB(async client => {
 // app.listen out here...
 
 function ensureAuthenticated(req, res, next) {
-  
+  if (req.isAuthenticated()) {
+    return next();
+  }
+  res.redirect('/');
 };
 
 const PORT = process.env.PORT || 3000;
