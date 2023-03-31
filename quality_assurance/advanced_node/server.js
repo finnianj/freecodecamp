@@ -34,7 +34,6 @@ myDB(async client => {
   routes(app, myDataBase)
   auth(app, myDataBase)
 
-
   // Be sure to add this...
 }).catch(e => {
     app.route('/').get((req, res) => {
@@ -42,6 +41,7 @@ myDB(async client => {
     });
   });
 
+  
 // app.listen out here...
 
 const PORT = process.env.PORT || 3000;
