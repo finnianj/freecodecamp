@@ -63,7 +63,25 @@ myDB(async client => {
   });
 
   app.post('/register', (req, res, next) => {
-    
+
+    myDataBase.findOne({ username: req.body.username }, ( err, user) => {
+      if (err) {
+        next(err);
+      } else if (user) {
+        res.redirect('/');
+      } else {
+        
+        myDataBase.insertOne({ username: req.body.username, password: req.body.password }, ( err, doc ) => {
+          if (err) {
+            res.redirect('/')
+          } else {
+            next(null, doc.ops[0])
+          }
+        })
+
+      }
+    })
+
   })
 
   app.use((req, res, next) => {
