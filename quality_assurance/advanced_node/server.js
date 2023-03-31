@@ -8,7 +8,8 @@ const session = require('express-session');
 const passport = require('passport');
 const { ObjectID } = require('mongodb');
 const LocalStrategy = require('passport-local');
-
+const routes = require('./routes.js')
+const auth = require('./auth.js')
 const app = express();
 
 app.set('view engine', 'pug');
@@ -32,7 +33,7 @@ app.use(express.urlencoded({ extended: true }));
 
 myDB(async client => {
   const myDataBase = await client.db('database').collection('users');
-
+  routes(app, myDataBase)
   app.route('/').get((req, res) => {
     // Change the response to render the Pug template
     res.render('index', {
