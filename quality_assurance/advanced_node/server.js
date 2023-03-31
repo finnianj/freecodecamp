@@ -1,13 +1,13 @@
 'use strict';
 require('dotenv').config();
+require('bcrypt')
 const express = require('express');
 const myDB = require('./connection');
 const fccTesting = require('./freeCodeCamp/fcctesting.js');
 const session = require('express-session');
 const passport = require('passport');
-const { ObjectID } = require('mongodb');
-const LocalStrategy = require('passport-local');
-
+const routes = require('./routes.js')
+const auth = require('./auth.js')
 const app = express();
 
 app.set('view engine', 'pug');
@@ -31,50 +31,9 @@ app.use(express.urlencoded({ extended: true }));
 
 myDB(async client => {
   const myDataBase = await client.db('database').collection('users');
+  routes(app, myDataBase)
+  auth(app, myDataBase)
 
-  app.route('/').get((req, res) => {
-    // Change the response to render the Pug template
-    res.render('index', {
-      title: 'Connected to Database',
-      message: 'Please login',
-      showLogin: true
-    });
-  });
-
-  app.post('/login',
-  passport.authenticate('local', { failureRedirect: '/' }),
-  function(req, res) {
-    res.redirect('/profile');
-  }
-  );
-
-  app.get('/profile', ensureAuthenticated, function(req, res) {
-    res.render('profile', {
-      username: req.user.username
-    })
-  }
-  );
-
-  passport.use(new LocalStrategy((username, password, done) => {
-    myDataBase.findOne({ username: username }, (err, user) => {
-      console.log(`User ${username} attempted to log in.`);
-      if (err) return done(err);
-      if (!user) return done(null, false);
-      if (password !== user.password) return done(null, false);
-      return done(null, user);
-    });
-  }));
-
-  // Serialization and deserialization here...
-  passport.serializeUser((user, done) => {
-    done(null, user._id);
-  });
-
-  passport.deserializeUser((id, done) => {
-    myDataBase.findOne({ _id: new ObjectID(id) }, (err, doc) => {
-      done(null, doc);
-    });
-  });
 
   // Be sure to add this...
 }).catch(e => {
@@ -82,14 +41,8 @@ myDB(async client => {
       res.render('index', { title: e, message: 'Unable to connect to database' });
     });
   });
-// app.listen out here...
 
-function ensureAuthenticated(req, res, next) {
-  if (req.isAuthenticated()) {
-    return next();
-  }
-  res.redirect('/');
-};
+// app.listen out here...
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
