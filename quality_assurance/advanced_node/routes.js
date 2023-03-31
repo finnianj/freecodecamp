@@ -9,7 +9,8 @@ module.exports = function (app, myDataBase) {
       title: 'Connected to Database',
       message: 'Please login',
       showLogin: true,
-      showRegistration: true
+      showRegistration: true,
+      showSocialAuth: true
     });
   });
 
