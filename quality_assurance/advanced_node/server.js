@@ -70,7 +70,7 @@ myDB(async client => {
       } else if (user) {
         res.redirect('/');
       } else {
-        
+
         myDataBase.insertOne({ username: req.body.username, password: req.body.password }, ( err, doc ) => {
           if (err) {
             res.redirect('/')
@@ -82,7 +82,10 @@ myDB(async client => {
       }
     })
 
-  })
+  }, passport.authenticate('local', { failureRedirect: '/' }), (req, res, next) => {
+      res.redirect('/profile')
+    }
+  )
 
   app.use((req, res, next) => {
     res.status(404)
@@ -117,6 +120,7 @@ myDB(async client => {
       res.render('index', { title: e, message: 'Unable to connect to database' });
     });
   });
+
 // app.listen out here...
 
 function ensureAuthenticated(req, res, next) {
