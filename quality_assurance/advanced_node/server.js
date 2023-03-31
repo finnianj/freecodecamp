@@ -1,5 +1,6 @@
 'use strict';
 require('dotenv').config();
+require('bcrypt')
 const express = require('express');
 const myDB = require('./connection');
 const fccTesting = require('./freeCodeCamp/fcctesting.js');
