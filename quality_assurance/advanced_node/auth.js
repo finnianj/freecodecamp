@@ -23,9 +23,11 @@ module.exports = function (app, myDataBase) {
     clientSecret: process.env.GITHUB_CLIENT_SECRET,
     callbackURL: /*INSERT CALLBACK URL ENTERED INTO GITHUB HERE*/
   },
-    
+    function(accessToken, refreshToken, profile, cb) {
+      console.log(profile);
+      //Database logic here with callback containing your user object
+    }
   ));
-
   // Serialization and deserialization here...
   passport.serializeUser((user, done) => {
     done(null, user._id);
