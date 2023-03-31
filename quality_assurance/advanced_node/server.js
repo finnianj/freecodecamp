@@ -6,7 +6,6 @@ const myDB = require('./connection');
 const fccTesting = require('./freeCodeCamp/fcctesting.js');
 const session = require('express-session');
 const passport = require('passport');
-// const { ObjectID } = require('mongodb');
 const routes = require('./routes.js')
 const auth = require('./auth.js')
 const app = express();
@@ -33,6 +32,7 @@ app.use(express.urlencoded({ extended: true }));
 myDB(async client => {
   const myDataBase = await client.db('database').collection('users');
   routes(app, myDataBase)
+  auth(app, myDataBase)
 
 
   // Be sure to add this...
