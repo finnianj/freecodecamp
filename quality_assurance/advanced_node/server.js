@@ -24,6 +24,7 @@ app.use(session({
   secret: process.env.SESSION_SECRET,
   resave: true,
   saveUninitialized: true,
+  store: store,
   cookie: { secure: false },
   key: 'express.sid'
 }));
@@ -68,6 +69,18 @@ myDB(async client => {
     });
 
   });
+
+  function onAuthorizeSuccess(data, accept) {
+    console.log('successful connection to socket.io');
+
+    accept(null, true);
+  }
+
+  function onAuthorizeFail(data, message, error, accept) {
+    if (error) throw new Error(message);
+    console.log('failed connection to socket.io:', message);
+    accept(null, false);
+  }
 
   // Be sure to add this...
 }).catch(e => {
