@@ -39,6 +39,7 @@ myDB(async client => {
   let currentUsers = 0;
 
   io.on('connection', socket => {
+    ++currentUsers;
     console.log('A user has connected');
   });
 
