@@ -34,7 +34,9 @@ module.exports = function (app, myDataBase) {
     res.redirect('/');
   });
 
-  app.get('/chat', )
+  app.get('/chat', ensureAuthenticated, (req, res => {
+    res.render('chat', { user: req.user })
+  }))
 
   app.route('/register').post((req, res, next) => {
 
