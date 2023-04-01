@@ -43,6 +43,7 @@ module.exports = function (app, myDataBase) {
           login_count: 1
         }
       },
+      // upsert stands for update and insert
       { upsert: true, new: true },
       (err, doc => {
         return cb(null, doc.value)
