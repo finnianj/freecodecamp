@@ -41,6 +41,7 @@ myDB(async client => {
   io.on('connection', socket => {
     ++currentUsers;
     console.log('A user has connected');
+    io.emit('user count', currentUsers);
   });
 
   // Be sure to add this...
