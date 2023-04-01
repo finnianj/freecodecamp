@@ -6,8 +6,8 @@ const myDB = require('./connection');
 const fccTesting = require('./freeCodeCamp/fcctesting.js');
 const session = require('express-session');
 const passport = require('passport');
-const routes = require('./routes.js')
 const auth = require('./auth.js')
+const routes = require('./routes.js')
 const app = express();
 
 app.set('view engine', 'pug');
@@ -31,8 +31,8 @@ app.use(express.urlencoded({ extended: true }));
 
 myDB(async client => {
   const myDataBase = await client.db('database').collection('users');
-  routes(app, myDataBase)
   auth(app, myDataBase)
+  routes(app, myDataBase)
 
   // Be sure to add this...
 }).catch(e => {
@@ -41,7 +41,7 @@ myDB(async client => {
     });
   });
 
-  
+
 // app.listen out here...
 
 const PORT = process.env.PORT || 3000;

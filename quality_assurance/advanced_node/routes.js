@@ -34,9 +34,9 @@ module.exports = function (app, myDataBase) {
     res.redirect('/');
   });
 
-  app.get('/chat', ensureAuthenticated, (req, res => {
+  app.get('/chat', ensureAuthenticated, (req, res) => {
     res.render('chat', { user: req.user })
-  }))
+  })
 
   app.route('/register').post((req, res, next) => {
 
@@ -78,6 +78,7 @@ module.exports = function (app, myDataBase) {
   });
 
   function ensureAuthenticated(req, res, next) {
+    console.log(req.isAuthenticated())
     if (req.isAuthenticated()) {
       return next();
     }
