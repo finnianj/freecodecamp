@@ -9,6 +9,8 @@ const passport = require('passport');
 const auth = require('./auth.js')
 const routes = require('./routes.js')
 const app = express();
+const http = require('http').createServer(app);
+const io = require('socket.io')(http);
 
 app.set('view engine', 'pug');
 app.set('views', './views/pug');
