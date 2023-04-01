@@ -34,6 +34,8 @@ module.exports = function (app, myDataBase) {
     res.redirect('/');
   });
 
+  app.get('/chat', )
+
   app.route('/register').post((req, res, next) => {
 
     myDataBase.findOne({ username: req.body.username }, (err, user) => {
