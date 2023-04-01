@@ -21,7 +21,7 @@ module.exports = function (app, myDataBase) {
   passport.use(new GitHubStrategy({
     clientID: process.env.GITHUB_CLIENT_ID,
     clientSecret: process.env.GITHUB_CLIENT_SECRET,
-    callbackURL: 'https://localhost:3000'
+    callbackURL: 'http://localhost:3000/auth/github/callback'
   },
     function(accessToken, refreshToken, profile, cb) {
       console.log(profile);
@@ -45,9 +45,10 @@ module.exports = function (app, myDataBase) {
       },
       // upsert stands for update and insert
       { upsert: true, new: true },
-      (err, doc => {
+      (err, doc) => {
+        console.log("Github success")
         return cb(null, doc.value)
-      })
+      }
       );
     }
   ));
