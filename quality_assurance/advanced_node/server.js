@@ -36,6 +36,10 @@ myDB(async client => {
   auth(app, myDataBase)
   routes(app, myDataBase)
 
+  io.on('connection', socket => {
+    console.log('A user has connected');
+  });
+
   // Be sure to add this...
 }).catch(e => {
     app.route('/').get((req, res) => {
