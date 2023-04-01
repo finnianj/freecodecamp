@@ -11,6 +11,11 @@ const routes = require('./routes.js')
 const app = express();
 const http = require('http').createServer(app);
 const io = require('socket.io')(http);
+const cookieParser = require('cookie-parser');
+const passportSocketIo = require('passport.socketio');
+const MongoStore = require('connect-mongo')(session);
+const URI = process.env.MONGO_URI;
+const store = new MongoStore({ url: URI });
 
 app.set('view engine', 'pug');
 app.set('views', './views/pug');
