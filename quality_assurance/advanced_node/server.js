@@ -43,6 +43,17 @@ myDB(async client => {
 
   let currentUsers = 0;
 
+  io.use(
+    passportSocketIo.authorize({
+      cookieParser: cookieParser,
+      key: 'express.sid',
+      secret: process.env.SESSION_SECRET,
+      store: store,
+      success: onAuthorizeSuccess,
+      fail: onAuthorizeFail
+    })
+  );
+
   io.on('connection', socket => {
     ++currentUsers;
     console.log('A user has connected');
