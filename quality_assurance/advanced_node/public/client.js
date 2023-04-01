@@ -1,9 +1,10 @@
 $(document).ready(function () {
   /*global io*/
   let socket = io();
-  console.log('user ' + socket.request.user.username + ' connected');
+  socket.on('user', () => {
+    console.log('user ' + socket.request.user.username + ' connected');
+  })
   socket.on('user count', function(data) {
-    console.log("hello")
     console.log(data);
   });
 

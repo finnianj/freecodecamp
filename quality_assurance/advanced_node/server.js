@@ -70,25 +70,25 @@ myDB(async client => {
 
   });
 
-  function onAuthorizeSuccess(data, accept) {
-    console.log('successful connection to socket.io');
-
-    accept(null, true);
-  }
-
-  function onAuthorizeFail(data, message, error, accept) {
-    if (error) throw new Error(message);
-    console.log('failed connection to socket.io:', message);
-    accept(null, false);
-  }
 
   // Be sure to add this...
 }).catch(e => {
-    app.route('/').get((req, res) => {
-      res.render('index', { title: e, message: 'Unable to connect to database' });
-    });
+  app.route('/').get((req, res) => {
+    res.render('index', { title: e, message: 'Unable to connect to database' });
   });
+});
 
+function onAuthorizeSuccess(data, accept) {
+  console.log('successful connection to socket.io');
+
+  accept(null, true);
+}
+
+function onAuthorizeFail(data, message, error, accept) {
+  if (error) throw new Error(message);
+  console.log('failed connection to socket.io:', message);
+  accept(null, false);
+}
 
 // app.listen out here...
 
