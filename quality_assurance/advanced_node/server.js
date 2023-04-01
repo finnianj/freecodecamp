@@ -76,6 +76,14 @@ myDB(async client => {
       /*anything you want to do on disconnect*/
     });
 
+    socket.on('chat message', message => {
+      console.log("server recieved: " + message)
+      io.emit('chat message', {
+        username: socket.request.user.username,
+        message
+      })
+    })
+
   });
 
 
