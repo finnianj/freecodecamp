@@ -77,6 +77,8 @@ function ConvertHandler() {
         return "gallons"
       case 'l':
         return "litres"
+      case 'L':
+        return "litres"
       case 'mi':
         return "miles"
       case 'km':
