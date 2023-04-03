@@ -3,20 +3,25 @@ function ConvertHandler() {
   this.getNum = function(input) {
     console.log(input)
     let test = input.match(/mi$|kg$|gal$|l$|km$|lbs$/i)
+    console.log(test)
     if (test != null) {
       let index = test.index;
       input = input.split('')
       let unit = input.slice(index).join('').toLowerCase()
       if (unit == 'l') unit = 'L'
-      let num = input.slice(0, index).join('')
+      let num = eval(input.slice(0, index).join(''))
 
       if (num == 0) {
         return [ 1, unit]
       } else if (isGoodNum(num) == false) {
+        console.log("bad num")
         return 'invalid number'
+      } else {
+        console.log("good num")
+
+        return [ num, unit];
       }
 
-      return [ num, unit];
     } else {
       input = input.slice(0, input.match(/[a-z]/).index)
       console.log("DANGER: " + input)
@@ -34,8 +39,8 @@ function ConvertHandler() {
   // }
 
   function isGoodNum(str) {
-    return /^\+?(0|[1-9]\d*)$/.test(str);
-}
+    return /^\+?(0|[1-9])\d*(\.|\/)?\d*?(\.|\/)?\d*?$/.test(str);
+  }
 
   // this.getUnit = function(input) {
   //   let result;
@@ -60,7 +65,9 @@ function ConvertHandler() {
     const lbsToKg = 0.453592;
     const miToKm = 1.60934;
     let result;
-
+    // initNum = parseInt(initNum, 10)
+    console.log(initNum)
+    console.log(typeof initNum)
     switch (initUnit) {
       case 'kg':
         result = [initNum / lbsToKg, "lbs"]

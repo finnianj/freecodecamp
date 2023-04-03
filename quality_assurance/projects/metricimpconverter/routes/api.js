@@ -22,7 +22,9 @@ module.exports = function (app) {
       res.json("invalid number and unit")
     } else {
       let converted = convertHandler.convert(input[0], input[1])
+      console.log(converted)
       let rounded = Math.round(converted[0] * 100_000) / 100_000
+      console.log(rounded)
 
       let string = convertHandler.getString(input[0], input[1], rounded, converted[1])
       let json_result = {
