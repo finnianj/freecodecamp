@@ -4,7 +4,11 @@ function ConvertHandler() {
     if (input.match(/[klgm]/i)) {
       let index = input.match(/[klgm]/i).index;
       input = input.split('')
-      let result = [ input.slice(0, index).join(''), input.slice(index).join('').toLowerCase()];
+
+      let unit = input.slice(index).join('').toLowerCase()
+      if (unit == 'l') unit = 'L'
+
+      let result = [ input.slice(0, index).join(''), unit];
       return result;
     } else {
       return "Invalid unit"
@@ -42,7 +46,7 @@ function ConvertHandler() {
       case 'gal':
         result = [initNum * galToL, "L"]
         break;
-      case 'l':
+      case 'L':
         result = [initNum / galToL, "gal"]
         break;
       case 'mi':
@@ -74,8 +78,6 @@ function ConvertHandler() {
         return "kilograms"
       case 'gal':
         return "gallons"
-      case 'l':
-        return "litres"
       case 'L':
         return "litres"
       case 'mi':
