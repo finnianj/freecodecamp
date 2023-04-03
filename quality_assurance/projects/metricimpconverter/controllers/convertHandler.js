@@ -1,7 +1,7 @@
 function ConvertHandler() {
 
   this.getNum = function(input) {
-    let index = input.match(/[klgm]/).index;
+    let index = input.match(/[klgm]/i).index;
     input = input.split('')
     let result = [ input.slice(0, index).join(''), input.slice(index).join('')];
     return result;
