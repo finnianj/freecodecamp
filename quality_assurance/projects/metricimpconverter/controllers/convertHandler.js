@@ -33,7 +33,8 @@ function ConvertHandler() {
 
     switch (initUnit) {
       case 'kg':
-        console.log("kilograms")
+        console.log("kilograms>>>")
+        result = [initNum / lbsToKg, "lbs"]
         break;
       case 'gal':
         console.log("gallons")
@@ -49,6 +50,7 @@ function ConvertHandler() {
         break;
       case 'lbs':
         console.log("pounds")
+        result = [initNum * lbsToKg, "kg"]
         break;
       default:
         console.log("Invalid input given");
