@@ -37,8 +37,28 @@ suite('Unit Tests', function(){
   });
 
   // #7
-  test('convertHandler should correctly default to a numerical input of 1 when no numerical input is provided.', function () {
-    expect(convertHandler.getNum("mi")[0]).to.equal(1);
+  test('convertHandler should correctly read each valid input unit.', function () {
+    expect(convertHandler.getNum("mi")[1]).to.equal('mi');
+    expect(convertHandler.getNum("km")[1]).to.equal('km');
+    expect(convertHandler.getNum("gal")[1]).to.equal('gal');
+    expect(convertHandler.getNum("L")[1]).to.equal('L');
+    expect(convertHandler.getNum("lbs")[1]).to.equal('lbs');
+    expect(convertHandler.getNum("kg")[1]).to.equal('kg');
+  });
+
+  // #8
+  test('convertHandler should correctly return an error for an invalid input unit.', function () {
+    expect(convertHandler.getNum("mikg")[0]).to.equal('i');
+  });
+
+  // #8
+  test('convertHandler should return the correct return unit for each valid input unit.', function () {
+    expect(convertHandler.spellOutUnit("km")).to.equal('kilometers');
+    expect(convertHandler.spellOutUnit("mi")).to.equal('miles');
+    expect(convertHandler.spellOutUnit("gal")).to.equal('gallons');
+    expect(convertHandler.spellOutUnit("L")).to.equal('litres');
+    expect(convertHandler.spellOutUnit("lbs")).to.equal('pounds');
+    expect(convertHandler.spellOutUnit("kg")).to.equal('kilograms');
   });
 
 });
