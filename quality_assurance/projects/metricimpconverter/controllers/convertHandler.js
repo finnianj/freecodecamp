@@ -1,7 +1,8 @@
 function ConvertHandler() {
 
   this.getNum = function(input) {
-    if (input.match(/[klgm]/i)) {
+    let test = input.match(/mi$|kg$|gal$|l$|km$|lbs$/i)
+    if (test != null) {
       let index = input.match(/[klgm]/i).index;
       input = input.split('')
 
