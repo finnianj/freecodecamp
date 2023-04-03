@@ -7,11 +7,11 @@ function ConvertHandler() {
     return result;
   };
 
-  this.getUnit = function(input) {
-    let result;
+  // this.getUnit = function(input) {
+  //   let result;
 
-    return result;
-  };
+  //   return result;
+  // };
 
   this.getReturnUnit = function(initUnit) {
     let result;
