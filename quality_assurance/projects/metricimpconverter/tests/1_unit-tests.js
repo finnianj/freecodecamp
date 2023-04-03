@@ -28,17 +28,17 @@ suite('Unit Tests', function(){
 
   // #5
   test('convertHandler should correctly return an error on a double-fraction (i.e. 3/2/3).', function () {
-    expect(convertHandler.getNum("3/2/3mi")[0]).to.equal('i');
+    assert.equal(convertHandler.getNum("3/2/3mi")[0], 'i');
   });
 
   // #6
   test('convertHandler should correctly default to a numerical input of 1 when no numerical input is provided.', function () {
-    expect(convertHandler.getNum("mi")[0]).to.equal(1);
+    assert.equal(convertHandler.getNum("mi")[0], 1);
   });
 
   // #7
   test('convertHandler should correctly read each valid input unit.', function () {
-    expect(convertHandler.getNum("mi")[1]).to.equal('mi');
+    assert.equal(convertHandler.getNum("mi")[1], 'mi');
     expect(convertHandler.getNum("km")[1]).to.equal('km');
     expect(convertHandler.getNum("gal")[1]).to.equal('gal');
     expect(convertHandler.getNum("L")[1]).to.equal('L');
@@ -48,17 +48,53 @@ suite('Unit Tests', function(){
 
   // #8
   test('convertHandler should correctly return an error for an invalid input unit.', function () {
-    expect(convertHandler.getNum("mikg")[0]).to.equal('i');
+    assert.equal(convertHandler.getNum("mikg")[0], 'i');
   });
 
-  // #8
+  // #9
   test('convertHandler should return the correct return unit for each valid input unit.', function () {
-    expect(convertHandler.spellOutUnit("km")).to.equal('kilometers');
+    assert.equal(convertHandler.spellOutUnit("km"), 'kilometers');
     expect(convertHandler.spellOutUnit("mi")).to.equal('miles');
     expect(convertHandler.spellOutUnit("gal")).to.equal('gallons');
     expect(convertHandler.spellOutUnit("L")).to.equal('litres');
     expect(convertHandler.spellOutUnit("lbs")).to.equal('pounds');
     expect(convertHandler.spellOutUnit("kg")).to.equal('kilograms');
   });
+
+  // #10
+  test('convertHandler should correctly return the spelled-out string unit for each valid input unit.', function () {
+    assert.equal(convertHandler.spellOutUnit("km"), 'kilometers');
+    expect(convertHandler.spellOutUnit("mi")).to.equal('miles');
+    expect(convertHandler.spellOutUnit("gal")).to.equal('gallons');
+    expect(convertHandler.spellOutUnit("L")).to.equal('litres');
+    expect(convertHandler.spellOutUnit("lbs")).to.equal('pounds');
+    expect(convertHandler.spellOutUnit("kg")).to.equal('kilograms');
+  });
+
+  // #11
+  test('convertHandler should correctly convert gal to L.', function () {
+    assert.equal(convertHandler.convert(50, "gal")[1], 'L');
+  });
+  // #12
+  test('convertHandler should correctly convert L to gal.', function () {
+    assert.equal(convertHandler.convert(50, "L")[1], 'gal');
+  });
+  // #13
+  test('convertHandler should correctly convert mi to km.', function () {
+    assert.equal(convertHandler.convert(50, "mi")[1], 'km');
+  });
+  // #14
+  test('convertHandler should correctly convert km to mi.', function () {
+    assert.equal(convertHandler.convert(50, "km")[1], 'mi');
+  });
+  // #15
+  test('convertHandler should correctly convert lbs to kg.', function () {
+    assert.equal(convertHandler.convert(50, "lbs")[1], 'kg');
+  });
+  // #16
+  test('convertHandler should correctly convert kg to lbs.', function () {
+    assert.equal(convertHandler.convert(50, "kg")[1], 'lbs');
+  });
+
 
 });
