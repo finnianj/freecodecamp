@@ -25,4 +25,9 @@ suite('Unit Tests', function(){
     assert.isNumber(convertHandler.getNum("54/3.2mi")[0]);
   });
 
+  // #5
+  test('convertHandler should correctly return an error on a double-fraction (i.e. 3/2/3).', function () {
+    assert.isFalse(convertHandler.getNum("3/2/3mi")[0]);
+  });
+
 });

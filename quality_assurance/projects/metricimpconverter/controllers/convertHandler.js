@@ -38,7 +38,7 @@ function ConvertHandler() {
   // }
 
   function isGoodNum(str) {
-    return /^\+?(0|[1-9])\d*(\.|\/)?(\d+(\.|\/))?\d*$/.test(str);
+    return /^\+?(0|[1-9])\d*(\.\d+|\/\d+|\.\d+\/\d+|\/\d+\.\d+)?$/.test(str);
   }
 
   // this.getUnit = function(input) {
