@@ -1,7 +1,7 @@
 function ConvertHandler() {
 
   this.getNum = function(input) {
-    console.log(input)
+    console.log("\n "+ input)
     let test = input.match(/mi$|kg$|gal$|l$|km$|lbs$/i)
     console.log(test)
     if (test != null) {
@@ -9,7 +9,7 @@ function ConvertHandler() {
       input = input.split('')
       let unit = input.slice(index).join('').toLowerCase()
       if (unit == 'l') unit = 'L'
-      let num = eval(input.slice(0, index).join(''))
+      let num = input.slice(0, index).join('')
 
       if (num == 0) {
         return [ 1, unit]
@@ -18,8 +18,7 @@ function ConvertHandler() {
         return 'invalid number'
       } else {
         console.log("good num")
-
-        return [ num, unit];
+        return [ eval(num), unit];
       }
 
     } else {
@@ -39,7 +38,7 @@ function ConvertHandler() {
   // }
 
   function isGoodNum(str) {
-    return /^\+?(0|[1-9])\d*(\.|\/)?\d*?(\.|\/)?\d*?$/.test(str);
+    return /^\+?(0|[1-9])\d*(\.|\/)?(\d+(\.|\/))?\d*$/.test(str);
   }
 
   // this.getUnit = function(input) {
