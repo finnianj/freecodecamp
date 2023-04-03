@@ -42,21 +42,28 @@ function ConvertHandler() {
   }
 
   // this.getUnit = function(input) {
-  //   let result;
-
-  //   return result;
+  //   return input;
   // };
 
   // this.getReturnUnit = function(initUnit) {
-  //   let result;
-
-  //   return result;
+  //   return initUnit;
   // };
 
   this.spellOutUnit = function(unit) {
-    let result;
-
-    return result;
+    switch (unit) {
+      case 'kg':
+        return "kilograms"
+      case 'gal':
+        return "gallons"
+      case 'L':
+        return "litres"
+      case 'mi':
+        return "miles"
+      case 'km':
+        return "kilometers"
+      case 'lbs':
+        return "pounds"
+    }
   };
 
   this.convert = function(initNum, initUnit) {
@@ -94,28 +101,12 @@ function ConvertHandler() {
   };
 
   this.getString = function(initNum, initUnit, returnNum, returnUnit) {
-    initUnit = getWord(initUnit);
-    returnUnit = getWord(returnUnit)
+    initUnit = this.spellOutUnit(initUnit);
+    returnUnit = this.spellOutUnit(returnUnit)
     let result = `${initNum} ${initUnit} converts to ${returnNum} ${returnUnit}`
     return result;
   };
 
-  function getWord(val) {
-    switch (val) {
-      case 'kg':
-        return "kilograms"
-      case 'gal':
-        return "gallons"
-      case 'L':
-        return "litres"
-      case 'mi':
-        return "miles"
-      case 'km':
-        return "kilometers"
-      case 'lbs':
-        return "pounds"
-    }
-  }
 
 }
 
