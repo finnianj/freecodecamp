@@ -8,9 +8,17 @@ module.exports = function (app) {
   let convertHandler = new ConvertHandler();
 
   app.get('/api/convert', (req, res) => {
+    if (req.query.input == 0) {
+      console.log("Invalid number and unit")
+      return null;
+    }
+
     let input = convertHandler.getNum(req.query.input)
-    if (input == "Invalid metric") {
-      console.log("Invalid metric found")
+
+    if (input == "Invalid unit") {
+      console.log("Invalid unit")
+    } else if (input[0] == 0) {
+      console.log("Invalid number")
     } else {
       let converted = convertHandler.convert(input[0], input[1])
       let rounded = Math.round(converted[0] * 100_000) / 100_000

@@ -7,8 +7,7 @@ function ConvertHandler() {
       let result = [ input.slice(0, index).join(''), input.slice(index).join('').toLowerCase()];
       return result;
     } else {
-      console.log("Invalid metric")
-      return "Invalid metric"
+      return "Invalid unit"
     }
   };
 
