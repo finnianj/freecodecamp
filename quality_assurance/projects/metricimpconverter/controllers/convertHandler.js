@@ -1,9 +1,7 @@
 function ConvertHandler() {
 
   this.getNum = function(input) {
-    console.log("\n "+ input)
     let test = input.match(/mi$|kg$|gal$|l$|km$|lbs$/i)
-    console.log(test)
     if (test != null) {
       let index = test.index;
       input = input.split('')
@@ -14,16 +12,14 @@ function ConvertHandler() {
       if (num == 0) {
         return [ 1, unit]
       } else if (isGoodNum(num) == false) {
-        console.log("bad num")
+        console.log("Bad num")
         return 'invalid number'
       } else {
-        console.log("good num")
         return [ eval(num), unit];
       }
 
     } else {
       input = input.slice(0, input.match(/[a-z]/).index)
-      console.log("DANGER: " + input)
       if (isGoodNum(input) == false) {
         return 'invalid number and unit'
       }
@@ -38,7 +34,7 @@ function ConvertHandler() {
   // }
 
   function isGoodNum(str) {
-    return /^\+?(0|[1-9])\d*(\.|\/)?(\d+(\.|\/))?\d*$/.test(str);
+    return /^\+?(0|[1-9])\d*(\.\d+|\/\d+|\.\d+\/\d+|\/\d+\.\d+)?$/.test(str);
   }
 
   // this.getUnit = function(input) {
