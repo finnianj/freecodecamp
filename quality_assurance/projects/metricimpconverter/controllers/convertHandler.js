@@ -38,15 +38,19 @@ function ConvertHandler() {
         break;
       case 'gal':
         console.log("gallons")
+        result = [initNum * galToL, "L"]
         break;
       case 'l':
         console.log("litres")
+        result = [initNum / galToL, "gal"]
         break;
       case 'mi':
         console.log("miles")
+        result = [initNum * miToKm, "km"]
         break;
       case 'km':
         console.log("kilometeres")
+        result = [initNum / miToKm, "mi"]
         break;
       case 'lbs':
         console.log("pounds")
