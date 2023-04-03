@@ -8,19 +8,18 @@ module.exports = function (app) {
   let convertHandler = new ConvertHandler();
 
   app.get('/api/convert', (req, res) => {
-    if (req.query.input == 0) {
-      console.log("Invalid number and unit")
-      res.json("invalid number and unit")
-    }
 
     let input = convertHandler.getNum(req.query.input)
 
-    if (input == "Invalid unit") {
-      console.log("Invalid unit")
+    if (input == "invalid unit") {
+      console.log("invalid unit")
       res.json("invalid unit")
-    } else if (input[0] == 0) {
-      console.log("Invalid number")
+    } else if (input == 'invalid number') {
+      console.log("invalid number")
       res.json("invalid number")
+    } else if (input == 'invalid number and unit') {
+      console.log("invalid number and unit")
+      res.json("invalid number and unit")
     } else {
       let converted = convertHandler.convert(input[0], input[1])
       let rounded = Math.round(converted[0] * 100_000) / 100_000

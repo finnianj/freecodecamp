@@ -1,20 +1,35 @@
 function ConvertHandler() {
 
   this.getNum = function(input) {
+    console.log(input)
     let test = input.match(/mi$|kg$|gal$|l$|km$|lbs$/i)
     if (test != null) {
-      let index = input.match(/[klgm]/i).index;
+      let index = test.index;
       input = input.split('')
-
       let unit = input.slice(index).join('').toLowerCase()
       if (unit == 'l') unit = 'L'
+      let num = input.slice(0, index).join('')
 
-      let result = [ input.slice(0, index).join(''), unit];
-      return result;
+      if (isGoodNum(num) == false) {
+        return 'invalid number'
+      }
+
+      return [ num, unit];
     } else {
-      return "Invalid unit"
+      input = input.slice(0, input.match(/[a-z]/).index)
+      console.log("DANGER: " + input)
+      if (isGoodNum(input) == false) {
+        return 'invalid number and unit'
+      }
+      return "invalid unit"
     }
   };
+
+  function isGoodNum(str) {
+    console.log(str)
+    var n = Math.floor(Number(str));
+    return n !== Infinity && String(n) === str && n >= 0;
+  }
 
   // this.getUnit = function(input) {
   //   let result;
