@@ -1,9 +1,9 @@
 function ConvertHandler() {
 
   this.getNum = function(input) {
-    console.log("\n "+ input)
+    // console.log("\n "+ input)
     let test = input.match(/mi$|kg$|gal$|l$|km$|lbs$/i)
-    console.log(test)
+    // console.log(test)
     if (test != null) {
       let index = test.index;
       input = input.split('')
@@ -14,10 +14,10 @@ function ConvertHandler() {
       if (num == 0) {
         return [ 1, unit]
       } else if (isGoodNum(num) == false) {
-        console.log("bad num")
+        console.log("Bad num")
         return 'invalid number'
       } else {
-        console.log("good num")
+        console.log("Good num")
         return [ eval(num), unit];
       }
 
