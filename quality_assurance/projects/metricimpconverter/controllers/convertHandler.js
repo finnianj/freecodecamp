@@ -31,6 +31,29 @@ function ConvertHandler() {
     const miToKm = 1.60934;
     let result;
 
+    switch (initUnit) {
+      case 'kg':
+        console.log("kilograms")
+        break;
+      case 'gal':
+        console.log("gallons")
+        break;
+      case 'l':
+        console.log("litres")
+        break;
+      case 'mi':
+        console.log("miles")
+        break;
+      case 'km':
+        console.log("kilometeres")
+        break;
+      case 'lbs':
+        console.log("pounds")
+        break;
+      default:
+        console.log("Invalid input given");
+    }
+
     return result;
   };
 

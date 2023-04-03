@@ -9,7 +9,8 @@ module.exports = function (app) {
 
   app.get('/api/convert', (req, res) => {
     let input = convertHandler.getNum(req.query.input)
-    console.log(input)
+    console.log("User input: " + input.join(''))
+    convertHandler.convert(input[0], input[1])
   })
 
 };
