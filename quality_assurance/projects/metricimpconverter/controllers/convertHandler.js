@@ -10,7 +10,9 @@ function ConvertHandler() {
       if (unit == 'l') unit = 'L'
       let num = input.slice(0, index).join('')
 
-      if (isGoodNum(num) == false) {
+      if (num == 0) {
+        return [ 1, unit]
+      } else if (isGoodNum(num) == false) {
         return 'invalid number'
       }
 
@@ -25,11 +27,15 @@ function ConvertHandler() {
     }
   };
 
+  // function isGoodNum(str) {
+  //   console.log(str)
+  //   var n = Math.floor(Number(str));
+  //   return n !== Infinity && String(n) === str && n >= 0;
+  // }
+
   function isGoodNum(str) {
-    console.log(str)
-    var n = Math.floor(Number(str));
-    return n !== Infinity && String(n) === str && n >= 0;
-  }
+    return /^\+?(0|[1-9]\d*)$/.test(str);
+}
 
   // this.getUnit = function(input) {
   //   let result;
@@ -99,7 +105,7 @@ function ConvertHandler() {
       case 'mi':
         return "miles"
       case 'km':
-        return "kilometres"
+        return "kilometers"
       case 'lbs':
         return "pounds"
     }

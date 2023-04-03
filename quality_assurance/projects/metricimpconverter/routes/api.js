@@ -24,7 +24,7 @@ module.exports = function (app) {
       let converted = convertHandler.convert(input[0], input[1])
       let rounded = Math.round(converted[0] * 100_000) / 100_000
 
-      let string = convertHandler.getString(rounded, input[1], converted[0], converted[1])
+      let string = convertHandler.getString(input[0], input[1], rounded, converted[1])
       let json_result = {
         initNum: input[0],
         initUnit: input[1],
