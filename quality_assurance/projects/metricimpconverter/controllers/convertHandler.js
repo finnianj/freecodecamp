@@ -13,11 +13,11 @@ function ConvertHandler() {
   //   return result;
   // };
 
-  this.getReturnUnit = function(initUnit) {
-    let result;
+  // this.getReturnUnit = function(initUnit) {
+  //   let result;
 
-    return result;
-  };
+  //   return result;
+  // };
 
   this.spellOutUnit = function(unit) {
     let result;
@@ -59,15 +59,32 @@ function ConvertHandler() {
       default:
         console.log("Invalid input given");
     }
-
     return result;
   };
 
   this.getString = function(initNum, initUnit, returnNum, returnUnit) {
-    let result;
-
+    initUnit = getWord(initUnit);
+    returnUnit = getWord(returnUnit)
+    let result = `${initNum} ${initUnit} converts to ${returnNum} ${returnUnit}`
     return result;
   };
+
+  function getWord(val) {
+    switch (val) {
+      case 'kg':
+        return "kilograms"
+      case 'gal':
+        return "gallons"
+      case 'l':
+        return "litres"
+      case 'mi':
+        return "miles"
+      case 'km':
+        return "kilometres"
+      case 'lbs':
+        return "pounds"
+    }
+  }
 
 }
 
