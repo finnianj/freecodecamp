@@ -14,6 +14,8 @@ module.exports = function (app) {
 
     let string = convertHandler.getString(input[0], input[1], converted[0], converted[1])
     console.log(string)
+    let rounded = Math.round(converted[0] * 100_000) / 100_000
+    console.log("Rounded value: " + rounded)
   })
 
 };
