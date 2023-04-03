@@ -1,3 +1,4 @@
+const { expect } = require('chai');
 const chai = require('chai');
 let assert = chai.assert;
 const ConvertHandler = require('../controllers/convertHandler.js');
@@ -27,7 +28,17 @@ suite('Unit Tests', function(){
 
   // #5
   test('convertHandler should correctly return an error on a double-fraction (i.e. 3/2/3).', function () {
-    assert.isFalse(convertHandler.getNum("3/2/3mi")[0]);
+    expect(convertHandler.getNum("3/2/3mi")[0]).to.equal('i');
+  });
+
+  // #6
+  test('convertHandler should correctly default to a numerical input of 1 when no numerical input is provided.', function () {
+    expect(convertHandler.getNum("mi")[0]).to.equal(1);
+  });
+
+  // #7
+  test('convertHandler should correctly default to a numerical input of 1 when no numerical input is provided.', function () {
+    expect(convertHandler.getNum("mi")[0]).to.equal(1);
   });
 
 });
