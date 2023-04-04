@@ -137,7 +137,7 @@ module.exports = function (app) {
     })
 
 
-    .delete(function (req, res){
+    .delete(function (req, res) {
       console.log("\n\nNew item:\n")
       console.log(req.body)
       const id = req.body['_id']
@@ -159,7 +159,7 @@ module.exports = function (app) {
         res.json({ error: 'could not delete', '_id': id })
         return
       })
-
+      console.log("nothing performed")
       // res.json({ error: 'could not delete', '_id': id })
 
     });
