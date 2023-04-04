@@ -47,7 +47,27 @@ const issueSchema = new mongoose.Schema({
 });
 
 let Issue = mongoose.model('Issue', issueSchema);
+Issue.deleteMany({})
+  .then((data) => {
+    console.log(data);
+    let issue = new Issue({
+      project: "finn",
+      issue_title: "Title",
+      issue_text: "Text",
+      created_by: "Finn",
+    })
 
+    issue.save()
+            .then((data) => {
+              console.log(data);
+            })
+            .catch((err) => {
+              console.error(err)
+            })
+  })
+  .catch((err) => {
+    console.error(err)
+  })
 
 module.exports = function (app) {
 
@@ -89,14 +109,12 @@ module.exports = function (app) {
       })
 
     .put(function (req, res){
-      console.log(req.body)
-      const updateObj = req.body || {}
+      const id = req.body['_id']
+      const updateObj = { ...req.body }
       delete updateObj._id
       updateObj.updated_on = Date.now()
-      console.log("updateObj:")
-      console.log(updateObj)
 
-      Issue.findOneAndUpdate({ id: req.body.id}, { $set: updateObj }, { new: true })
+      Issue.findOneAndUpdate({ _id: id}, { $set: updateObj }, { new: true })
         .then((data) => {
           console.log("success")
           console.log(data);
@@ -107,6 +125,7 @@ module.exports = function (app) {
           res.json({ error: err })
         })
     })
+
 
     .delete(function (req, res){
       let project = req.params.project;
