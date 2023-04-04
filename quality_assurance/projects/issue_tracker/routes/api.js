@@ -54,7 +54,9 @@ module.exports = function (app) {
   app.route('/api/issues/:project')
 
     .get(function (req, res){
-      Issue.find({ project: req.params.project })
+      const queryObj = req.query
+      queryObj.project = req.params.project
+      Issue.find({ queryObj })
         .then((data) => {
           res.json(data)
         })
