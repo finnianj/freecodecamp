@@ -110,7 +110,7 @@ module.exports = function (app) {
 
     .put(function (req, res){
       const id = req.body['_id']
-      if ( !id ) {
+      if ( !id || id == undefined) {
         return res.json({ error: 'missing _id' })
       }
       const updateObj = { ...req.body }
@@ -124,20 +124,43 @@ module.exports = function (app) {
       updateObj.updated_on = Date.now()
 
       Issue.findOneAndUpdate({ _id: id}, { $set: updateObj }, { new: true, upsert: false })
-        .then((data) => {
+        .then(data => {
           res.json({  result: 'successfully updated', '_id': id })
+          return
         })
-        .catch((err) => {
+        .catch(err => {
           return res.json({ error: 'could not update', _id: id })
         })
 
-      res.json({ error: 'could not update', _id: id })
+      // res.json({ error: 'could not update', _id: id })
 
     })
 
 
     .delete(function (req, res){
-      let project = req.params.project;
+      console.log("\n\nNew item:\n")
+      console.log(req.body)
+      const id = req.body['_id']
+      console.log("Id: " + id)
+      if ( !id || id == undefined ) {
+        console.log("No ID")
+        res.json({ error: 'missing _id' })
+        return
+      }
+
+      Issue.findOneAndDelete({ _id: id})
+      .then(data => {
+        console.log("Deleted")
+        res.json({ result: 'successfully deleted', '_id': id })
+        return
+      })
+      .catch(error => {
+        console.log("Failure: " + error)
+        res.json({ error: 'could not delete', '_id': id })
+        return
+      })
+
+      // res.json({ error: 'could not delete', '_id': id })
 
     });
 
