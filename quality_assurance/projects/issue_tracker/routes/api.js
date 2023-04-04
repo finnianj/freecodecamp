@@ -111,28 +111,28 @@ module.exports = function (app) {
     .put(function (req, res){
       const id = req.body['_id']
       if ( !id ) {
-        res.json({ error: 'missing _id' })
+        return res.json({ error: 'missing _id' })
       }
-
       const updateObj = { ...req.body }
       delete updateObj._id
-
-      if ( updateObj === {} ) {
+      delete updateObj.project
+      if ( Object.keys(updateObj).length == 0  ) {
         res.json({ error: 'no update field(s) sent', '_id': id })
+        return
       }
 
       updateObj.updated_on = Date.now()
 
-      Issue.findOneAndUpdate({ _id: id}, { $set: updateObj }, { new: true })
+      Issue.findOneAndUpdate({ _id: id}, { $set: updateObj }, { new: true, upsert: false })
         .then((data) => {
-          console.log("success")
-          console.log(data);
           res.json({  result: 'successfully updated', '_id': id })
         })
         .catch((err) => {
-          console.error(err)
-          res.json({ error: err })
+          return res.json({ error: 'could not update', _id: id })
         })
+
+      res.json({ error: 'could not update', _id: id })
+
     })
 
 
