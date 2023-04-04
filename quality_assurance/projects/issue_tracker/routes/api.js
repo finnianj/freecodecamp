@@ -56,14 +56,13 @@ module.exports = function (app) {
 
     .post(function (req, res){
       // let project = req.params.project;
-      let issue = new Issue(issue);
-      issue = {
+      let issue = new Issue({
         issue_title: req.body.issue_title,
         issue_text: req.body.issue_text,
         created_by: req.body.created_by,
         assigned_to: req.body.assigned_to,
         status_text: req.body.status_text
-      }
+      });
 
       issue.save()
         .then((data) => {
@@ -72,6 +71,7 @@ module.exports = function (app) {
         })
         .catch((err) => {
           console.error(err)
+          res.json({ error: 'required field(s) missing' })
         })
       })
 
