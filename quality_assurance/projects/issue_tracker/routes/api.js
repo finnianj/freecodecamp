@@ -89,14 +89,18 @@ module.exports = function (app) {
       })
 
     .put(function (req, res){
-      console.log("request body: " + req.body)
-      const queryObj = req.body || {}
-      queryObj.project = req.params.project
-      console.log("query obj: " + queryObj)
-      Person.findOneAndUpdate(queryObj, { new: true, runValidators: true})
+      console.log(req.body)
+      const updateObj = req.body || {}
+      delete updateObj._id
+      updateObj.updated_on = Date.now()
+      console.log("updateObj:")
+      console.log(updateObj)
+
+      Issue.findOneAndUpdate({ id: req.body.id}, { $set: updateObj }, { new: true })
         .then((data) => {
+          console.log("success")
           console.log(data);
-          res.json(issue)
+          res.json(data)
         })
         .catch((err) => {
           console.error(err)
