@@ -160,6 +160,7 @@ module.exports = function (app) {
         return
       })
       console.log("nothing performed")
+      res.json({ error: 'could not delete', '_id': id })
       // res.json({ error: 'could not delete', '_id': id })
 
     });
