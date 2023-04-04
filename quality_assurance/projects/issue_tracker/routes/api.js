@@ -63,7 +63,7 @@ module.exports = function (app) {
         })
         .catch((err) => {
           console.error(err)
-          res.json({ error: 'could not find issues' })
+          res.json({ error: err })
         })
     })
 
@@ -90,7 +90,17 @@ module.exports = function (app) {
 
     .put(function (req, res){
       let project = req.params.project;
-
+      console.log(req.body)
+        const ageToSet = 20;
+        Person.findOneAndUpdate({ name: personName }, { age: 20 }, { new: true, runValidators: true})
+        .then((data) => {
+          console.log(data);
+          res.json(issue)
+        })
+        .catch((err) => {
+          console.error(err)
+          res.json({ error: err })
+        })
     })
 
     .delete(function (req, res){
