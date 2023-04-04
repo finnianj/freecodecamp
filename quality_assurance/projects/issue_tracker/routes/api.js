@@ -44,14 +44,17 @@ const issueSchema = new mongoose.Schema({
 
 let Issue = mongoose.model('Issue', issueSchema);
 
-const createAndSaveIssue = (issue, done) => {
-  let i = new Person(issue);
+const createAndSaveIssue = (issue) => {
+  let i = new Issue(issue);
 
-  i.save(function(err, data) {
-    if (err) return console.error(err);
-    console.log(data);
-    done(null, data)
-  });
+  i.save()
+    .then((data) => {
+      console.log(data);
+    })
+    .catch((err) => {
+      console.error(err)
+    })
+     
 };
 
 
