@@ -8,6 +8,10 @@ mongoose.connect(process.env.MONGO, { useNewUrlParser: true, useUnifiedTopology:
 .catch(err => console.log(err));
 
 const issueSchema = new mongoose.Schema({
+  project: {
+    type: String,
+    default: 'apitest'
+  },
   issue_title: {
     type: String,
     required: true
@@ -50,8 +54,7 @@ module.exports = function (app) {
   app.route('/api/issues/:project')
 
     .get(function (req, res){
-      let project = req.params.project;
-      Issue.find({})
+      Issue.find({ project: req.params.project })
         .then((data) => {
           res.json(data)
         })
@@ -62,8 +65,8 @@ module.exports = function (app) {
     })
 
     .post(function (req, res){
-      // let project = req.params.project;
       let issue = new Issue({
+        project: req.params.project,
         issue_title: req.body.issue_title,
         issue_text: req.body.issue_text,
         created_by: req.body.created_by,
