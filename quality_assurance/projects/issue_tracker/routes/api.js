@@ -13,31 +13,31 @@ const issueSchema = new mongoose.Schema({
     required: true
   },
   issue_text: {
-    String,
+    type: String,
     required: true
   },
   created_by: {
-    String,
+    type: String,
     required: true
   },
   assigned_to: {
-    String,
+    type: String,
     default: ''
   },
   status_text:{
-    String,
+    type: String,
     default: ''
   },
   created_on: {
-    Date,
+    type: Date,
     default: Date.now
   },
   updated_on: {
-    Date,
+    type: Date,
     default: Date.now
   },
   open: {
-    Boolean,
+    type: Boolean,
     default: true
   }
 });
