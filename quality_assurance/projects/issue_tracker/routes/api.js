@@ -110,8 +110,17 @@ module.exports = function (app) {
 
     .put(function (req, res){
       const id = req.body['_id']
+      if ( !id ) {
+        res.json({ error: 'missing _id' })
+      }
+
       const updateObj = { ...req.body }
       delete updateObj._id
+
+      if ( updateObj === {} ) {
+        res.json({ error: 'no update field(s) sent', '_id': id })
+      }
+
       updateObj.updated_on = Date.now()
 
       Issue.findOneAndUpdate({ _id: id}, { $set: updateObj }, { new: true })
