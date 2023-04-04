@@ -51,12 +51,14 @@ module.exports = function (app) {
 
     .get(function (req, res){
       let project = req.params.project;
-      Issue.find({}, function(err, data) {
-        if (err) return console.error(err);
-        console.log(data);
-        done(null, data)
-      })
-
+      Issue.find({})
+        .then((data) => {
+          res.json(data)
+        })
+        .catch((err) => {
+          console.error(err)
+          res.json({ error: 'could not find issues' })
+        })
     })
 
     .post(function (req, res){
