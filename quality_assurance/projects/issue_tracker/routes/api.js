@@ -118,7 +118,7 @@ module.exports = function (app) {
         .then((data) => {
           console.log("success")
           console.log(data);
-          res.json(data)
+          res.json({  result: 'successfully updated', '_id': id })
         })
         .catch((err) => {
           console.error(err)
