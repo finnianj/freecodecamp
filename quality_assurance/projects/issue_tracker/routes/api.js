@@ -89,10 +89,11 @@ module.exports = function (app) {
       })
 
     .put(function (req, res){
-      let project = req.params.project;
-      console.log(req.body)
-        const ageToSet = 20;
-        Person.findOneAndUpdate({ name: personName }, { age: 20 }, { new: true, runValidators: true})
+      console.log("request body: " + req.body)
+      const queryObj = req.body || {}
+      queryObj.project = req.params.project
+      console.log("query obj: " + queryObj)
+      Person.findOneAndUpdate(queryObj, { new: true, runValidators: true})
         .then((data) => {
           console.log(data);
           res.json(issue)
