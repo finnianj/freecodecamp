@@ -47,29 +47,15 @@ const issueSchema = new mongoose.Schema({
 });
 
 let Issue = mongoose.model('Issue', issueSchema);
+
 Issue.deleteMany({})
   .then((data) => {
     console.log(data);
-    let issue = new Issue({
-      project: "finn",
-      issue_title: "Title",
-      issue_text: "Text",
-      created_by: "Finn",
-    })
-
-    issue.save()
-            .then((data) => {
-              console.log(data);
-            })
-            .catch((err) => {
-              console.error(err)
-            })
   })
   .catch((err) => {
     console.error(err)
   })
 
-Issue.deleteMany({})
 
 module.exports = function (app) {
 

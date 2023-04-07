@@ -6,6 +6,7 @@ const server = require('../server');
 chai.use(chaiHttp);
 
 suite('Functional Tests', function() {
+  // #1
   test('Create an issue with every field: POST request to /api/issues/{project}', function (done) {
     chai
       .request(server)
@@ -20,8 +21,44 @@ suite('Functional Tests', function() {
       .end(function (err, res) {
         assert.equal(res.status, 200)
         assert.equal(res.type, 'application/json')
-        assert.isNotNull(res.body.id, 'Giovanni')
+        assert.isNotNull(res.body.id)
         assert.equal(res.body.project, 'test-project');
+        done();
+      })
+  });
+
+  // #2
+  test('Create an issue with only required fields: POST request to /api/issues/{project}', function (done) {
+    chai
+      .request(server)
+      .post('/api/issues/test-project')
+      .send({
+        issue_title: "Testing required fields",
+        issue_text: "Test required",
+        created_by: "Finn",
+      })
+      .end(function (err, res) {
+        assert.equal(res.status, 200)
+        assert.equal(res.type, 'application/json')
+        assert.isNotNull(res.body.id)
+        assert.equal(res.body.project, 'test-project');
+        done();
+      })
+  });
+
+  // #3
+  test('// Create an issue with missing required fields: POST request to /api/issues/{project}', function (done) {
+    chai
+      .request(server)
+      .post('/api/issues/test-project')
+      .send({
+        issue_title: "Testing missing required fields",
+        issue_text: "Missing required",
+      })
+      .end(function (err, res) {
+        assert.equal(res.status, 200)
+        assert.equal(res.body.error, 'required field(s) missing')
+        assert.isUndefined(res.body.id)
         done();
       })
   });
@@ -30,8 +67,6 @@ suite('Functional Tests', function() {
 
 // Write the following tests in tests/2_functional-tests.js:
 
-// Create an issue with every field: POST request to /api/issues/{project}
-// Create an issue with only required fields: POST request to /api/issues/{project}
 // Create an issue with missing required fields: POST request to /api/issues/{project}
 // View issues on a project: GET request to /api/issues/{project}
 // View issues on a project with one filter: GET request to /api/issues/{project}
