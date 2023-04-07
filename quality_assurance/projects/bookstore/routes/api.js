@@ -25,13 +25,13 @@ const bookSchema = new mongoose.Schema({
 
 let Book = mongoose.model('Book', bookSchema);
 
-Book.deleteMany({})
-  .then((data) => {
-    console.log(data);
-  })
-  .catch((err) => {
-    console.error(err)
-  })
+// Book.deleteMany({})
+//   .then((data) => {
+//     console.log(data);
+//   })
+//   .catch((err) => {
+//     console.error(err)
+//   })
 
 module.exports = function (app) {
 
@@ -39,9 +39,10 @@ module.exports = function (app) {
     .get(function (req, res){
       Book.find({})
         .then((data) => {
+          let formatted_data = data.map((b) => b = { _id: b.id, title: b.title, commentcount: b.comments.length })
           console.log("\nAll books:")
-          console.log(data)
-          res.json(data)
+          console.log(formatted_data)
+          res.json(formatted_data)
         })
         .catch((err) => {
           console.log("Request for all books failed.")
