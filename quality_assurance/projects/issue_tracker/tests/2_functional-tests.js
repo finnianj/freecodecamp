@@ -115,11 +115,32 @@ suite('Functional Tests', function() {
       })
   });
 
+  // #7
+  test('// Update one field on an issue: PUT request to /api/issues/{project}', function (done) {
+    chai
+      .request(server)
+      .get('/api/issues/test-project?created_by=Ben')
+      .end(function (err, res) {
+        console.log(res.body)
+        chai
+          .request(server)
+          .put('/api/issues/test-project')
+          .send({
+            _id: res.body[0]._id,
+            issue_text: 'Updated issue text'
+          })
+          .end(function (err, res) {
+            assert.equal(res.status, 200)
+            assert.equal(res.body.result, 'successfully updated')
+            done();
+          })
+      })
+  });
+
 });
 
 // Write the following tests in tests/2_functional-tests.js:
 
-// View issues on a project with multiple filters: GET request to /api/issues/{project}
 // Update one field on an issue: PUT request to /api/issues/{project}
 // Update multiple fields on an issue: PUT request to /api/issues/{project}
 // Update an issue with missing _id: PUT request to /api/issues/{project}
