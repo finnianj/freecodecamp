@@ -42,7 +42,18 @@ module.exports = function (app) {
     })
 
     .post(function (req, res){
-      let title = req.body.title;
+      let book = new Book({
+        title: req.body.title
+      });
+      book.save()
+        .then((data) => {
+          console.log("\nBook created:")
+          console.log(data)
+          res.json(data)
+        })
+        .catch((err) => {
+          console.log(err)
+        })
       //response will contain new book object including atleast _id and title
     })
 
