@@ -101,11 +101,24 @@ suite('Functional Tests', function() {
       })
   });
 
+  // #6
+  test('// View issues on a project with multiple filters: GET request to /api/issues/{project}', function (done) {
+    chai
+      .request(server)
+      .get('/api/issues/test-project?created_by=Ben&issue_text=Test+text')
+      .end(function (err, res) {
+        console.log(res.body)
+        assert.equal(res.status, 200)
+        assert.equal(res.body[0].issue_title, 'Ben\'s post')
+        assert.isDefined(res.body[0]._id)
+        done();
+      })
+  });
+
 });
 
 // Write the following tests in tests/2_functional-tests.js:
 
-// View issues on a project with one filter: GET request to /api/issues/{project}
 // View issues on a project with multiple filters: GET request to /api/issues/{project}
 // Update one field on an issue: PUT request to /api/issues/{project}
 // Update multiple fields on an issue: PUT request to /api/issues/{project}
