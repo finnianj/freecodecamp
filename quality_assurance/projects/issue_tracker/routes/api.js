@@ -153,37 +153,35 @@ module.exports = function (app) {
           return res.json({ error: 'could not update', _id: id })
         })
 
-      // res.json({ error: 'could not update', _id: id })
-        // console.log("End of item\n\n")
     })
 
 
-    // .delete(function (req, res) {
-    //   console.log("\n\nNew item:\n")
-    //   console.log(req.body)
-    //   const id = req.body['_id']
-    //   console.log("Id: " + id)
-    //   if ( id == undefined ) {
-    //     console.log("No ID")
-    //     res.json({ error: 'missing _id' })
-    //     return
-    //   }
+    .delete(function (req, res) {
+      console.log("\n\nNew item:\n")
+      console.log(req.body)
+      const id = req.body['_id']
+      console.log("Id: " + id)
+      if ( id == undefined ) {
+        console.log("No ID")
+        res.json({ error: 'missing _id' })
+        return
+      }
 
-    //   Issue.findOneAndDelete({ _id: id})
-    //   .then(data => {
-    //     console.log("Deleted")
-    //     res.json({ result: 'successfully deleted', '_id': id })
-    //     return
-    //   })
-    //   .catch(error => {
-    //     console.log("Failure: " + error)
-    //     res.json({ error: 'could not delete', '_id': id })
-    //     return
-    //   })
-    //   console.log("nothing performed")
-    //   return res.json({ error: 'could not delete', '_id': id })
-    //   // res.json({ error: 'could not delete', '_id': id })
+      Issue.findOneAndDelete({ _id: id})
+      .then(data => {
+        console.log("Deleted")
+        res.json({ result: 'successfully deleted', '_id': id })
+        return
+      })
+      .catch(error => {
+        console.log("Failure: " + error)
+        res.json({ error: 'could not delete', '_id': id })
+        return
+      })
+      console.log("nothing performed")
+      return res.json({ error: 'could not delete', '_id': id })
+      // res.json({ error: 'could not delete', '_id': id })
 
-    // });
+    });
 
 };
