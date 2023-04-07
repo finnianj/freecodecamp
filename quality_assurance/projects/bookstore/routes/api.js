@@ -53,6 +53,7 @@ module.exports = function (app) {
     })
 
     .post(function (req, res){
+      if (req.body.title == "") return res.send("\nmissing required field title\n")
       let book = new Book({
         title: req.body.title
       });
@@ -63,9 +64,9 @@ module.exports = function (app) {
           res.json(data)
         })
         .catch((err) => {
-          console.log("Request to create book failed.\n")
+          console.log("\nRequest to create book failed.\n")
           console.log(err)
-          res.send("missing required field title\n")
+          res.send("\nmissing required field title\n")
         })
       //response will contain new book object including atleast _id and title
     })
@@ -97,12 +98,13 @@ module.exports = function (app) {
       let bookid = req.params.id;
       let comment = req.body.comment;
       if ( comment == null || comment == undefined ) {
-        res.send("missing required field comment")
+        return res.send("missing required field comment")
       } else if ( bookid == null || bookid == undefined ) {
-        res.send("missing id")
+        return res.send("missing id")
       }
       Book.findById(bookid)
         .then((book) => {
+          if (book == null) return res.send("no book exists")
           console.log("\nAdding comment to the following book:\n")
           console.log(book)
           book.comments.push(comment);
@@ -110,18 +112,18 @@ module.exports = function (app) {
            .then((data) => {
              console.log("\nSuccess\n")
              console.log(data)
-             res.json(data)
+             return res.json(data)
            })
            .catch((err) => {
              console.log("\nCould not add comment\n")
              console.log(err)
-             res.send("no book exists")
+             return res.send("no book exists")
            })
         })
         .catch((err) => {
           console.log("\nCould not find book\n")
           console.log(err)
-          res.send("no book exists")
+          return res.send("no book exists")
         })
      })
 
