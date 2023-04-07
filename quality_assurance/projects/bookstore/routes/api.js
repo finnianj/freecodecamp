@@ -96,9 +96,9 @@ module.exports = function (app) {
     .post(function(req, res){
       let bookid = req.params.id;
       let comment = req.body.comment;
-      if ( comment == null || comment || undefined ) {
+      if ( comment == null || comment == undefined ) {
         res.send("missing required field comment")
-      } else if ( bookid == null || bookid || undefined ) {
+      } else if ( bookid == null || bookid == undefined ) {
         res.send("missing id")
       }
       Book.findById(bookid)
