@@ -20,19 +20,12 @@ const bookSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  created_on: {
-    type: Date,
-    default: Date.now
-  },
-  updated_on: {
-    type: Date,
-    default: Date.now
-  }
+  comments: [String]
 });
 
 let Book = mongoose.model('Book', bookSchema);
 
-Issue.deleteMany({})
+Book.deleteMany({})
   .then((data) => {
     console.log(data);
   })
