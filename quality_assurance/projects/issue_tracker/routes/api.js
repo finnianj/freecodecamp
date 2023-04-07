@@ -157,7 +157,7 @@ module.exports = function (app) {
 
 
     .delete(function (req, res) {
-      console.log("\n\nNew item:\n")
+      console.log("\n\nNew delete item:\n")
       console.log(req.body)
       const id = req.body['_id']
       console.log("Id: " + id)
@@ -169,18 +169,21 @@ module.exports = function (app) {
 
       Issue.findOneAndDelete({ _id: id})
       .then(data => {
-        console.log("Deleted")
-        res.json({ result: 'successfully deleted', '_id': id })
-        return
+        if (data == null) {
+          console.log("Deletion failed\n")
+          return res.json({ error: 'could not delete', '_id': id })
+        } else {
+          console.log("Deleted")
+          console.log(data)
+          res.json({ result: 'successfully deleted', '_id': id })
+          return
+        }
       })
       .catch(error => {
         console.log("Failure: " + error)
         res.json({ error: 'could not delete', '_id': id })
         return
       })
-      console.log("nothing performed")
-      return res.json({ error: 'could not delete', '_id': id })
-      // res.json({ error: 'could not delete', '_id': id })
 
     });
 
