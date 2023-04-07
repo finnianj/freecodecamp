@@ -6,6 +6,25 @@ const server = require('../server');
 chai.use(chaiHttp);
 
 suite('Functional Tests', function() {
+  test('Create an issue with every field: POST request to /api/issues/{project}', function (done) {
+    chai
+      .request(server)
+      .post('/api/issues/test-project')
+      .send({
+        issue_title: "Testing post request",
+        issue_text: "Test text",
+        created_by: "Finn",
+        assigned_to: "Me",
+        status_text: "Working on this",
+      })
+      .end(function (err, res) {
+        assert.equal(res.status, 200)
+        assert.equal(res.type, 'application/json')
+        assert.isNotNull(res.body.id, 'Giovanni')
+        assert.equal(res.body.project, 'test-project');
+        done();
+      })
+  });
 
 });
 
