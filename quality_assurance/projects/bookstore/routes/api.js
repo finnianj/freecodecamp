@@ -25,13 +25,13 @@ const bookSchema = new mongoose.Schema({
 
 let Book = mongoose.model('Book', bookSchema);
 
-// Book.deleteMany({})
-//   .then((data) => {
-//     console.log(data);
-//   })
-//   .catch((err) => {
-//     console.error(err)
-//   })
+Book.deleteMany({})
+  .then((data) => {
+    console.log(data);
+  })
+  .catch((err) => {
+    console.error(err)
+  })
 
 module.exports = function (app) {
 
@@ -80,9 +80,9 @@ module.exports = function (app) {
   app.route('/api/books/:id')
     .get(function (req, res){
       let bookid = req.params.id;
-      Book.find({ _id: bookid })
+      Book.findById(bookid)
         .then((data) => {
-          if (data == null) return res.send("no book exists")
+          if (data == null || data[0] == {} ) return res.send("no book exists")
           console.log("\nThank you for searching for a book. Here are the results:\n")
           console.log(data)
           res.json(data)
