@@ -63,11 +63,24 @@ suite('Functional Tests', function() {
       })
   });
 
+  // #4
+  test('// View issues on a project: GET request to /api/issues/{project}', function (done) {
+    chai
+      .request(server)
+      .get('/api/issues/test-project')
+      .end(function (err, res) {
+        console.log(res.body)
+        assert.equal(res.status, 200)
+        assert.equal(res.body[0].issue_title, 'Testing post request')
+        assert.isDefined(res.body[1]._id)
+        done();
+      })
+  });
+
 });
 
 // Write the following tests in tests/2_functional-tests.js:
 
-// Create an issue with missing required fields: POST request to /api/issues/{project}
 // View issues on a project: GET request to /api/issues/{project}
 // View issues on a project with one filter: GET request to /api/issues/{project}
 // View issues on a project with multiple filters: GET request to /api/issues/{project}
