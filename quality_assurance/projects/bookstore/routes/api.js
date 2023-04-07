@@ -37,6 +37,16 @@ module.exports = function (app) {
 
   app.route('/api/books')
     .get(function (req, res){
+      Book.find({})
+        .then((data) => {
+          console.log("\nAll books:")
+          console.log(data)
+          res.json(data)
+        })
+        .catch((err) => {
+          console.log("Request for all books failed.")
+          console.log(err)
+        })
       //response will be array of book objects
       //json res format: [{"_id": bookid, "title": book_title, "commentcount": num_of_comments },...]
     })
@@ -52,6 +62,7 @@ module.exports = function (app) {
           res.json(data)
         })
         .catch((err) => {
+          console.log("Request to create book failed.")
           console.log(err)
         })
       //response will contain new book object including atleast _id and title
