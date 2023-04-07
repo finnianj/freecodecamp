@@ -217,10 +217,29 @@ suite('Functional Tests', function() {
       })
   });
 
+  // #12
+  test('// Delete an issue: DELETE request to /api/issues/{project}', function (done) {
+    chai
+      .request(server)
+      .get('/api/issues/test-project?created_by=Ben')
+      .end(function (err, res) {
+        chai
+          .request(server)
+          .delete('/api/issues/test-project')
+          .send({
+            _id: res.body[0]._id
+          })
+          .end(function (err, res) {
+            assert.equal(res.status, 200)
+            assert.equal(res.body.result, 'successfully deleted')
+            done();
+          })
+      })
+  });
+
 });
 
 // Write the following tests in tests/2_functional-tests.js:
 
-// Delete an issue: DELETE request to /api/issues/{project}
 // Delete an issue with an invalid _id: DELETE request to /api/issues/{project}
 // Delete an issue with missing _id: DELETE request to /api/issues/{project}
