@@ -101,8 +101,29 @@ module.exports = function (app) {
       } else if ( bookid == null || bookid || undefined ) {
         res.send("missing id")
       }
-      //json res format same as .get
-    })
+      Book.findById(bookid)
+        .then((book) => {
+          console.log("\nAdding comment to the following book:\n")
+          console.log(book)
+          book.comments.push(comment);
+          book.save()
+           .then((data) => {
+             console.log("\nSuccess\n")
+             console.log(data)
+             res.json(data)
+           })
+           .catch((err) => {
+             console.log("\nCould not add comment\n")
+             console.log(err)
+             res.send("no book exists")
+           })
+        })
+        .catch((err) => {
+          console.log("\nCould not find book\n")
+          console.log(err)
+          res.send("no book exists")
+        })
+     })
 
     .delete(function(req, res){
       let bookid = req.params.id;
