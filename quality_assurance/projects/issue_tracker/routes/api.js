@@ -76,9 +76,11 @@ module.exports = function (app) {
     .get(function (req, res){
       const queryObj = req.query || {}
       queryObj.project = req.params.project
+      console.log("\nSearching for:")
       console.log(queryObj)
       Issue.find(queryObj)
         .then((data) => {
+          console.log("Data found\n")
           res.json(data)
         })
         .catch((err) => {
@@ -100,6 +102,7 @@ module.exports = function (app) {
       issue.save()
         .then((data) => {
           console.log(data);
+          console.log("Data created.\n\n")
           res.json(issue)
         })
         .catch((err) => {
@@ -113,12 +116,14 @@ module.exports = function (app) {
       console.log("New item:\n")
       console.log("id: " + id)
       if ( !id || id == undefined) {
+        console.log("missing id")
         return res.json({ error: 'missing _id' })
       }
       const updateObj = { ...req.body }
       delete updateObj._id
       delete updateObj.project
       if ( Object.keys(updateObj).length == 0  ) {
+        console.log("missing update field")
         res.json({ error: 'no update field(s) sent', '_id': id })
         return
       }
@@ -127,15 +132,19 @@ module.exports = function (app) {
 
       Issue.findOneAndUpdate({ _id: id}, { $set: updateObj }, { new: true, upsert: false })
         .then(data => {
+          console.log("successful update")
+
           res.json({  result: 'successfully updated', '_id': id })
           return
         })
         .catch(err => {
+          console.log("update failed")
+
           return res.json({ error: 'could not update', _id: id })
         })
 
       // res.json({ error: 'could not update', _id: id })
-
+        console.log("End of item\n\n")
     })
 
 
