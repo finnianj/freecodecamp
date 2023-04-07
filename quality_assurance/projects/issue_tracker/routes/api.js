@@ -69,6 +69,8 @@ Issue.deleteMany({})
     console.error(err)
   })
 
+Issue.deleteMany({})
+
 module.exports = function (app) {
 
   app.route('/api/issues/:project')
@@ -113,16 +115,18 @@ module.exports = function (app) {
 
     .put(function (req, res){
       const id = req.body['_id']
-      console.log("New item:\n")
+      console.log("\nNew item:\n")
       console.log("id: " + id)
+      console.log(req.body)
+      console.log(req.params.project)
       if ( !id || id == undefined) {
         console.log("missing id")
         return res.json({ error: 'missing _id' })
       }
       const updateObj = { ...req.body }
       delete updateObj._id
-      delete updateObj.project
-      if ( Object.keys(updateObj).length == 0  ) {
+      updateObj.project = req.params.project
+      if ( Object.keys(updateObj).length == 1  ) {
         console.log("missing update field")
         res.json({ error: 'no update field(s) sent', '_id': id })
         return
@@ -130,21 +134,27 @@ module.exports = function (app) {
 
       updateObj.updated_on = Date.now()
 
-      Issue.findOneAndUpdate({ _id: id}, { $set: updateObj }, { new: true, upsert: false })
+      Issue.findOneAndUpdate({ _id: id}, { $set: updateObj }, { new: true, upsert: false, runValidators: true })
         .then(data => {
-          console.log("successful update")
-
-          res.json({  result: 'successfully updated', '_id': id })
-          return
+          if (data == null) {
+            console.log("update failed\n")
+            return res.json({ error: 'could not update', _id: id })
+          } else {
+            console.log("successful update\n")
+            console.log(data)
+            console.log("\n\n")
+            res.json({  result: 'successfully updated', '_id': id })
+            return
+          }
         })
         .catch(err => {
-          console.log("update failed")
+          console.log("update failed\n")
 
           return res.json({ error: 'could not update', _id: id })
         })
 
       // res.json({ error: 'could not update', _id: id })
-        console.log("End of item\n\n")
+        // console.log("End of item\n\n")
     })
 
 
