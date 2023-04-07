@@ -237,9 +237,34 @@ suite('Functional Tests', function() {
       })
   });
 
+  // #13
+  test('// Delete an issue with an invalid _id: DELETE request to /api/issues/{project}', function (done) {
+    chai
+      .request(server)
+      .delete('/api/issues/test-project')
+      .send({
+        _id: 123
+      })
+      .end(function (err, res) {
+        assert.equal(res.status, 200)
+        assert.equal(res.body.error, 'could not delete')
+        done();
+      })
+  });
+
+  // #14
+  test('// Delete an issue with missing _id: DELETE request to /api/issues/{project}', function (done) {
+    chai
+      .request(server)
+      .delete('/api/issues/test-project')
+      .send({
+        issue_title: 'Testing post request'
+      })
+      .end(function (err, res) {
+        assert.equal(res.status, 200)
+        assert.equal(res.body.error, 'missing _id')
+        done()
+      })
+  });
+
 });
-
-// Write the following tests in tests/2_functional-tests.js:
-
-// Delete an issue with an invalid _id: DELETE request to /api/issues/{project}
-// Delete an issue with missing _id: DELETE request to /api/issues/{project}
