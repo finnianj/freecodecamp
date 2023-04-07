@@ -53,7 +53,7 @@ module.exports = function (app) {
     })
 
     .post(function (req, res){
-      if (req.body.title == "") return res.send("\nmissing required field title\n")
+      if (req.body.title == "" || req.body.title == undefined ) return res.send("missing required field title")
       let book = new Book({
         title: req.body.title
       });
@@ -82,6 +82,7 @@ module.exports = function (app) {
       let bookid = req.params.id;
       Book.find({ _id: bookid })
         .then((data) => {
+          if (data == null) return res.send("no book exists")
           console.log("\nThank you for searching for a book. Here are the results:\n")
           console.log(data)
           res.json(data)
