@@ -25,13 +25,13 @@ const bookSchema = new mongoose.Schema({
 
 let Book = mongoose.model('Book', bookSchema);
 
-Book.deleteMany({})
-  .then((data) => {
-    console.log(data);
-  })
-  .catch((err) => {
-    console.error(err)
-  })
+// Book.deleteMany({})
+//   .then((data) => {
+//     console.log(data);
+//   })
+//   .catch((err) => {
+//     console.error(err)
+//   })
 
 module.exports = function (app) {
 
@@ -83,8 +83,6 @@ module.exports = function (app) {
             return res.send("Unable to delete all books.")
           })
     });
-
-
 
   app.route('/api/books/:id')
     .get(function (req, res){
