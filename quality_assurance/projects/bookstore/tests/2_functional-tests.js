@@ -127,18 +127,21 @@ suite('Functional Tests', function() {
             title: "Book to add comment to"
           })
           .end(function(err, res){
+            console.log(res.body._id)
             chai.request(server)
-            .post(`/api/books${res.body._id}`)
+            .post(`/api/books/${res.body._id}`)
             .send({
               comment: 'I despise this book with a burning hatred'
             })
             .end(function(err, res){
+              console.log(res)
               assert.equal(res.status, 200);
               assert.equal(res.body.comments[0], 'I despise this book with a burning hatred')
               done();
             });
           });
         });
+
       });
 
       // test('Test POST /api/books/[id] without comment field', function(done){
@@ -160,9 +163,4 @@ suite('Functional Tests', function() {
     //   test('Test DELETE /api/books/[id] with  id not in db', function(done){
     //     //done();
     //   });
-
-    // });
-
-  });
-
 });
