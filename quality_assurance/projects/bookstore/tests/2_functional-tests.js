@@ -127,14 +127,12 @@ suite('Functional Tests', function() {
             title: "Book to add comment to"
           })
           .end(function(err, res){
-            console.log(res.body._id)
             chai.request(server)
             .post(`/api/books/${res.body._id}`)
             .send({
               comment: 'I despise this book with a burning hatred'
             })
             .end(function(err, res){
-              console.log(res)
               assert.equal(res.status, 200);
               assert.equal(res.body.comments[0], 'I despise this book with a burning hatred')
               done();
@@ -144,13 +142,36 @@ suite('Functional Tests', function() {
 
       });
 
-      // test('Test POST /api/books/[id] without comment field', function(done){
-      //   //done();
-      // });
+      test('Test POST /api/books/[id] without comment field', function(done){
+        chai.request(server)
+          .post('/api/books')
+          .send({
+            title: "Another book to add a comment to"
+          })
+          .end(function(err, res){
+            chai.request(server)
+            .post(`/api/books/${res.body._id}`)
+            .send({})
+            .end(function(err, res){
+              assert.equal(res.status, 200);
+              assert.equal(res.text, 'missing required field comment')
+              done();
+            });
+          });
+      });
 
-      // test('Test POST /api/books/[id] with comment, id not in db', function(done){
-      //   //done();
-      // });
+      test('Test POST /api/books/[id] with comment, id not in db', function(done){
+        chai.request(server)
+        .post(`/api/books/123456`)
+        .send({
+          comment: "this is a bad id"
+        })
+        .end(function(err, res){
+          assert.equal(res.status, 200);
+          assert.equal(res.text, 'no book exists')
+          done();
+        });
+      });
 
     });
 
