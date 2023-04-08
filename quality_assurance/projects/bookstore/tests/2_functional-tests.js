@@ -48,8 +48,8 @@ suite('Functional Tests', function() {
         })
         .end(function(err, res){
           assert.equal(res.status, 200);
-          assert.property(res.body[0], '_id')
-          assert.property(res.body[0], 'comments')
+          assert.property(res.body, '_id')
+          assert.property(res.body, 'comments')
           done();
         });
       });
