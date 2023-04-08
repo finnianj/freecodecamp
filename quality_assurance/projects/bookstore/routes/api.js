@@ -130,6 +130,8 @@ module.exports = function (app) {
 
     .delete(function(req, res){
       let bookid = req.params.id;
+      console.log(req.params.id + typeof req.params.id)
+      // findByIdAndDelete(bookid)
       //if successful response will be 'delete successful'
     });
 
