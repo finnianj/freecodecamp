@@ -6,12 +6,23 @@ mongoose.connect(mongo, { useNewUrlParser: true, useUnifiedTopology: true}).then
 .catch(err => console.log(err));
 
 const personSchema = new mongoose.Schema({
-  name: {
+  issue_title: {
     type: String,
     required: true
   },
-  age: Number,
-  favoriteFoods: [String]
+  issue_text: {
+    type: String,
+    required: true
+  },
+  created_by: {
+    String,
+    required: true
+  },
+  assigned_to: String,
+  status_text: String,
+  created_on: Date,
+  updated_on: Date,
+  open: Boolean
 });
 
 let Person = mongoose.model('Person', personSchema);
