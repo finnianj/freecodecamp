@@ -85,17 +85,23 @@ suite('Functional Tests', function() {
     });
 
 
-    // suite('GET /api/books/[id] => book object with [id]', function(){
+    suite('GET /api/books/[id] => book object with [id]', function(){
 
-    //   test('Test GET /api/books/[id] with id not in db',  function(done){
-    //     //done();
-    //   });
+      test('Test GET /api/books/[id] with id not in db',  function(done){
+        chai.request(server)
+        .get('/api/books/123456')
+        .end(function(err, res){
+          assert.equal(res.status, 200);
+          assert.equal(res.text, 'no book exists')
+          done();
+        });
+      });
 
-    //   test('Test GET /api/books/[id] with valid id in db',  function(done){
-    //     //done();
-    //   });
+      test('Test GET /api/books/[id] with valid id in db',  function(done){
+        //done();
+      });
 
-    // });
+    });
 
 
     // suite('POST /api/books/[id] => add comment/expect book object with id', function(){
