@@ -73,6 +73,15 @@ module.exports = function (app) {
 
     .delete(function(req, res){
       //if successful response will be 'complete delete successful'
+      Book.deleteMany({})
+          .then((data) => {
+            console.log("\nDeleted all books.\n")
+            return res.send("complete delete successful")
+          })
+          .catch((err) => {
+            console.log("\nUnable to delete all books.\n")
+            return res.send("Unable to delete all books.")
+          })
     });
 
 
@@ -129,21 +138,10 @@ module.exports = function (app) {
      })
 
     .delete(function(req, res){
-      let bookid = req.params.id;
-      if (!bookid) {
-        Book.deleteMany({})
-          .then((data) => {
-            console.log("\nDeleted all books.\n")
-            return res.send("complete delete successful")
-          })
-          .catch((err) => {
-            console.log("\nUnable to delete all books.\n")
-            return res.send("Unable to delete all books.")
-          })
-      }
+      let bookid = req.params.id
       Book.findByIdAndDelete(bookid)
         .then((data) => {
-          if (data == null) return res.send("no book exists.")
+          if (data == null) return res.send("no book exists")
           console.log("\nDeleted one book.\n")
           console.log(data)
           return res.send("delete successful")
