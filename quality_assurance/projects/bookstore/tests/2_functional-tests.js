@@ -92,13 +92,27 @@ suite('Functional Tests', function() {
         .get('/api/books/123456')
         .end(function(err, res){
           assert.equal(res.status, 200);
-          assert.equal(res.text, 'no book exists')
+          assert.equal(res.text, 'no book exists.')
           done();
         });
       });
 
       test('Test GET /api/books/[id] with valid id in db',  function(done){
-        //done();
+        chai.request(server)
+        .post('/api/books')
+        .send({
+          title: "Book to be tested"
+        })
+        .end(function(err, res){
+          chai.request(server)
+          .get(`/api/books/${res.body._id}`)
+          .end(function(err, res){
+            console.log(res.body)
+            assert.equal(res.status, 200);
+            assert.property(res.body, '_id')
+            done();
+          });
+        });
       });
 
     });
