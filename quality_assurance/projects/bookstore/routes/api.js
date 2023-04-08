@@ -146,7 +146,7 @@ module.exports = function (app) {
         })
         .catch((err) => {
           console.log("\nUnable to delete that book.\n")
-          return res.send("Unable to delete that books.")
+          return res.send("Unable to delete that book.")
         })
       //if successful response will be 'delete successful'
     });

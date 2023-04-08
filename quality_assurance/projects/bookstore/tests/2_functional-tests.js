@@ -175,13 +175,35 @@ suite('Functional Tests', function() {
 
     });
 
-    // suite('DELETE /api/books/[id] => delete book object id', function() {
+    suite('DELETE /api/books/[id] => delete book object id', function() {
 
-    //   test('Test DELETE /api/books/[id] with valid id in db', function(done){
-    //     //done();
-    //   });
+      test('Test DELETE /api/books/[id] with valid id in db', function(done){
+        chai.request(server)
+          .post('/api/books')
+          .send({
+            title: "Book to delete"
+          })
+          .end(function(err, res){
+            chai.request(server)
+            .delete(`/api/books/${res.body._id}`)
+            .end(function(err, res){
+              assert.equal(res.status, 200);
+              assert.equal(res.text, 'delete successful')
+              done();
+            });
+          });
+      });
 
-    //   test('Test DELETE /api/books/[id] with  id not in db', function(done){
-    //     //done();
-    //   });
+      test('Test DELETE /api/books/[id] with  id not in db', function(done){
+        chai.request(server)
+        .delete(`/api/books/123456`)
+        .end(function(err, res){
+          console.log(res)
+          assert.equal(res.status, 200);
+          assert.equal(res.text, 'Unable to delete that book.')
+          done();
+        });
+      });
+
+    });
 });
