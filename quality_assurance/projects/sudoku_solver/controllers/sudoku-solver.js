@@ -5,6 +5,17 @@ class SudokuSolver {
     return reg.test(puzzleString)
   }
 
+  checkValidCoordinates(coordinates) {
+    let chars = /[A-I]/
+    let nums = /[0-9]/
+    console.log(chars.test(coordinates[0]))
+    console.log(nums.test(coordinates[1]))
+    if (chars.test(coordinates[0]) || nums.test(coordinates[1])) {
+      return false
+    }
+    return true
+  }
+
   checkExactSquare(puzzleString, row_letter, column, value) {
     let row_multiplier = (row_letter.toUpperCase().charCodeAt(0) % 65) * 9
     let index = row_multiplier + (column - 1)

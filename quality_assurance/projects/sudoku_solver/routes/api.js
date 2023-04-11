@@ -29,6 +29,10 @@ module.exports = function (app) {
         return res.json({ error: 'Expected puzzle to be 81 characters long' })
       }
 
+      if (solver.checkValidCoordinates(coordinates) == false) {
+        return res.json({ error: 'Invalid coordinate'})
+      }
+
       if (solver.checkExactSquare(req.body.puzzle, coordinates[0], coordinates[1], req.body.value)) {
         return res.json({ valid: true })
       }
