@@ -1,7 +1,7 @@
 class SudokuSolver {
 
   validate(puzzleString) {
-    let reg = /^[\d\./]*$/
+    let reg = /^[\d\.]*$/
     return reg.test(puzzleString)
   }
 
