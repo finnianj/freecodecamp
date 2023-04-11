@@ -7,7 +7,8 @@ class SudokuSolver {
 
   checkExactSquare(puzzleString, row_letter, column, value) {
     let row_multiplier = (row_letter.toUpperCase().charCodeAt(0) % 65) * 9
-    console.log(row_multiplier + (column - 1))
+    let index = row_multiplier + (column - 1)
+    return puzzleString[index] == value
   }
 
   checkRowPlacement(puzzleString, row_letter, column, value) {
