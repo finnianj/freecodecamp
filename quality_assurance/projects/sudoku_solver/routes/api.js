@@ -18,20 +18,26 @@ module.exports = function (app) {
 
   app.route('/api/check')
     .post((req, res) => {
+      console.log("\n\n")
       let coordinates = req.body.coordinate.split('')
       console.log(req.body)
-      if (req.body.puzzle == '' || req.body.coordinate == '' || req.body.value == '') {
-        res.json({ error: 'Required field(s) missing' })
+      if (req.body.puzzle == '' || coordinates[0] == '' || coordinates[1] == '' || req.body.value == '') {
+        console.log('Required field(s) missing')
+        return res.json({ error: 'Required field(s) missing' })
       }
       if (!solver.validate(req.body.puzzle)) {
+        console.log('Invalid characters in puzzle')
         return res.json({ error: 'Invalid characters in puzzle' })
       } else if (req.body.puzzle.length != 81) {
+        console.log('Expected puzzle to be 81 characters long')
         return res.json({ error: 'Expected puzzle to be 81 characters long' })
       }
 
       if (solver.checkValidCoordinates(coordinates) == false) {
+        console.log('Invalid coordinate')
         return res.json({ error: 'Invalid coordinate'})
       } else if (solver.checkValidValue(req.body.value) == false) {
+        console.log('Invalid valid')
         return res.json({ error: 'Invalid value'})
       }
 

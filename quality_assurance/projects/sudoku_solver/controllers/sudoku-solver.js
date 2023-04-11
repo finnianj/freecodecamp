@@ -6,8 +6,9 @@ class SudokuSolver {
   }
 
   checkValidCoordinates(coordinates) {
+    if (coordinates.length > 2) return false
     let chars = /[A-I]/i
-    let nums = /[0-9]/
+    let nums = /[1-9]/
     if (chars.test(coordinates[0]) && nums.test(coordinates[1])) {
       return true
     }
@@ -15,7 +16,8 @@ class SudokuSolver {
   }
 
   checkValidValue(value) {
-    let nums = /[0-9]/
+    if (value.split('').length > 1) return false
+    let nums = /[1-9]/
     return nums.test(value)
   }
 
@@ -28,9 +30,9 @@ class SudokuSolver {
   checkRowPlacement(puzzleString, row_letter, column, value) {
     row_letter = row_letter.toUpperCase().charCodeAt(0)
     let row_index = (row_letter % 65);
-    console.log("Row index: " + row_index)
+    // console.log("Row index: " + row_index)
     let row = puzzleString.split('').slice(row_index, (row_index + 9))
-    console.log("Good row value? " + !row.some((item) => item == value))
+    // console.log("Good row value? " + !row.some((item) => item == value))
     return !row.some((item) => item == value)
   }
 
@@ -38,7 +40,7 @@ class SudokuSolver {
     let col_num = column - 1
     let array = puzzleString.split('')
     let col_extract = array.filter((_num, i) => i % 9 == col_num)
-    console.log("Good column value? " + !col_extract.some(num => num == value))
+    // console.log("Good column value? " + !col_extract.some(num => num == value))
     return !col_extract.some(num => num == value)
   }
 
