@@ -25,12 +25,9 @@ class SudokuSolver {
   checkRegionPlacement(puzzleString, row_letter, column, value) {
     row_letter = row_letter.toUpperCase().charCodeAt(0)
     let row_group = Math.floor((row_letter % 65) / 3);
-    console.log("Row group: " + row_group)
     let col_group = Math.floor((column - 1) / 3);
-    console.log("Col group: " + col_group)
     let array = puzzleString.split('')
     let row_extract = array.filter((_num, i) => (i >= (row_group * 27) && i < ((row_group + 1) * 27)))
-    console.log(row_extract)
     let region = row_extract.filter((_num, i) => {
       return ((i % 9) >= col_group * 3) && ((i % 9) <= (((col_group + 1) * 3) - 1))
     })
