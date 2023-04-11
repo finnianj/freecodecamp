@@ -19,8 +19,8 @@ module.exports = function (app) {
   app.route('/api/check')
     .post((req, res) => {
       let coordinates = req.body.coordinate.split('')
-      let valid_row = solver.checkRowPlacement(req.body.puzzle, coordinates[0], coordinates[1], req.body.value)
-      let valid_col = solver.checkColPlacement(req.body.puzzle, coordinates[0], coordinates[1], req.body.value)
+      // let valid_row = solver.checkRowPlacement(req.body.puzzle, coordinates[0], coordinates[1], req.body.value)
+      // let valid_col = solver.checkColPlacement(req.body.puzzle, coordinates[0], coordinates[1], req.body.value)
       let valid_reg = solver.checkRegionPlacement(req.body.puzzle, coordinates[0], coordinates[1], req.body.value)
     });
 

@@ -29,8 +29,8 @@ class SudokuSolver {
     let col_group = Math.floor((column - 1) / 3);
     console.log("Col group: " + col_group)
     let array = puzzleString.split('')
-    let row_extract = array.filter((_num, i) => i % 9 == col_num)
-
+    let row_extract = array.filter((_num, i) => i < (row_group + 1) * 27)
+    console.log(row_extract)
 
   }
 
