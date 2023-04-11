@@ -20,8 +20,8 @@ module.exports = function (app) {
     .post((req, res) => {
       console.log(req.body)
       let coordinates = req.body.coordinate.split('')
-      solver.checkRowPlacement(req.body.puzzle, coordinates[0], coordinates[1], req.body.value)
-
+      // solver.checkRowPlacement(req.body.puzzle, coordinates[0], coordinates[1], req.body.value)
+      solver.checkColPlacement(req.body.puzzle, coordinates[0], coordinates[1], req.body.value)
     });
 
   app.route('/api/solve')

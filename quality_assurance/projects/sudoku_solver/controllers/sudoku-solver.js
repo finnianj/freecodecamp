@@ -14,7 +14,8 @@ class SudokuSolver {
   }
 
   checkColPlacement(puzzleString, row, column, value) {
-
+    let col_num = (column - 1) % 9
+    console.log(col_num)
   }
 
   checkRegionPlacement(puzzleString, row, column, value) {
