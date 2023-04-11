@@ -22,6 +22,7 @@ module.exports = function (app) {
       let coordinates = req.body.coordinate.split('')
       let valid_row = solver.checkRowPlacement(req.body.puzzle, coordinates[0], coordinates[1], req.body.value)
       let valid_col = solver.checkColPlacement(req.body.puzzle, coordinates[0], coordinates[1], req.body.value)
+      
     });
 
   app.route('/api/solve')
