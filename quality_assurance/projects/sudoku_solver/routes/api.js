@@ -18,6 +18,8 @@ module.exports = function (app) {
 
   app.route('/api/check')
     .post((req, res) => {
+      console.log(req.body)
+      solver.checkRowPlacement(req.body.puzzlestring)
 
     });
 
