@@ -6,6 +6,9 @@ class SudokuSolver {
   }
 
   checkRowPlacement(puzzleString, row, column, value) {
+    let row_index = row % 97;
+    // 97 this is the character code of A
+    let row = puzzlestring.splice(row_index, row_index + 9)
 
   }
 
