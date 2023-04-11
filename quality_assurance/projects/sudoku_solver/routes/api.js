@@ -19,8 +19,9 @@ module.exports = function (app) {
   app.route('/api/check')
     .post((req, res) => {
       let coordinates = req.body.coordinate.split('')
-      let taken = solver.checkExactSquare(req.body.puzzle, coordinates[0], coordinates[1], req.body.value)
-      console.log(taken)
+      if (solver.checkExactSquare(req.body.puzzle, coordinates[0], coordinates[1], req.body.value)) {
+        return res.json({ valid: true })
+      }
       let valid_row = ["row", solver.checkRowPlacement(req.body.puzzle, coordinates[0], coordinates[1], req.body.value)]
       let valid_col = ["column", solver.checkColPlacement(req.body.puzzle, coordinates[0], coordinates[1], req.body.value)]
       let valid_reg = ["region", solver.checkRegionPlacement(req.body.puzzle, coordinates[0], coordinates[1], req.body.value)]
