@@ -5,6 +5,11 @@ class SudokuSolver {
     return reg.test(puzzleString)
   }
 
+  checkExactSquare(puzzleString, row_letter, column, value) {
+    let row_multiplier = (row_letter.toUpperCase().charCodeAt(0) % 65) * 9
+    console.log(row_multiplier + (column - 1))
+  }
+
   checkRowPlacement(puzzleString, row_letter, column, value) {
     row_letter = row_letter.toUpperCase().charCodeAt(0)
     let row_index = (row_letter % 65);
