@@ -15,7 +15,7 @@ class SudokuSolver {
     row_letter = row_letter.toUpperCase().charCodeAt(0)
     let row_index = (row_letter % 65);
     console.log("Row index: " + row_index)
-    let row = puzzleString.split('').slice(row_index, (row_index + 10))
+    let row = puzzleString.split('').slice(row_index, (row_index + 9))
     console.log("Good row value? " + !row.some((item) => item == value))
     return !row.some((item) => item == value)
   }

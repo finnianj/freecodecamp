@@ -19,7 +19,10 @@ module.exports = function (app) {
   app.route('/api/check')
     .post((req, res) => {
       let coordinates = req.body.coordinate.split('')
-      
+      console.log(req.body)
+      if (req.body.puzzle == '' || req.body.coordinate == '' || req.body.value == '') {
+        res.json({ error: 'Required field(s) missing' })
+      }
       if (!solver.validate(req.body.puzzle)) {
         return res.json({ error: 'Invalid characters in puzzle' })
       } else if (req.body.puzzle.length != 81) {
