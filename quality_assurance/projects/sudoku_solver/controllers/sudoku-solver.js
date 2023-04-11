@@ -14,8 +14,11 @@ class SudokuSolver {
   }
 
   checkColPlacement(puzzleString, row, column, value) {
-    let col_num = (column - 1) % 9
-    console.log(col_num)
+    let col_num = column - 1
+    let array = puzzleString.split('')
+    let col_extract = array.filter((_num, i) => i % 9 == col_num)
+    console.log("Is this value already taken? " + col_extract.some(num => num == value))
+    return col_extract.some(num => num == value)
   }
 
   checkRegionPlacement(puzzleString, row, column, value) {
