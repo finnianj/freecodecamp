@@ -6,10 +6,11 @@ class SudokuSolver {
   }
 
   checkRowPlacement(puzzleString, row_letter, column, value) {
-    let row_index = row_leter % 97;
-    // 97 this is the character code of A
-    let row = puzzlestring.split('').slice(row_index, row_index + 10)
-    console.log(row)
+    row_letter = row_letter.toUpperCase().charCodeAt(0)
+    let row_index = (row_letter % 65);
+    console.log("Row index: " + row_index)
+    let row = puzzleString.split('').slice(row_index, (row_index + 10))
+    return row.some((item) => item == value)
   }
 
   checkColPlacement(puzzleString, row, column, value) {
