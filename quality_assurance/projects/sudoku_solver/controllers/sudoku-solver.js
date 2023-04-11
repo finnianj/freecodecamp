@@ -31,8 +31,10 @@ class SudokuSolver {
     let array = puzzleString.split('')
     let row_extract = array.filter((_num, i) => (i >= (row_group * 27) && i < ((row_group + 1) * 27)))
     console.log(row_extract)
-    let region = row_extract.filter((_num, i) => ((i % 9) >= (row_group * 3)) && ((i % 9) <= (((i + 1) * 3) - 1)))
-    console.log(region)
+    let region = row_extract.filter((_num, i) => {
+      return ((i % 9) >= col_group * 3) && ((i % 9) <= (((col_group + 1) * 3) - 1))
+    })
+    return !region.some((item) => item == value)
   }
 
   solve(puzzleString) {
