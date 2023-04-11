@@ -8,12 +8,15 @@ class SudokuSolver {
   checkValidCoordinates(coordinates) {
     let chars = /[A-I]/i
     let nums = /[0-9]/
-    console.log(chars.test(coordinates[0]))
-    console.log(nums.test(coordinates[1]))
     if (chars.test(coordinates[0]) && nums.test(coordinates[1])) {
       return true
     }
     return false
+  }
+
+  checkValidValue(value) {
+    let nums = /[0-9]/
+    return nums.test(value)
   }
 
   checkExactSquare(puzzleString, row_letter, column, value) {

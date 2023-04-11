@@ -31,6 +31,8 @@ module.exports = function (app) {
 
       if (solver.checkValidCoordinates(coordinates) == false) {
         return res.json({ error: 'Invalid coordinate'})
+      } else if (solver.checkValidValue(req.body.value) == false) {
+        return res.json({ error: 'Invalid value'})
       }
 
       if (solver.checkExactSquare(req.body.puzzle, coordinates[0], coordinates[1], req.body.value)) {
