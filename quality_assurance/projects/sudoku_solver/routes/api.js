@@ -19,6 +19,9 @@ module.exports = function (app) {
   app.route('/api/check')
     .post((req, res) => {
       let coordinates = req.body.coordinate.split('')
+      if (!solver.validate(req.body.puzzle)) {
+        return res.json({ error: 'Invalid characters in puzzle' })
+      }
       if (solver.checkExactSquare(req.body.puzzle, coordinates[0], coordinates[1], req.body.value)) {
         return res.json({ valid: true })
       }
