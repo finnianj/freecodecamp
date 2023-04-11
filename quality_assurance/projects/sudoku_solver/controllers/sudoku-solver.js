@@ -6,14 +6,14 @@ class SudokuSolver {
   }
 
   checkValidCoordinates(coordinates) {
-    let chars = /[A-I]/
+    let chars = /[A-I]/i
     let nums = /[0-9]/
     console.log(chars.test(coordinates[0]))
     console.log(nums.test(coordinates[1]))
-    if (chars.test(coordinates[0]) || nums.test(coordinates[1])) {
-      return false
+    if (chars.test(coordinates[0]) && nums.test(coordinates[1])) {
+      return true
     }
-    return true
+    return false
   }
 
   checkExactSquare(puzzleString, row_letter, column, value) {
