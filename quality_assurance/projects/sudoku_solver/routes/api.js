@@ -18,6 +18,9 @@ module.exports = function (app) {
 
   app.route('/api/check')
     .post((req, res) => {
+      console.log(req.body)
+      let coordinates = req.body.coordinate.split('')
+      solver.checkRowPlacement(req.body.puzzle, coordinates[0], coordinates[1], req.body.value)
 
     });
 
