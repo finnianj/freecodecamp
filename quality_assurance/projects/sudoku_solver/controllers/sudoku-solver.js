@@ -57,46 +57,34 @@ class SudokuSolver {
   }
 
   solve(puzzleString) {
-    let squares = puzzleString.split('')
 
-    for (let i = 0; i < 81; i++) {
+  }
 
-      // find first empty square
-      // if a square is empty
-      if (this.checksquare(squares[i])) {
-        console.log("empty square at index: " + i)
+  transform(puzzleString) {
+    let grid = [
+      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    ];
+    let row = -1
+    let col = 0
 
-        // get square column and row
-        let row = String.fromCharCode('A'.charCodeAt(0) + Math.floor(i / 9))
-        let column = i % 9;
-        console.log(row, column)
-
-        // iterate through values one to nine
-        for (let val = 1; val < 10; val ++) {
-
-          // if a number has no conflicts
-          if (
-            this.checkRowPlacement(puzzleString, row, column, val)
-          && this.checkColPlacement(puzzleString, row, column, val)
-          && this.checkRegionPlacement(puzzleString, row, column, val)
-          ) {
-            console.log("no conflicts")
-          }
-
-        }
-        this.tryNum(puzzleString, row, column)
+    for (let i = 0; i < puzzleString.length; i ++) {
+      if (i % 9 == 0) {
+        row++
+      } else if (col % 9 ==0) {
+        col = 0;
       }
+
+
     }
-    // repeat with next empty square
-    // if all numbers conflict, return to previous square and try next number
   }
-
-  checksquare(square) {
-    if (square == '.') return true
-    return false
-  }
-
-    // let values = ['1', '2', '3', '4', '5', '6', '7', '8', '9']
 
 }
 
