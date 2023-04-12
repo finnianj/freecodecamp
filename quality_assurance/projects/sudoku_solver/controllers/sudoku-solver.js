@@ -16,7 +16,7 @@ class SudokuSolver {
   }
 
   checkValidValue(value) {
-    if (value.split('').length > 1) return false
+    if (value.length > 1) return false
     let nums = /[1-9]/
     return nums.test(value)
   }

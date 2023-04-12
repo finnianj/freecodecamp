@@ -19,12 +19,13 @@ module.exports = function (app) {
   app.route('/api/check')
     .post((req, res) => {
       console.log("\n\n")
-      let coordinates = req.body.coordinate.split('')
       console.log(req.body)
-      if (req.body.puzzle == '' || coordinates[0] == '' || coordinates[1] == '' || req.body.value == '') {
+      console.log(req.body.coordinate)
+      if (req.body.puzzle == '' || !req.body.coordinate || req.body.value == '') {
         console.log('Required field(s) missing')
         return res.json({ error: 'Required field(s) missing' })
       }
+      let coordinates = req.body.coordinate.split('')
       if (!solver.validate(req.body.puzzle)) {
         console.log('Invalid characters in puzzle')
         return res.json({ error: 'Invalid characters in puzzle' })
