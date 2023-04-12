@@ -57,7 +57,7 @@ class SudokuSolver {
   }
 
   solve(puzzleString) {
-
+    console.log(this.transform(puzzleString))
   }
 
   transform(puzzleString) {
@@ -82,8 +82,10 @@ class SudokuSolver {
         col = 0;
       }
 
-
+      grid[row][col] = puzzleString[i] === '.' ? 0 : +puzzleString[i];
+      col++
     }
+    return grid;
   }
 
 }
