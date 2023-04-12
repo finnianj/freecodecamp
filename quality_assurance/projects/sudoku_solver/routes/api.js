@@ -64,7 +64,7 @@ module.exports = function (app) {
         console.log('Expected puzzle to be 81 characters long')
         return res.json({ error: 'Expected puzzle to be 81 characters long' })
       }
-      solver.solve(req.body.puzzle)
-
+      let solution = solver.solve(req.body.puzzle)
+      return res.json(solution)
     });
 };
