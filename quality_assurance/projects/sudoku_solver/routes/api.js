@@ -59,9 +59,10 @@ module.exports = function (app) {
 
   app.route('/api/solve')
     .post((req, res) => {
+      console.log(req.body)
       if ( !req.body.puzzle ) {
         console.log('Required field(s) missing')
-        return res.json({ error: 'Required field(s) missing' })
+        return res.json({ error: 'Required field missing' })
       }
 
       if (!solver.validate(req.body.puzzle)) {
