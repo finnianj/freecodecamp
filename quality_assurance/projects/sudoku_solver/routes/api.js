@@ -21,7 +21,7 @@ module.exports = function (app) {
       console.log("\n\n")
       console.log(req.body)
       console.log(req.body.coordinate)
-      if (req.body.puzzle == '' || !req.body.coordinate || req.body.value == '') {
+      if ( !req.body.puzzle || !req.body.coordinate || !req.body.value ) {
         console.log('Required field(s) missing')
         return res.json({ error: 'Required field(s) missing' })
       }
