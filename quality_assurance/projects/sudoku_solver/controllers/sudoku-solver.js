@@ -70,7 +70,7 @@ class SudokuSolver {
       [0, 0, 0, 0, 0, 0, 0, 0, 0],
       [0, 0, 0, 0, 0, 0, 0, 0, 0],
       [0, 0, 0, 0, 0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0]
     ];
     let row = -1
     let col = 0
@@ -78,12 +78,13 @@ class SudokuSolver {
     for (let i = 0; i < puzzleString.length; i ++) {
       if (i % 9 == 0) {
         row++
-      } else if (col % 9 ==0) {
+      }
+      if (col % 9 == 0) {
         col = 0;
       }
 
       grid[row][col] = puzzleString[i] === '.' ? 0 : +puzzleString[i];
-      col++
+      col++;
     }
     return grid;
   }
