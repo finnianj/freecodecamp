@@ -59,6 +59,18 @@ module.exports = function (app) {
 
   app.route('/api/solve')
     .post((req, res) => {
+      if ( !req.body.puzzle ) {
+        console.log('Required field(s) missing')
+        return res.json({ error: 'Required field(s) missing' })
+      }
+
+      if (!solver.validate(req.body.puzzle)) {
+        console.log('Invalid characters in puzzle')
+        return res.json({ error: 'Invalid characters in puzzle' })
+      } else if (req.body.puzzle.length != 81) {
+        console.log('Expected puzzle to be 81 characters long')
+        return res.json({ error: 'Expected puzzle to be 81 characters long' })
+      }
 
     });
 };
