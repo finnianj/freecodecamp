@@ -57,10 +57,11 @@ class SudokuSolver {
   }
 
   solve(puzzleString) {
-    let obj = {}
     // find first empty square
-    puzzleString.split('').map((num, index) => obj[num] = index)
-    console.log(obj)
+    let squares = puzzleString.split('')
+    for (let i = 0; i < 81; i++) {
+      console.log(squares[i] + ": " + i)
+    }
     // try first number from one to 9 that doesnt conflict with row, column or region
     // repeat with next empty square
     // if all numbers conflict, return to previous square and try next number
