@@ -57,15 +57,47 @@ class SudokuSolver {
   }
 
   solve(puzzleString) {
-    // find first empty square
     let squares = puzzleString.split('')
+
     for (let i = 0; i < 81; i++) {
-      console.log(squares[i] + ": " + i)
+
+      // find first empty square
+      // if a square is empty
+      if (this.checksquare(squares[i])) {
+        console.log("empty square at index: " + i)
+
+        // get square column and row
+        let row = String.fromCharCode('A'.charCodeAt(0) + Math.floor(i / 9))
+        let column = i % 9;
+        console.log(row, column)
+
+        // iterate through values one to nine
+        for (let val = 1; val < 10; val ++) {
+
+          // if a number has no conflicts
+          if (
+            this.checkRowPlacement(puzzleString, row, column, val)
+          && this.checkColPlacement(puzzleString, row, column, val)
+          && this.checkRegionPlacement(puzzleString, row, column, val)
+          ) {
+            console.log("no conflicts")
+          }
+
+        }
+        this.tryNum(puzzleString, row, column)
+      }
     }
-    // try first number from one to 9 that doesnt conflict with row, column or region
     // repeat with next empty square
     // if all numbers conflict, return to previous square and try next number
   }
+
+  checksquare(square) {
+    if (square == '.') return true
+    return false
+  }
+
+    // let values = ['1', '2', '3', '4', '5', '6', '7', '8', '9']
+
 }
 
 module.exports = SudokuSolver;
