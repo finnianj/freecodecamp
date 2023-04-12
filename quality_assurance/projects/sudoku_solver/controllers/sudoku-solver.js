@@ -58,6 +58,7 @@ class SudokuSolver {
 
   solve(puzzleString) {
     let grid = this.transform(puzzleString)
+    console.log(grid)
     let solved = this.solveSudoku(grid, 0, 0)
     if (!solved) return false
     // let solvedString = solved.flat().join("")
@@ -65,7 +66,7 @@ class SudokuSolver {
   }
 
   solveSudoku(grid, row, col) {
-    if (row == 9 - 1 && col ==9) return true
+    if (row == 9 - 1 && col == 9) return grid
     if (col == 9) {
       row++;
       col = 0;
@@ -90,15 +91,15 @@ class SudokuSolver {
     for(let x = 0; x <= 8; x++) if (grid[row][x] == num) return false
     for(let x = 0; x <= 8; x++) if (grid[x][col] == num) return false
 
-    let startRow = row - (row % 3)
-    let startCol = col - (col % 3)
+    let startRow = row - (row % 3),
+      startCol = col - (col % 3)
 
     for (let i = 0; i < 3; i++) {
       for (let j = 0; j < 3; j++) {
         if (grid[i + startRow][j + startCol] == num) return false
       }
-      return true
     }
+    return true
   }
 
   transform(puzzleString) {
