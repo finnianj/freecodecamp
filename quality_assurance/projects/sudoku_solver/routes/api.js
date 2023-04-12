@@ -52,7 +52,7 @@ module.exports = function (app) {
       console.log(errors)
       let conflicts = errors.map(e => e[0])
       if (errors.length > 0) {
-        return res.json({ valid: false, conflicts: conflicts })
+        return res.json({ valid: false, conflict: conflicts })
       }
       return res.json({ valid: true })
     });
