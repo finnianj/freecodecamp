@@ -166,7 +166,7 @@ suite('Functional Tests', () => {
     chai.request(server)
     .post('/api/solve')
     .send({
-      puzzle: "...1.5..2.84..f3.12.7.2g.5.....9..1....8.2.3674.3.7.2..9.47...8..1..16....926914.37."
+      puzzle: "...1.5..2.84..773.12.7.29.5.....9..1....8.2.3674.3.7.2..9.47...8..1..16....926914.37."
     })
     .end(function(err, res){
       assert.equal(res.status, 200);
@@ -177,26 +177,32 @@ suite('Functional Tests', () => {
 
   test('Check a puzzle placement with invalid placement coordinate: POST request to /api/check', function(done) {
     chai.request(server)
-    .post('/api/solve')
+    .post('/api/check')
     .send({
-      puzzle: "...1.5..2.84..f3.12.7.2g.5.....9..1....8.2.3674.3.7.2..9.47...8..1..16....926914.37."
+      puzzle: "1.5..2.84..63.12.7.2..5.....9..1....8.2.3674.3.7.2..9.47...8..1..16....926914.37.",
+      coordinate: "K2",
+      value: 2
     })
     .end(function(err, res){
       assert.equal(res.status, 200);
-      assert.equal(res.body.error, 'Expected puzzle to be 81 characters long')
+      assert.equal(res.body.error, "Invalid coordinate" )
+      done();
+    });
+  });
+
+  test('Check a puzzle placement with invalid placement value: POST request to /api/check', function(done) {
+    chai.request(server)
+    .post('/api/check')
+    .send({
+      puzzle: "1.5..2.84..63.12.7.2..5.....9..1....8.2.3674.3.7.2..9.47...8..1..16....926914.37.",
+      coordinate: "K2",
+      value: 'F'
+    })
+    .end(function(err, res){
+      assert.equal(res.status, 200);
+      assert.equal(res.body.error, "Invalid coordinate" )
       done();
     });
   });
 
 });
-
-
-
-
-
-
-
-
-
-
-// Check a puzzle placement with invalid placement value: POST request to /api/check
