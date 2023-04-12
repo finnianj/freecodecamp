@@ -58,7 +58,6 @@ class SudokuSolver {
 
   solve(puzzleString) {
     let grid = this.transform(puzzleString)
-    console.log(grid)
     let solved = this.solveSudoku(grid, 0, 0)
     if (!solved) return { error: 'Puzzle cannot be solved' }
     let solvedString = solved.flat().join("")
