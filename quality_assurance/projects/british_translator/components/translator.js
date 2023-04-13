@@ -8,10 +8,12 @@ class Translator {
   translate(text, locale) {
     let words = text.split(" ")
 
-    words.map((word) => {
+    let translated = words.map((word) => {
       if (americanOnly[word]) {
         return americanOnly[word]
       } else if (americanToBritishSpelling[word]) {
+        console.log(word)
+        console.log(americanToBritishSpelling[word])
         return americanToBritishSpelling[word]
       } else if (americanToBritishTitles[word]) {
         return americanToBritishTitles[word]
@@ -20,7 +22,7 @@ class Translator {
       }
     })
 
-    console.log(words.join(" "))
+    console.log(translated.join(" "))
   }
 
 }
