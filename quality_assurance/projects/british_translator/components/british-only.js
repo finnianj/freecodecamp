@@ -109,7 +109,7 @@ module.exports = {
   "group captain": "colonel",
   "guard's van": "caboose",
   "guv": "governor",
-  "heath robinson device": "rube goldberg device",
+  "Heath Robinson device": "Rube Goldberg machine",
   "high street": "main street",
   "hire purchase": "installment plan",
   "hold-all": "duffel bag",

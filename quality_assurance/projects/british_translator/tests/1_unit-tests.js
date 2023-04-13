@@ -30,6 +30,21 @@ suite('Unit Tests', () => {
       assert.equal(ans, "The <span class=\"highlight\">car park</span> was full.")
       done()
     });
+  test('Translate Like a high tech Rube Goldberg machine. to British English', function(done) {
+      let ans = translator.translate("Like a high tech Rube Goldberg machine.", 'american-to-british')
+      assert.equal(ans, "Like a high tech <span class=\"highlight\">Heath Robinson device</span>.")
+      done()
+    });
+  test('Translate To play hooky means to skip class or work. to British English', function(done) {
+      let ans = translator.translate("To play hooky means to skip class or work.", 'american-to-british')
+      assert.equal(ans, "To <span class=\"highlight\">bunk off</span> means to <span class=\"highlight\">dumpster</span> class or work.")
+      done()
+    });
+  test('Translate No Mr. Bond, I expect you to die. to British English', function(done) {
+    let ans = translator.translate("No Mr. Bond, I expect you to die.", 'american-to-british')
+    assert.equal(ans, "No <span class=\"highlight\">Mr</span> Bond, I expect you to die.")
+    done()
+  });
 })
 
 
@@ -37,9 +52,9 @@ suite('Unit Tests', () => {
 
 
 
-// Translate Like a high tech Rube Goldberg machine. to British English
-// Translate To play hooky means to skip class or work. to British English
-// Translate No Mr. Bond, I expect you to die. to British English
+
+
+
 // Translate Dr. Grosh will see you now. to British English
 // Translate Lunch is at 12:15 today. to British English
 // Translate We watched the footie match for a while. to American English
