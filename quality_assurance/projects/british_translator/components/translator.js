@@ -13,7 +13,7 @@ class Translator {
       let reg2 = /\d{1,2}\.\d{1,2}/
       let span = '<span class="highlight">'
       let spanEnd = '</span'
-      let newWord
+      let newWord;
 
       if (reg.test(word)) {
         newWord = word.replace(/:/, '.')
@@ -33,7 +33,12 @@ class Translator {
         newWord = word
       }
 
-      return `${span}${newWord}${spanEnd}`
+      if (newWord != '') {
+        return `${span}${newWord}${spanEnd}`
+      } else {
+        return word
+      }
+      
     })
 
     console.log(translated.join(" "))
