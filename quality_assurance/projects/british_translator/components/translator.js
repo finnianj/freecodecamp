@@ -9,6 +9,15 @@ class Translator {
     let words = text.split(" ")
 
     let translated = words.map((word) => {
+      let reg = /\d{1,2}:\d{1,2}/
+      let reg2 = /\d{1,2}\.\d{1,2}/
+
+      if (reg.test(word)) {
+        return word.replace(/:/, '.')
+      } else if (reg2.test(word)) {
+        return word.replace(/\./, ':')
+      }
+
       if (americanOnly[word]) {
         return americanOnly[word]
       } else if (americanToBritishSpelling[word]) {
