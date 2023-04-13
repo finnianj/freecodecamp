@@ -11,7 +11,7 @@ suite('Unit Tests', () => {
       done()
     });
   test('Translate I ate yogurt for breakfast. to British English', function(done) {
-      let ans = translator.translate("I ate yogurt for breakfast.", 'american-to-british')
+      let ans = translator.translate("I ate yogurt for brekkie.", 'american-to-british')
       assert.equal(ans, 'I ate <span class="highlight">yoghurt</span> for breakfast.')
       done()
     });
@@ -25,13 +25,18 @@ suite('Unit Tests', () => {
       assert.equal(ans, "Can you toss this in the <span class=\"highlight\">bin</span> for me?")
       done()
     });
+  test('Translate The parking lot was full. to British English', function(done) {
+      let ans = translator.translate("The parking lot was full.", 'american-to-british')
+      assert.equal(ans, "The <span class=\"highlight\">garage</span> was full.")
+      done()
+    });
 })
 
 
 
 
 
-// Translate The parking lot was full. to British English
+
 // Translate Like a high tech Rube Goldberg machine. to British English
 // Translate To play hooky means to skip class or work. to British English
 // Translate No Mr. Bond, I expect you to die. to British English
