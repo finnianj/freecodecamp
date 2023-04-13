@@ -11,27 +11,33 @@ class Translator {
     let translated = words.map((word) => {
       let reg = /\d{1,2}:\d{1,2}/
       let reg2 = /\d{1,2}\.\d{1,2}/
+      let span = '<span class="highlight">'
+      let spanEnd = '</span'
+      let newWord
 
       if (reg.test(word)) {
-        return word.replace(/:/, '.')
+        newWord = word.replace(/:/, '.')
       } else if (reg2.test(word)) {
-        return word.replace(/\./, ':')
+        newWord = word.replace(/\./, ':')
       }
 
       if (americanOnly[word]) {
-        return americanOnly[word]
+        newWord = americanOnly[word]
       } else if (americanToBritishSpelling[word]) {
-        return americanToBritishSpelling[word]
+        newWord = americanToBritishSpelling[word]
       } else if (americanToBritishTitles[word]) {
-        return americanToBritishTitles[word]
+        newWord = americanToBritishTitles[word]
       } else if (britishOnly[word]) {
-        return britishOnly[word]
+        newWord = britishOnly[word]
       } else {
-        return word
+        newWord = word
       }
+
+      return `${span}${newWord}${spanEnd}`
     })
 
     console.log(translated.join(" "))
+    return translated.join(" ")
   }
 
 }
