@@ -7,7 +7,6 @@ class Translator {
 
   translate(text, locale) {
     let words = text.split(" ")
-    let translationMade = false
 
     let translated = words.map((word) => {
       let reg = /\d{1,2}:\d{1,2}/
@@ -33,7 +32,6 @@ class Translator {
       }
 
       if (newWord != undefined) {
-        translationMade = true
         return `${span}${newWord}${spanEnd}`
       } else {
         return word
@@ -41,7 +39,7 @@ class Translator {
 
     })
 
-    if (translationMade) {
+    if (translated.join(" ") == words.join(" ")) {
       console.log("No translation needed")
       return undefined
     }
