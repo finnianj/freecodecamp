@@ -5,6 +5,10 @@ const britishOnly = require('./british-only.js')
 
 class Translator {
 
+  translate(text, locale) {
+    console.log(text, locale)
+  }
+
 }
 
 module.exports = Translator;
