@@ -15,12 +15,22 @@ suite('Unit Tests', () => {
       assert.equal(ans, 'I ate <span class="highlight">yoghurt</span> for breakfast.')
       done()
     });
+  test('Translate We had a party at my friend\'s condo. to British English', function(done) {
+      let ans = translator.translate("We had a party at my friend's condo", 'american-to-british')
+      assert.equal(ans, "We had a party at my friend's <span class=\"highlight\">flat</span>")
+      done()
+    });
+  test('Translate Can you toss this in the trashcan for me? to British English', function(done) {
+      let ans = translator.translate("Can you toss this in the trashcan for me?", 'american-to-british')
+      assert.equal(ans, "Can you toss this in the <span class=\"highlight\">bin</span> for me?")
+      done()
+    });
 })
 
 
 
-// Translate We had a party at my friend's condo. to British English
-// Translate Can you toss this in the trashcan for me? to British English
+
+
 // Translate The parking lot was full. to British English
 // Translate Like a high tech Rube Goldberg machine. to British English
 // Translate To play hooky means to skip class or work. to British English
