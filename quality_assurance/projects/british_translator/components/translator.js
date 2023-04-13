@@ -22,6 +22,13 @@ class Translator {
 
   translate(text, _locale) {
     let original = text.split("").join("")
+    let dateReg1 = /\d{1,2}:\d{1,2}/
+    let dateReg2 = /\d{1,2}\.\d{1,2}/
+    if (dateReg1.test(text)) {
+
+    } else if (dateReg1.test(text)) {
+      
+    }
 
     for (const [key, value] of Object.entries(americanOnly)) {
       text = this.replaceWords(key, value, text, 'AO')
