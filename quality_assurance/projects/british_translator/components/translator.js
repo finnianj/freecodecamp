@@ -12,7 +12,7 @@ class Translator {
       let reg = /\d{1,2}:\d{1,2}/
       let reg2 = /\d{1,2}\.\d{1,2}/
       let span = '<span class="highlight">'
-      let spanEnd = '</span'
+      let spanEnd = '</span>'
       let newWord;
 
       if (reg.test(word)) {
@@ -29,9 +29,9 @@ class Translator {
         newWord = americanToBritishTitles[word]
       } else if (britishOnly[word]) {
         newWord = britishOnly[word]
-      } 
+      }
 
-      if (newWord != '') {
+      if (newWord != undefined) {
         return `${span}${newWord}${spanEnd}`
       } else {
         return word
