@@ -21,14 +21,24 @@ class Translator {
         newWord = word.replace(/\./, ':')
       }
 
-      if (americanOnly[word]) {
-        newWord = americanOnly[word]
-      } else if (americanToBritishSpelling[word]) {
-        newWord = americanToBritishSpelling[word]
-      } else if (americanToBritishTitles[word]) {
-        newWord = americanToBritishTitles[word]
-      } else if (britishOnly[word]) {
-        newWord = britishOnly[word]
+      for (const [key, value] of Object.entries(americanOnly)) {
+        if (key == word) newWord = value
+        if (value == word) newWord = key
+      }
+
+      for (const [key, value] of Object.entries(americanToBritishSpelling)) {
+        if (key == word) newWord = value
+        if (value == word) newWord = key
+      }
+
+      for (const [key, value] of Object.entries(americanToBritishTitles)) {
+        if (key == word) newWord = value
+        if (value == word) newWord = key
+      }
+
+      for (const [key, value] of Object.entries(britishOnly)) {
+        if (key == word) newWord = value
+        if (value == word) newWord = key
       }
 
       if (newWord != undefined) {
