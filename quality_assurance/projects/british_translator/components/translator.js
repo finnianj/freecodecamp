@@ -9,15 +9,13 @@ class Translator {
     let words = text.split(" ")
 
     let translated = words.map((word) => {
-      if (americanOnly[word]) {
+      if (americanOnly[word.toLowerCase()]) {
         return americanOnly[word]
-      } else if (americanToBritishSpelling[word]) {
-        console.log(word)
-        console.log(americanToBritishSpelling[word])
+      } else if (americanToBritishSpelling[word.toLowerCase()]) {
         return americanToBritishSpelling[word]
-      } else if (americanToBritishTitles[word]) {
+      } else if (americanToBritishTitles[word.toLowerCase()]) {
         return americanToBritishTitles[word]
-      } else if (britishOnly[word]) {
+      } else if (britishOnly[word.toLowerCase()]) {
         return britishOnly[word]
       } else {
         return word
