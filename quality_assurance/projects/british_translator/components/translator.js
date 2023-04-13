@@ -29,16 +29,14 @@ class Translator {
         newWord = americanToBritishTitles[word]
       } else if (britishOnly[word]) {
         newWord = britishOnly[word]
-      } else {
-        newWord = word
-      }
+      } 
 
       if (newWord != '') {
         return `${span}${newWord}${spanEnd}`
       } else {
         return word
       }
-      
+
     })
 
     console.log(translated.join(" "))
