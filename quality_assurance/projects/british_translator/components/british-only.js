@@ -44,7 +44,6 @@ module.exports = {
   "car boot sale": "swap meet",
   "car boot": "trunk",
   "car hire": "car rental",
-  "car park": "parking lot",
   "carer": "caregiver",
   "carriageway": "lane",
   "cash machine": "ATM",

@@ -11,13 +11,13 @@ suite('Unit Tests', () => {
       done()
     });
   test('Translate I ate yogurt for breakfast. to British English', function(done) {
-      let ans = translator.translate("I ate yogurt for brekkie.", 'american-to-british')
-      assert.equal(ans, 'I ate <span class="highlight">yoghurt</span> for breakfast.')
+      let ans = translator.translate("I ate yogurt for breakfast.", 'american-to-british')
+      assert.equal(ans, 'I ate <span class="highlight">yoghurt</span> for <span class="highlight">brekkie</span>.')
       done()
     });
   test('Translate We had a party at my friend\'s condo. to British English', function(done) {
-      let ans = translator.translate("We had a party at my friend's condo", 'american-to-british')
-      assert.equal(ans, "We had a party at my friend's <span class=\"highlight\">flat</span>")
+      let ans = translator.translate("We had a party at my friend's condo.", 'american-to-british')
+      assert.equal(ans, "We had a party at my friend's <span class=\"highlight\">flat</span>.")
       done()
     });
   test('Translate Can you toss this in the trashcan for me? to British English', function(done) {
@@ -27,7 +27,7 @@ suite('Unit Tests', () => {
     });
   test('Translate The parking lot was full. to British English', function(done) {
       let ans = translator.translate("The parking lot was full.", 'american-to-british')
-      assert.equal(ans, "The <span class=\"highlight\">garage</span> was full.")
+      assert.equal(ans, "The <span class=\"highlight\">car park</span> was full.")
       done()
     });
 })
