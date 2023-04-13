@@ -6,7 +6,21 @@ const britishOnly = require('./british-only.js')
 class Translator {
 
   translate(text, locale) {
-    console.log(text, locale)
+    let words = text.split(" ")
+
+    words.map((word) => {
+      if (americanOnly[word]) {
+        return americanOnly[word]
+      } else if (americanToBritishSpelling[word]) {
+        return americanToBritishSpelling[word]
+      } else if (americanToBritishTitles[word]) {
+        return americanToBritishTitles[word]
+      } else if (britishOnly[word]) {
+        return britishOnly[word]
+      }
+    })
+
+    console.log(words.join(" "))
   }
 
 }
