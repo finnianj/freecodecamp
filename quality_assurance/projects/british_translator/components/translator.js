@@ -19,6 +19,8 @@ class Translator {
         return americanToBritishTitles[word]
       } else if (britishOnly[word]) {
         return britishOnly[word]
+      } else {
+        return word
       }
     })
 
