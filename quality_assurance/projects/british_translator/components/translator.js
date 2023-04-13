@@ -25,9 +25,9 @@ class Translator {
     let dateReg1 = /\d{1,2}:\d{1,2}/
     let dateReg2 = /\d{1,2}\.\d{1,2}/
     if (dateReg1.test(text)) {
-
+      text = text.replace(/\d{1,2}(:)\d{1,2}/, '.')
     } else if (dateReg1.test(text)) {
-      
+      text = text.replace(/\d{1,2}(.)\d{1,2}/, ':')
     }
 
     for (const [key, value] of Object.entries(americanOnly)) {
