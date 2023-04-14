@@ -45,21 +45,34 @@ suite('Unit Tests', () => {
     assert.equal(ans, "No <span class=\"highlight\">Mr</span> Bond, I expect you to die.")
     done()
   });
+  test('Translate Dr. Grosh will see you now. to British English', function(done) {
+    let ans = translator.translate("Dr. Grosh will see you now.", 'american-to-british')
+    assert.equal(ans, "<span class=\"highlight\">Dr</span> Grosh will see you now.")
+    done()
+  });
+  test('Translate Lunch is at 12:15 today. to British English', function(done) {
+    let ans = translator.translate("Lunch is at 12:15 today.", 'american-to-british')
+    assert.equal(ans, "Lunch is at <span class=\"highlight\">12.15</span> today.")
+    done()
+  });
+  test('Translate We watched the footie match for a while. to American English', function(done) {
+    let ans = translator.translate("We watched the footie match for a while.", 'british-to-american')
+    assert.equal(ans, "We watched the <span class=\"highlight\">soccer</span> match for a while.")
+    done()
+  });
+  test('Translate Paracetamol takes up to an hour to work. to American English', function(done) {
+    let ans = translator.translate("Paracetamol takes up to an hour to work.", 'british-to-american')
+    assert.equal(ans, undefined)
+    done()
+  });
+  test('Translate First, caramelise the onions. to American English', function(done) {
+    let ans = translator.translate("First, caramelise the onions.", 'british-to-american')
+    assert.equal(ans, "First, <span class=\"highlight\">caramelize</span> the onions.")
+    done()
+  });
 })
 
 
-
-
-
-
-
-
-
-// Translate Dr. Grosh will see you now. to British English
-// Translate Lunch is at 12:15 today. to British English
-// Translate We watched the footie match for a while. to American English
-// Translate Paracetamol takes up to an hour to work. to American English
-// Translate First, caramelise the onions. to American English
 // Translate I spent the bank holiday at the funfair. to American English
 // Translate I had a bicky then went to the chippy. to American English
 // Translate I've just got bits and bobs in my bum bag. to American English
