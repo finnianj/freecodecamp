@@ -80,12 +80,17 @@ suite('Unit Tests', () => {
     assert.equal(ans, "I had a <span class=\"highlight\">cookie</span> then went to the <span class=\"highlight\">fish-and-chip shop</span>.")
     done()
   });
+  test('Translate I\'ve just got bits and bobs in my bum bag. to American English', function(done) {
+    let ans = translator.translate("I\'ve just got bits and bobs in my bum bag.", 'british-to-american')
+    assert.equal(ans, "I\'ve just got <span class=\"highlight\">odds and ends</span> in my <span class=\"highlight\">fanny pack</span>.")
+    done()
+  });
 })
 
 
 
 
-// Translate I've just got bits and bobs in my bum bag. to American English
+
 // Translate The car boot sale at Boxted Airfield was called off. to American English
 // Translate Have you met Mrs Kalyani? to American English
 // Translate Prof Joyner of King's College, London. to American English

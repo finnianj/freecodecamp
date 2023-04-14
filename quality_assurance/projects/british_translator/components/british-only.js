@@ -28,7 +28,6 @@ module.exports = {
   "breve": "double whole note",
   "brolly": "umbrella",
   "building society": "savings and loan association",
-  "bum bag": "fanny pack",
   "bunce": "a windfall",
   "bureau de change": "currency exchange",
   "burgle": "burglarize",
