@@ -105,10 +105,24 @@ suite('Unit Tests', () => {
     assert.equal(ans, "Tea time is usually around 4 or <span class=\"highlight\">4:30</span>.")
     done()
   });
+  test('Highlight translation in Mangoes are my favorite fruit.', function(done) {
+    let ans = translator.translate("Mangoes are my favorite fruit.", 'british-to-american')
+    assert.equal(ans, "Mangoes are my <span class=\"highlight\">favourite</span> fruit.")
+    done()
+  });
+  test('Highlight translation in I ate yogurt for breakfast.', function(done) {
+    let ans = translator.translate("I ate yogurt for breakfast.", 'british-to-american')
+    assert.equal(ans, "I ate <span class=\"highlight\">yoghurt</span> for <span class=\"highlight\">brekkie</span>.")
+    done()
+  });
+  test('Highlight translation in We watched the footie match for a while.', function(done) {
+    let ans = translator.translate("We watched the footie match for a while.", 'british-to-american')
+    assert.equal(ans, "We watched the <span class=\"highlight\">soccer</span> match for a while.")
+    done()
+  });
+  test('Highlight translation in Paracetamol takes up to an hour to work.', function(done) {
+    let ans = translator.translate("Paracetamol takes up to an hour to work.", 'british-to-american')
+    assert.equal(ans, undefined)
+    done()
+  });
 })
-
-
-// Highlight translation in Mangoes are my favorite fruit.
-// Highlight translation in I ate yogurt for breakfast.
-// Highlight translation in We watched the footie match for a while.
-// Highlight translation in Paracetamol takes up to an hour to work.
