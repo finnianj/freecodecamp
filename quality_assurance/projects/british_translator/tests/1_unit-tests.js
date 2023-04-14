@@ -85,13 +85,17 @@ suite('Unit Tests', () => {
     assert.equal(ans, "I\'ve just got <span class=\"highlight\">odds and ends</span> in my <span class=\"highlight\">fanny pack</span>.")
     done()
   });
+  test('Translate The car boot sale at Boxted Airfield was called off. to American English', function(done) {
+    let ans = translator.translate("The car boot sale at Boxted Airfield was called off.", 'british-to-american')
+    assert.equal(ans, "The <span class=\"highlight\">swap meet</span> at Boxted Airfield was called off.")
+    done()
+  });
 })
 
 
 
 
 
-// Translate The car boot sale at Boxted Airfield was called off. to American English
 // Translate Have you met Mrs Kalyani? to American English
 // Translate Prof Joyner of King's College, London. to American English
 // Translate Tea time is usually around 4 or 4.30. to American English
