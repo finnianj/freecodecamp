@@ -10,7 +10,7 @@ class Translator {
     let keyReg = new RegExp("\\b" + `${key}` + "\\b");
     let valReg = new RegExp("\\b" + `${value}` + "\\b");
     // the regex for changing titles is slightly modified as it must match 'Mr.' and words with '.'
-    if (type == 'ATBT') keyReg = new RegExp("\\b" + `${key}` + "\.?\\b");
+    if (type == 'ATBT') keyReg = new RegExp("\\b" + `${key}` + "\.\\b");
     if (keyReg.test(text)) {
       console.log("replacing key with value " + type)
       return text.replace(key, `<span class="highlight">${value}</span>`)
