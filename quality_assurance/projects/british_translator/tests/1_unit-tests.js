@@ -90,15 +90,24 @@ suite('Unit Tests', () => {
     assert.equal(ans, "The <span class=\"highlight\">swap meet</span> at Boxted Airfield was called off.")
     done()
   });
+  test('Translate Have you met Mrs Kalyani? to American English', function(done) {
+    let ans = translator.translate("Have you met Mrs Kalyani?", 'british-to-american')
+    assert.equal(ans, "Have you met <span class=\"highlight\">Mrs.</span> Kalyani?")
+    done()
+  });
+  test('Translate Prof Joyner of King\'s College, London. to American English', function(done) {
+    let ans = translator.translate("Prof Joyner of King's College, London.", 'british-to-american')
+    assert.equal(ans, "<span class=\"highlight\">Prof.</span> Joyner of King's College, London.")
+    done()
+  });
+  test('Translate Tea time is usually around 4 or 4.30. to American English', function(done) {
+    let ans = translator.translate("Tea time is usually around 4 or 4.30.", 'british-to-american')
+    assert.equal(ans, "Tea time is usually around 4 or <span class=\"highlight\">4:30</span>.")
+    done()
+  });
 })
 
 
-
-
-
-// Translate Have you met Mrs Kalyani? to American English
-// Translate Prof Joyner of King's College, London. to American English
-// Translate Tea time is usually around 4 or 4.30. to American English
 // Highlight translation in Mangoes are my favorite fruit.
 // Highlight translation in I ate yogurt for breakfast.
 // Highlight translation in We watched the footie match for a while.
