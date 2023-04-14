@@ -26,9 +26,9 @@ class Translator {
     let original = text.split("").join("")
     let dateReg = /[:|\.](?=\d)/
     if (text.match(dateReg)) {
-      text = text.match(dateReg)[0] == ':' ?
-      text.replace(dateReg, '<span class="highlight">.</span>') :
-      text.replace(dateReg, '<span class="highlight">:</span>')
+      let t = text.match(/\d{1,2}[:|\.]\d{1,2}/)[0]
+      t = t.match(dateReg)[0] == ':' ? t.replace(dateReg, '.') : t.replace(dateReg, ':')
+      text = text.replace(/\d{1,2}[:|\.]\d{1,2}/, `<span class="highlight">${t}</span>`)
     }
 
     for (const [key, value] of Object.entries(americanOnly)) {
