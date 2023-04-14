@@ -119,7 +119,6 @@ module.exports = {
   "powdered sugar": "icing sugar",
   "pre-authorized payment": "direct debit",
   "pre-authorized withdrawal": "direct debit",
-  "public holiday": "bank holiday",
   "rappel": "abseil",
   "realtor": "estate agent",
   "rif": "redundancy",
