@@ -75,11 +75,16 @@ suite('Unit Tests', () => {
     assert.equal(ans, "I spent the <span class=\"highlight\">public holiday</span> at the <span class=\"highlight\">carnival</span>.")
     done()
   });
+  test('Translate I had a bicky then went to the chippy. to American English', function(done) {
+    let ans = translator.translate("I had a bicky then went to the chippy.", 'british-to-american')
+    assert.equal(ans, "I had a <span class=\"highlight\">cookie</span> then went to the <span class=\"highlight\">fish-and-chip shop</span>.")
+    done()
+  });
 })
 
 
 
-// Translate I had a bicky then went to the chippy. to American English
+
 // Translate I've just got bits and bobs in my bum bag. to American English
 // Translate The car boot sale at Boxted Airfield was called off. to American English
 // Translate Have you met Mrs Kalyani? to American English
